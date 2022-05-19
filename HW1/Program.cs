@@ -1,4 +1,4 @@
-﻿using HW1;
+﻿using ProductsProj;
 
 Product product1 = new Product();
 Product product2 = new Product("someProduct", 20.5, 3.4);

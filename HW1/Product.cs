@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HW1
+namespace ProductsProj
 {
     internal class Product
     {
