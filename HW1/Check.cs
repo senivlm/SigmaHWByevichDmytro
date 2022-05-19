@@ -11,6 +11,8 @@ namespace ProductsProj
         static int _checkCounter = 1;
         public static void PrintCheck(Buy buy)
         {
+            buy.UpdateProductPriceSum();
+            buy.UpdateProductWeightSum();
             Console.WriteLine();
             Console.WriteLine($"<------------------ Check {_checkCounter} ------------------>");
             foreach (var product in buy.ProductList)           

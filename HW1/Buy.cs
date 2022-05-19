@@ -8,6 +8,7 @@ namespace ProductsProj
 {
     internal class Buy
     {
+        #region Props
         private List<Product> _products;
 
         public List<Product> ProductList
@@ -16,7 +17,7 @@ namespace ProductsProj
         }
         private double _productWeightSum;
 
-        public  double ProductWeightSum
+        public double ProductWeightSum
         {
             get { return _productWeightSum; }
             private set { _productWeightSum = value; }
@@ -30,6 +31,7 @@ namespace ProductsProj
             private set { _productPriceSum = value; }
         }
 
+        #endregion
 
         public Buy() : this(new List<Product>()) { }
         public Buy(IEnumerable<Product> products)
@@ -42,10 +44,19 @@ namespace ProductsProj
         {
             _products.Add(product);
         }
+        public void UpdateProductWeightSum()
+        {
+            ProductWeightSum = _products.Select(x => x.Weight).Sum();
+        }
+        public void UpdateProductPriceSum()
+        {
+            ProductPriceSum = _products.Select(x => x.Price).Sum();
+        }
 
+        #region ObjectOverrides
         public override bool Equals(object obj)
         {
-            if(obj == null)
+            if (obj == null)
                 throw new ArgumentNullException(nameof(obj));
             if (obj is Buy other &&
                 other.ProductList.Count == this.ProductList.Count)
@@ -59,7 +70,7 @@ namespace ProductsProj
             }
             return false;
 
-            
+
         }
 
         public override int GetHashCode()
@@ -70,11 +81,12 @@ namespace ProductsProj
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            foreach(Product product in _products)
+            foreach (Product product in _products)
                 builder.Append(product.ToString());
             builder.Append($"Total weight: {ProductWeightSum}; ");
             builder.Append($"Total price: {ProductPriceSum}; ");
             return builder.ToString();
-        }
+        } 
+        #endregion
     }
 }

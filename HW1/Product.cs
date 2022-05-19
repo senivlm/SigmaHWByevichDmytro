@@ -5,6 +5,8 @@ namespace ProductsProj
 {
     internal class Product
     {
+        #region Props
+
         private string _name;
         public string Name
         {
@@ -35,6 +37,8 @@ namespace ProductsProj
                 _weight = value;
             }
         }
+        #endregion
+
 
         public Product() : this("name", default, default) { }
         public Product(string name, double price, double weight)
@@ -43,12 +47,19 @@ namespace ProductsProj
             Price = price;
             Weight = weight;
         }
+        public virtual void ChangePrice(int persent)
+        {
+            Price += Price / 100d * persent;
+        }
+
+
+        #region ObjectOverrides
 
         public override bool Equals(object? obj)
         {
-            if(obj == null)
+            if (obj == null)
                 throw new ArgumentNullException(nameof(obj));
-            return (obj is  Product other &&
+            return (obj is Product other &&
                     this.Name == other.Name &&
                     this.Price == other.Price &&
                     this.Weight == other.Weight);
@@ -61,7 +72,8 @@ namespace ProductsProj
 
         public override string? ToString()
         {
-            return $"Name: {Name}, Price: {Price}, Weight: {Weight}; ";
+            return $"Name: {Name}, Price: {Price:#.##}, Weight: {Weight:#.##}, ";
         }
+        #endregion
     }
 }
