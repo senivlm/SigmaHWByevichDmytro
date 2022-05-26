@@ -30,6 +30,13 @@ namespace ProductsProj
         //доробити меню
         public StorageBuilder ConsoleMenuInput()
         {
+            var options = new List<Option>()
+            {
+               new Option("Add meat product", () => ConsoleAddMeatProduct()),
+               new Option("Add diary product", () => ConsoleAddDairyProduct())
+            };
+            var menu = new Menu(options);
+            menu.PrintMenu();
             return this;
         }
 
@@ -37,8 +44,20 @@ namespace ProductsProj
         {
             return new Storage(this);
         }
+        private void ConsoleAddMeatProduct()
+        {
+            var meat = new Meat();
+            meat.ConsoleSet();
+            _products.Add(meat);
+        }
+        private void ConsoleAddDairyProduct()
+        {
+            var dairy = new DairyProduct();
+            dairy.ConsoleSet();
+            _products.Add(dairy);
+        }
 
-        
+
 
     }
 }

@@ -36,7 +36,14 @@ namespace ProductsProj
             Species = species;
             Category = category;
         }
-
+        public override void ConsoleSet()
+        {   
+            base.ConsoleSet();
+            Console.Write("Input meat species > ");
+            Enum.TryParse(Console.ReadLine(), out _species);
+            Console.Write("Input category > ");
+            Enum.TryParse(Console.ReadLine(), out _category);
+        }
         public override void ChangePrice(int persent)
         {
 

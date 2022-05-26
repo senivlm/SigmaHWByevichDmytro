@@ -9,7 +9,7 @@ DairyProduct dairyProduct3 = new DairyProduct("someDairyProduct3", 100, 4.1, 4);
 DairyProduct dairyProduct4 = new DairyProduct("someDairyProduct4", 100, 5.2, 2);
 DairyProduct dairyProduct5 = new DairyProduct("someDairyProduct5", 100, 7.2, 1);
 
-
+Meat meat = new Meat("meatProd",30.2,2.2,MeatSpecies.Mutton,ProductCategory.First);
 List<Product> products = new List<Product>();
 products.Add(product1);
 products.Add(product2);
@@ -28,10 +28,14 @@ dairyProduct4.ChangePrice(-10);
 dairyProduct5.ChangePrice(1000);
 //Check.PrintCheck(buy);
 
-Storage storage = new StorageBuilder().AddProductList(products)
-                                    .AddProduct(product2)
-                                    .Build();
-for (int i = 0; i < storage.Count; i++)
-{
-    Console.WriteLine(storage[i]);
-}
+Storage storage = new StorageBuilder().ConsoleMenuInput()
+                                      .AddProduct(meat)
+                                      .AddProductList(products)
+                                      .Build();
+storage.PrintProducts();
+storage.ChangePrice(10);
+storage.PrintProducts();
+
+Storage meatSotrage = new StorageBuilder().AddProductList(storage.GetMeatProducts())
+                                          .Build();
+meatSotrage.PrintProducts();

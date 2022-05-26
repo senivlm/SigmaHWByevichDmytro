@@ -51,6 +51,15 @@ namespace ProductsProj
         {
             Price += Price / 100d * persent;
         }
+        public virtual void ConsoleSet()
+        {
+            Console.Write("Input name > ");
+            Name = Console.ReadLine();
+            Console.Write("Input price > ");
+            double.TryParse(Console.ReadLine(), out _price);
+            Console.Write("Input weight > ");
+            double.TryParse(Console.ReadLine(), out _weight);
+        }
 
 
         #region ObjectOverrides
@@ -72,7 +81,7 @@ namespace ProductsProj
 
         public override string? ToString()
         {
-            return $"Name: {Name}, Price: {Price:#.##}, Weight: {Weight:#.##}, ";
+            return $"Name: {Name}, Price: {Math.Round(Price,3)}, Weight: {Math.Round(Weight, 3)}, ";
         }
         #endregion
     }

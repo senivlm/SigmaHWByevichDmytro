@@ -24,6 +24,22 @@ namespace ProductsProj
             get { return _products[index]; }
             set { _products[index] = value; }
         }
-
+        public void ChangePrice(int precent)
+        {
+            foreach (Product product in _products)  
+                product.ChangePrice(precent);
+        }
+        public void PrintProducts()
+        {
+            Console.WriteLine("\nProducts storage:");
+            foreach (Product product in _products)
+                Console.WriteLine(product);
+        }
+        public List<Product> GetMeatProducts()
+        {
+            List<Product> meatProducts = new List<Product>();
+            meatProducts = _products.Where(x => x is Meat).ToList();
+            return meatProducts;
+        }
     }
 }

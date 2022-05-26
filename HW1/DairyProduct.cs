@@ -29,6 +29,12 @@ namespace ProductsProj
         {
             ExpirationDays = expirationDays;
         }
+        public override void ConsoleSet()
+        {
+            base.ConsoleSet();
+            Console.Write("Input expiration days > ");
+            int.TryParse(Console.ReadLine(), out _expirationDays);
+        }
         public override void ChangePrice(int persent)
         {
             if (_expirationDays < 2)
