@@ -10,6 +10,10 @@ namespace ProductsProj
     {
         private List<Product> _products;
         public int Count { get => _products.Count;  }
+        public Storage()
+        {
+            _products = new List<Product>();
+        }
         public Storage(StorageBuilder storageBuilder)
         {
             _products = new List<Product>(storageBuilder.GetProducts());
