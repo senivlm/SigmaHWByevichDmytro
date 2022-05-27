@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Homework4;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,53 @@ namespace Homework3
         {
             _array = new int[vectorLength];
         }
+
+        public void Bubble(Trend trend)
+        {
+            bool isSorted;
+            switch (trend)
+            {
+                case Trend.decrease:
+                    for (int i = 0; i < Length - 1; i++)
+                    {
+                        isSorted = true;
+                        for (int j = 0; j < Length - 1 - i; j++)
+                        {
+                            if (_array[j + 1] > _array[j])
+                            {
+                                var tmp = _array[j];
+                                _array[j] = _array[j + 1];
+                                _array[j + 1] = tmp;
+                                isSorted = false;
+                            }
+                        }
+                        if (isSorted)
+                            break;
+                    }
+                    break;
+                case Trend.increase:
+                    for (int i = 0; i < Length - 1; i++)
+                    {
+                        isSorted = true;
+                        for (int j = 0; j < Length - i - 1; j++)
+                        {
+                            if (_array[j + 1] < _array[j])
+                            {
+                                var tmp = _array[j];
+                                _array[j] = _array[j + 1];
+                                _array[j + 1] = tmp;
+                                isSorted = false;
+                            }
+                        }
+                        if (isSorted)
+                            break;
+                    }
+                    break;
+                default:
+                    throw new Exception();
+            }
+        }
+
         public void RandomInitialization(int minValue, int maxValue)
         {
             Random random = new Random();
@@ -93,7 +141,7 @@ namespace Homework3
         public Pair<int> LongestSubsequence()
         {
             int count;
-            Pair<int> pair = new Pair<int>(_array[0],1);
+            Pair<int> pair = new Pair<int>(_array[0], 1);
             for (int i = 0; i < Length - 1; i++)
             {
                 count = 1;
@@ -133,6 +181,7 @@ namespace Homework3
             return sb.ToString();
 
         }
+
 
 
     }
