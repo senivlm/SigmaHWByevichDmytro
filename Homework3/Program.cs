@@ -6,13 +6,20 @@ namespace Homework3
     {
         static void Main(string[] args)
         {
-            Matrix matrix = new Matrix(4, 4);
-            matrix.FIll(Filling.spiral, Direction.down);
-            matrix.Print();
+            Vector vector = new Vector(11);
+            vector.RandomInitialization(1, 10);
+            Console.WriteLine(vector);
+            foreach (var item in vector.CalculateFreq())
+            {
+                Console.WriteLine(item);
+            }
 
-            Console.WriteLine();
-            matrix.FIll(Filling.vertical, Direction.up);
-            matrix.Print();
+            Console.WriteLine(vector);
+            Console.WriteLine(vector.IsPalindrome());
+            vector.Reverse();
+
+            Console.WriteLine(vector);
+            Console.WriteLine($"frequest num :{vector.LongestSubsequence()} times ");
 
         }
     }
