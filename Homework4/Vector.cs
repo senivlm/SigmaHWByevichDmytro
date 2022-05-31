@@ -117,7 +117,7 @@ namespace Homework3
                     throw new Exception();
             }
             switch (trend)
-            {
+            {// краще один метод з передачею параметра та встановленню його за замовчуванням
                 case Trend.decrease:
                     QuickSortRecDecrease(0, (uint)Length - 1, pivot);
                     break;
@@ -240,7 +240,7 @@ namespace Homework3
             }
         }
         public void ShuffleInitialization()
-        {
+        {// не оптимізовано!
             Random random = new Random();
             for (int i = 0; i < Length; i++)
             {
