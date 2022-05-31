@@ -80,7 +80,7 @@ namespace Homework3
             }
         }
         private void FillDiagonal()
-        {
+        {// Є повтор коду, який можна оптимізувати
             bool isDirectionUp = SetDirection();
             bool isDiagonal = false;
 
@@ -197,7 +197,7 @@ namespace Homework3
                 }
         }
 
-
+// Пам'ятаємо, що тільки для навчальних цілей.
         public void Print()
         {
             for (int row = 0; row < _rows; row++)
