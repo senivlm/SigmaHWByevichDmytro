@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 
 namespace Task5
 {
@@ -6,7 +10,21 @@ namespace Task5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //FileHandler arrayFile = new FileHandler("../../../ArrayData.txt");
+            //FileHandler sortedArrayFile = new FileHandler("../../../SortedArray.txt");
+
+            //Console.WriteLine(arrayFile);
+            //Vector.FileSplitMergeSort(arrayFile, sortedArrayFile, Trend.increase);
+            //Console.WriteLine("Sortred: ");
+            //Console.WriteLine(sortedArrayFile);
+
+
+            Matrix matrix = new Matrix(7,3);
+            matrix.FIll(Filling.diagonal,Direction.down);
+            Console.WriteLine(matrix);
+
+
+
         }
     }
 }
