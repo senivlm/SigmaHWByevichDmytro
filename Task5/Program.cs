@@ -19,7 +19,7 @@ namespace Task5
             //Console.WriteLine(sortedArrayFile);
 
 
-            Matrix matrix = new Matrix(7,3);
+            Matrix matrix = new Matrix(5,5);
             matrix.FIll(Filling.diagonal,Direction.down);
             Console.WriteLine(matrix);
 

@@ -109,7 +109,7 @@ namespace Task5
                 {
                     for (int col = 0; col < _columns; col++)
                     {
-                        for (int row = 0; row  < _rows; row++)
+                        for (int row = 0; row < _rows; row++)
                         {
                             if (row + col == diag)
                             {
@@ -130,18 +130,26 @@ namespace Task5
             int columnStart = 0;
             int columnEnd = 0;
             bool isDirectionUp = SetDirection();
-            if (isDirectionUp)
+            if (!isDirectionUp)
                 for (int i = 0; i < _matrix.Length;)
                 {
                     _matrix[row, column] = ++i;
                     if (column == columnStart && row < _rows - rowEnd - 1)
+                    {
                         row++;
+                    }
                     else if (row == _rows - rowEnd - 1 && column != _columns - columnEnd - 1)
+                    {
                         column++;
+                    }
                     else if (column == _columns - columnEnd - 1 && row > rowStart)
+                    {
                         row--;
+                    }
                     else
+                    {
                         column--;
+                    }
                     if (column == columnStart + 1 && row == rowStart && rowStart != _rows - rowEnd - 1)
                     {
                         columnStart++;
@@ -155,13 +163,21 @@ namespace Task5
                 {
                     _matrix[row, column] = ++i;
                     if (row == rowStart && column < _columns - columnEnd - 1)
+                    {
                         column++;
+                    }
                     else if (column == _columns - columnEnd - 1 && row != _rows - rowEnd - 1)
+                    {
                         row++;
+                    }
                     else if (row == _rows - rowEnd - 1 && column > columnStart)
+                    {
                         column--;
+                    }
                     else
+                    {
                         row--;
+                    }
                     if (row == rowStart + 1 && column == columnStart && columnStart != _columns - columnEnd - 1)
                     {
                         columnStart++;
@@ -202,15 +218,33 @@ namespace Task5
                 Console.WriteLine();
             }
         }
-
+        public int Max
+        {
+            get
+            {
+                int max = _matrix[0, 0];
+                for (int i = 0; i < _rows; i++)
+                {
+                    for (int j = 0; j < _columns; j++)
+                    {
+                        if (max < _matrix[i, j])
+                        {
+                            max = _matrix[i, j];
+                        }
+                    }
+                }
+                return max;
+            }
+        }
         public override string ToString()
         {
+            string formatSpace = "{0," + (Max.ToString().Length+1) + "}";
             StringBuilder stringBuilder = new StringBuilder();
             for (int row = 0; row < _rows; row++)
             {
                 for (int column = 0; column < _columns; column++)
                 {
-                    stringBuilder.Append($"{_matrix[row, column]} ");
+                    stringBuilder.Append(string.Format(formatSpace, $"{_matrix[row, column]}"));
                 }
                 stringBuilder.Append('\n');
             }

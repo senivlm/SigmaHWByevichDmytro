@@ -21,7 +21,73 @@ namespace Task5
         {
             Path = path;
         }
-
+        public string ReadLine()
+        {
+            string line = null;
+            try
+            {
+                using (StreamReader reader = new StreamReader(Path))
+                {
+                    line = reader.ReadLine();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException("Файл не знайдено");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return line;
+        }
+        public void WriteToFile(string data)
+        {
+            try
+            {
+                using (StreamWriter reader = new StreamWriter(Path))
+                {
+                    reader.Write(data);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException("Файл не знайдено");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public IEnumerable<int> GetIntCollectionFromFile()
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(Path))
+                {
+                    try
+                    {
+                        return reader.ReadToEnd().Trim().Split(' ').Select(x => int.Parse(x));
+                    }
+                    catch (ArgumentException)
+                    {
+                        throw new ArgumentException("Невірний формат запису у файлі");
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                };
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException("Файл не знайдено");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public void MergeWriteToFile(Vector firsVector, Vector secondVector, Trend trend)
         {
             uint i = 0;
@@ -80,54 +146,6 @@ namespace Task5
                 throw new Exception(e.Message);
             }
         }
-        public IEnumerable<int> GetIntCollectionFromFile()
-        {
-            try
-            {
-                using (StreamReader reader = new StreamReader(Path))
-                {
-                    try
-                    {
-                        return reader.ReadToEnd().Trim().Split(' ').Select(x => int.Parse(x));
-                    }
-                    catch (ArgumentException)
-                    {
-                        throw new ArgumentException("Невірний формат запису у файлі");
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception(e.Message);
-                    }
-                };
-            }
-            catch (FileNotFoundException)
-            {
-                throw new FileNotFoundException("Файл не знайдено");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-        public void WriteToFile(string data)
-        {
-            try
-            {
-                using (StreamWriter reader = new StreamWriter(Path))
-                {
-                    reader.Write(data);
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                throw new FileNotFoundException("Файл не знайдено");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
         public override string ToString()
         {
             try
@@ -145,26 +163,6 @@ namespace Task5
             {
                 throw new Exception(e.Message);
             }
-        }
-        public string ReadLine()
-        {
-            string line = null;
-            try
-            {
-                using (StreamReader reader = new StreamReader(Path))
-                {
-                    line = reader.ReadLine();
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                throw new FileNotFoundException("Файл не знайдено");
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return line;
         }
     }
 }
