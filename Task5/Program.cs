@@ -10,20 +10,16 @@ namespace Task5
     {
         static void Main(string[] args)
         {
-            //FileHandler arrayFile = new FileHandler("../../../ArrayData.txt");
-            //FileHandler sortedArrayFile = new FileHandler("../../../SortedArray.txt");
-
-            //Console.WriteLine(arrayFile);
-            //Vector.FileSplitMergeSort(arrayFile, sortedArrayFile, Trend.increase);
-            //Console.WriteLine("Sortred: ");
-            //Console.WriteLine(sortedArrayFile);
-
-
-            Matrix matrix = new Matrix(5,5);
-            matrix.FIll(Filling.diagonal,Direction.down);
-            Console.WriteLine(matrix);
-
-
+            FileHandler arrayFile = new FileHandler("../../../ArrayData.txt");
+            Vector vector = new Vector(50);
+            vector.RandomInitialization(1, 50);
+            Console.WriteLine(vector);
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            vector.HeapSort();
+            stopwatch.Stop();
+            Console.WriteLine(vector);
+            Console.WriteLine(vector.IsSorted(Trend.increase));
+            Console.WriteLine($"Time: {stopwatch.ElapsedMilliseconds}");
 
         }
     }

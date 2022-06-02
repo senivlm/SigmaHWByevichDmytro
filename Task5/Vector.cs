@@ -276,12 +276,48 @@ namespace Task5
             Vector firstVector = new Vector(firstPiece);
             Vector secondtVector = new Vector(secondPiece);
 
-            
+
             firstVector.SplitMergeSort(trend);
             secondtVector.SplitMergeSort(trend);
 
             sortedDataFile.MergeWriteToFile(firstVector, secondtVector, trend);
         }
+
+        public void HeapSort()
+        {
+            for (uint i = 0; i < _array.Length - 1; i++)
+            {
+                Heapify(0, (uint)_array.Length - i - 1);
+                Swap(ref _array[0], ref _array[Length - 1 - i]);
+            }
+        }
+
+        public void Heapify(uint currentIndex, uint lastIndex)
+        {
+            uint leftChildIndex = 2 * currentIndex + 1;
+            uint rightChildIndex = 2 * currentIndex + 2;
+            uint parrentIndex = currentIndex / 2 - 1;
+            if (leftChildIndex > lastIndex || rightChildIndex > lastIndex)
+            {
+                return;
+            }
+            uint maxChildIndex = _array[leftChildIndex] > _array[rightChildIndex] ? leftChildIndex : rightChildIndex;
+
+            if (_array[currentIndex] < _array[maxChildIndex])
+            {
+                Swap(ref _array[currentIndex], ref _array[maxChildIndex]);
+                if (parrentIndex >= 0)
+                {
+                    Heapify(parrentIndex, lastIndex);
+                }
+
+            }
+            Heapify(maxChildIndex, lastIndex);
+            Heapify(leftChildIndex == maxChildIndex ? rightChildIndex : leftChildIndex, lastIndex);
+
+        }
+
+
         #endregion
         #region Utilities
         private uint FindAvarage()
