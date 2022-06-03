@@ -243,7 +243,10 @@ namespace Task5
                 for (int i = 0; i < Length - 1; i++)
                 {
                     if (_array[i] > _array[i + 1])
+                    {
+                        Console.WriteLine($"{i}: {_array[i]}; {i + 1}: {_array[i + 1]}");
                         return false;
+                    }
                 }
 
             }
@@ -252,7 +255,10 @@ namespace Task5
                 for (int i = 0; i < Length - 1; i++)
                 {
                     if (_array[i] < _array[i + 1])
+                    {
+                        Console.WriteLine($"{i}: {_array[i]}; {i + 1}: {_array[i + 1]}");
                         return false;
+                    }
                 }
             }
             return true;
@@ -283,38 +289,53 @@ namespace Task5
             sortedDataFile.MergeWriteToFile(firstVector, secondtVector, trend);
         }
 
-        public void HeapSort()
+        public void HeapSort(Trend trend)
         {
-            for (uint i = 0; i < _array.Length - 1; i++)
+            for (uint i = 0; i < _array.Length; i++)
             {
-                Heapify(0, (uint)_array.Length - i - 1);
+                Heapify(0, (uint)_array.Length - i - 1, trend);
                 Swap(ref _array[0], ref _array[Length - 1 - i]);
             }
         }
-
-        public void Heapify(uint currentIndex, uint lastIndex)
+        public void Heapify(uint currentIndex, uint lastIndex, Trend trend)
         {
-            uint leftChildIndex = 2 * currentIndex + 1;
-            uint rightChildIndex = 2 * currentIndex + 2;
-            uint parrentIndex = currentIndex / 2 - 1;
-            if (leftChildIndex > lastIndex || rightChildIndex > lastIndex)
+            uint leftChildIndex = currentIndex == 0 ? 1 : 2 * currentIndex;
+            uint rightChildIndex = currentIndex == 0 ? 2 : 2 * currentIndex + 1;
+            uint parrentIndex = currentIndex == 0 ? 0 : currentIndex / 2;
+            if (leftChildIndex > lastIndex)
             {
                 return;
             }
-            uint maxChildIndex = _array[leftChildIndex] > _array[rightChildIndex] ? leftChildIndex : rightChildIndex;
-
-            if (_array[currentIndex] < _array[maxChildIndex])
+            if (trend is Trend.increase)
             {
-                Swap(ref _array[currentIndex], ref _array[maxChildIndex]);
-                if (parrentIndex >= 0)
+                uint maxChildIndex = leftChildIndex;
+                if (rightChildIndex <= lastIndex)
                 {
-                    Heapify(parrentIndex, lastIndex);
+                    maxChildIndex = _array[leftChildIndex] > _array[rightChildIndex] ? leftChildIndex : rightChildIndex;
                 }
-
+                if (_array[currentIndex] < _array[maxChildIndex])
+                {
+                    Swap(ref _array[currentIndex], ref _array[maxChildIndex]);
+                    Heapify(parrentIndex, lastIndex, trend);
+                }
+                Heapify(maxChildIndex, lastIndex, trend);
+                Heapify(leftChildIndex == maxChildIndex ? rightChildIndex : leftChildIndex, lastIndex, trend);
             }
-            Heapify(maxChildIndex, lastIndex);
-            Heapify(leftChildIndex == maxChildIndex ? rightChildIndex : leftChildIndex, lastIndex);
-
+            else
+            {
+                uint minChildIndex = leftChildIndex;
+                if (rightChildIndex <= lastIndex)
+                {
+                    minChildIndex = _array[leftChildIndex] < _array[rightChildIndex] ? leftChildIndex : rightChildIndex;
+                }
+                if (_array[currentIndex] > _array[minChildIndex])
+                {
+                    Swap(ref _array[currentIndex], ref _array[minChildIndex]);
+                    Heapify(parrentIndex, lastIndex, trend);
+                }
+                Heapify(minChildIndex, lastIndex, trend);
+                Heapify(leftChildIndex == minChildIndex ? rightChildIndex : leftChildIndex, lastIndex, trend);
+            }
         }
 
 

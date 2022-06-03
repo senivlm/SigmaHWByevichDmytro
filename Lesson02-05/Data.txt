@@ -1,0 +1,4 @@
+﻿surname 2003 3.42
+surname 2002s 3,42
+surname 2002s 3,42 as
+surname 2003 999

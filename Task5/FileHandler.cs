@@ -52,11 +52,29 @@ namespace Task5
             }
             catch (FileNotFoundException)
             {
-                throw new FileNotFoundException("Файл не знайдено");
+                Console.WriteLine( "Файл не знайдено");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void AddToFile(string data)
+        {
+            try
+            {
+                using (StreamWriter reader = File.AppendText(Path))
+                {
+                    reader.Write(data);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Файл не знайдено");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
         public IEnumerable<int> GetIntCollectionFromFile()
