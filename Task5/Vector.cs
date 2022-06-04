@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -263,30 +264,45 @@ namespace Task5
             }
             return true;
         }
-        static public void FileSplitMergeSort(FileHandler dataFile, FileHandler sortedDataFile, Trend trend)
+        /// <summary>
+        /// Метод сортує дані з файлу, використовуючі стек одночасно тільки для однієї частини масиву, проміжні результати, початкові дані та результат зберігаються у файлах
+        /// </summary>
+        /// <param name="dataFile">файл з невідсортованим масивом</param>
+        /// <param name="sortedDataFile">файл реузльтату сортування</param>
+        /// <param name="tmpVectorFile">файл для проміжних результатів сортування</param>
+        /// <param name="partsAmount">кулькість частин для поділу початкового масиву</param>
+        /// <param name="trend">направлення сортування</param>
+        static public void FileSplitMergeSort(FileHandler dataFile, FileHandler sortedDataFile, FileHandler tmpVectorFile,uint partsAmount, Trend trend)
         {
-            int[] dataArray = dataFile.GetIntCollectionFromFile().ToArray();
-
-            List<int> firstPiece = new List<int>();
-            List<int> secondPiece = new List<int>();
-
-            for (int i = 0; i < dataArray.Length / 2; i++)
+            sortedDataFile.Clear();
+            tmpVectorFile.Clear();
+            using (Stream reader = File.OpenRead(dataFile.Path))
             {
-                firstPiece.Add(dataArray[i]);
+                SplitReader splitReader = new SplitReader(reader, partsAmount);
+                do
+                {
+                    Vector currentPartVector = new Vector(splitReader.GetNextIntPart());
+                    currentPartVector.SplitMergeSort(trend);
+                    if (splitReader.CurrentPart % 2 != 0)
+                    {
+                        tmpVectorFile.MergeWriteToFile(currentPartVector, sortedDataFile.Path, trend);
+                        if (splitReader.IsLastPart())
+                        {
+                            sortedDataFile.Copy(tmpVectorFile);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        sortedDataFile.MergeWriteToFile(currentPartVector, tmpVectorFile.Path, trend);
+                        if (splitReader.IsLastPart())
+                        {
+                            break;
+                        }
+                    }
+                } while (!splitReader.IsLastPart());
             }
-            for (int i = dataArray.Length / 2; i < dataArray.Length; i++)
-            {
-                secondPiece.Add(dataArray[i]);
-            }
-
-            Vector firstVector = new Vector(firstPiece);
-            Vector secondtVector = new Vector(secondPiece);
-
-
-            firstVector.SplitMergeSort(trend);
-            secondtVector.SplitMergeSort(trend);
-
-            sortedDataFile.MergeWriteToFile(firstVector, secondtVector, trend);
+            tmpVectorFile.Clear();
         }
 
         public void HeapSort(Trend trend)

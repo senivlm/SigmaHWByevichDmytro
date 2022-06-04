@@ -33,26 +33,64 @@ namespace Task5
             }
             catch (FileNotFoundException)
             {
-                throw new FileNotFoundException("Файл не знайдено");
+                Console.WriteLine("Файл не знайдено");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
             }
             return line;
+        }
+
+        public void Clear()
+        {
+            File.WriteAllText(Path, string.Empty);
+        }
+
+        public void Copy(FileHandler file)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(Path))
+                {
+                    using (Stream reader = File.OpenRead(file.Path))
+                    {
+                        SplitReader splitReader = new SplitReader(reader, 1);
+                        string word = null;
+                        do
+                        {
+                            word = splitReader.ReadNextWord();
+                            if (word is null)
+                            {
+                                break;
+                            }
+                            writer.Write(word + " ");
+
+                        } while (word is not null);
+                    }
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Файл не знайдено");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
         public void WriteToFile(string data)
         {
             try
             {
-                using (StreamWriter reader = new StreamWriter(Path))
+                using (StreamWriter writer = new StreamWriter(Path))
                 {
-                    reader.Write(data);
+                    writer.Write(data);
                 }
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine( "Файл не знайдено");
+                Console.WriteLine("Файл не знайдено");
             }
             catch (Exception e)
             {
@@ -85,26 +123,27 @@ namespace Task5
                 {
                     try
                     {
-                        return reader.ReadToEnd().Trim().Split(' ').Select(x => int.Parse(x));
+                        return reader.ReadToEnd().Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x));
                     }
                     catch (ArgumentException)
                     {
-                        throw new ArgumentException("Невірний формат запису у файлі");
+                        Console.WriteLine("Невірний формат запису у файлі");
                     }
                     catch (Exception e)
                     {
-                        throw new Exception(e.Message);
+                        Console.WriteLine(e.Message);
                     }
                 };
             }
             catch (FileNotFoundException)
             {
-                throw new FileNotFoundException("Файл не знайдено");
+                Console.WriteLine("Файл не знайдено");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
             }
+            return null;
         }
         public void MergeWriteToFile(Vector firsVector, Vector secondVector, Trend trend)
         {
@@ -157,11 +196,98 @@ namespace Task5
             }
             catch (FileNotFoundException)
             {
-                throw new FileNotFoundException("Файл не знайдено");
+                Console.WriteLine("Файл не знайдено");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void MergeWriteToFile(Vector firsVector, string tmpVectorFilePath, Trend trend)
+        {
+            uint i = 0;
+            try
+            {
+                using (StreamWriter reader = new StreamWriter(Path))
+                {
+                    using (Stream tmpVectorStream = File.OpenRead(tmpVectorFilePath))
+                    {
+                        SplitReader splitReader = new SplitReader(tmpVectorStream, 1);
+                        bool IsReadNextWord = true;
+                        int tmpVectorNum = 0;
+                        while (i < firsVector.Length)
+                        {
+                            if (IsReadNextWord)
+                            {
+                                string tmpVectorElement = splitReader.ReadNextWord();
+                                if (!int.TryParse(tmpVectorElement, out tmpVectorNum))
+                                {
+                                    if (tmpVectorElement is null)
+                                    {
+                                        break;
+                                    }
+                                    Console.WriteLine(tmpVectorElement + " is not num");
+                                    continue;
+                                }
+                                IsReadNextWord = false;
+                            }
+
+
+                            if (trend is Trend.increase)
+                            {
+                                if (firsVector[i] < tmpVectorNum)
+                                {
+                                    reader.Write(firsVector[i++] + " ");
+                                }
+                                else
+                                {
+                                    reader.Write(tmpVectorNum + " ");
+                                    IsReadNextWord=true;
+                                }
+                            }
+                            else
+                            {
+                                if (firsVector[i] > tmpVectorNum)
+                                {
+                                    reader.Write(firsVector[i++] + " ");
+                                }
+                                else
+                                {
+                                    reader.Write(tmpVectorNum + " ");
+                                    IsReadNextWord = true;
+                                }
+                            }
+                        }
+                        if (i == firsVector.Length)
+                        {
+                            if (IsReadNextWord == false)
+                            {
+                                reader.Write(tmpVectorNum + " ");
+                            }
+                            while (int.TryParse(splitReader.ReadNextWord(), out tmpVectorNum))
+                            {
+                                reader.Write(tmpVectorNum + " ");
+                            }
+                        }
+                        else
+                        {
+                            while (i < firsVector.Length)
+                            {
+                                reader.Write(firsVector[i++] + " ");
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Файл не знайдено");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
         public override string ToString()
@@ -175,12 +301,13 @@ namespace Task5
             }
             catch (FileNotFoundException)
             {
-                throw new FileNotFoundException("Файл не знайдено");
+                Console.WriteLine("Файл не знайдено");
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine(e.Message);
             }
+            return null;
         }
     }
 }

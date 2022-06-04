@@ -11,28 +11,17 @@ namespace Task5
         static void Main(string[] args)
         {
             FileHandler arrayFile = new FileHandler("../../../ArrayData.txt");
-            //arrayFile.AddToFile("32");
-            Random random = new Random();
-            //Vector vector = new Vector(arrayFile.GetIntCollectionFromFile());
-            Vector vector = new Vector(1000);
-            vector.RandomInitialization(-10000, 10000);
-
-            Console.WriteLine(vector);
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            FileHandler sortFile = new FileHandler("../../../SortedArray.txt");
+            FileHandler tmpVectorFile = new FileHandler("../../../TmpVector.txt");
+            Vector vector = new Vector();
             try
             {
-                vector.HeapSort(Trend.increase);
+                Vector.FileSplitMergeSort(arrayFile, sortFile, tmpVectorFile, 5, Trend.decrease);
             }
-            catch (StackOverflowException e)
+            catch (Exception e )
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e);
             }
-            stopwatch.Stop();
-            Console.WriteLine();
-            Console.WriteLine(vector);
-            Console.WriteLine(vector.IsSorted(Trend.increase));
-            Console.WriteLine($"Time: {stopwatch.ElapsedMilliseconds}");
-
 
         }
     }
