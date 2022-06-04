@@ -13,7 +13,6 @@ namespace Task5
             FileHandler arrayFile = new FileHandler("../../../ArrayData.txt");
             FileHandler sortFile = new FileHandler("../../../SortedArray.txt");
             FileHandler tmpVectorFile = new FileHandler("../../../TmpVector.txt");
-            Vector vector = new Vector();
             try
             {
                 Vector.FileSplitMergeSort(arrayFile, sortFile, tmpVectorFile, 5, Trend.decrease);

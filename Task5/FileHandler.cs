@@ -115,6 +115,7 @@ namespace Task5
                 Console.WriteLine(e.Message);
             }
         }
+        
         public IEnumerable<int> GetIntCollectionFromFile()
         {
             try
@@ -203,7 +204,6 @@ namespace Task5
                 Console.WriteLine(e.Message);
             }
         }
-
         public void MergeWriteToFile(Vector firsVector, string tmpVectorFilePath, Trend trend)
         {
             uint i = 0;

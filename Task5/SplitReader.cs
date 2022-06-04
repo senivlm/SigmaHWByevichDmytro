@@ -30,14 +30,6 @@ namespace Task5
             _partSize = (int)(_wordCount / partsAmount);
         }
         public bool IsLastPart() => _currentPart == _partsAmount;
-
-        private void GetWordCount()
-        {
-            while (ReadNextWord() is not null)
-            {
-                _wordCount++;
-            }
-        }
         public IEnumerable<int> GetNextIntPart()
         {
             _currentPart++;
@@ -90,6 +82,13 @@ namespace Task5
                 }
             }
             return word;
+        }
+        private void GetWordCount()
+        {
+            while (ReadNextWord() is not null)
+            {
+                _wordCount++;
+            }
         }
 
     }
