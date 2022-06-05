@@ -16,7 +16,10 @@ namespace Task6
             var options = new List<Option>()
             {
                new Option("Зчитати дані з файлу", () => flatsDataFile.ReadObject(flats)),
-               new Option("Записати звіт у файл", () => reportFile.WriteObject(flats))
+               new Option("Записати звіт у файл", () => reportFile.WriteObject(flats)),
+               new Option("Вивести дані у консоль", () => Console.WriteLine(flats)),
+               new Option("Знайти власника з найбліьшим боргом",() => Console.WriteLine(flats.SelectMaxDebtedSurname())),
+               new Option("Вивести усі квартири у яких не використовувалася електроенергія", ()=> Console.WriteLine(flats.SelectFlatsWithZeroDebt()))
             };
             Menu menu = new Menu(options);
             menu.PrintMenu();

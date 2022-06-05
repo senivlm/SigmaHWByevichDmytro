@@ -16,7 +16,7 @@ namespace Task6
         {
             get { return (int)(DateTime.Today - _datesOfTakingIndicators[2]).TotalDays; }
         }
-        //add validate!
+        public double KilowattDebt => _endElectroMeterValue - _startElectroMeterValue;
         public double EndElectroMeterValue
         {
             get { return _endElectroMeterValue; }
@@ -29,7 +29,6 @@ namespace Task6
                 _endElectroMeterValue = value;
             }
         }
-        //add validate!
         public double StartElectroMeterValue
         {
             get { return _startElectroMeterValue; }
@@ -140,6 +139,10 @@ namespace Task6
             {
                 throw new ArgumentException(exceptionMessage);
             }
+        }
+        public double GetDebtValue(double kilowattPrice)
+        {
+            return KilowattDebt * kilowattPrice;
         }
         public bool IsDaysInQuarter(Quarter quarter)
         {

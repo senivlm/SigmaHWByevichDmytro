@@ -129,6 +129,32 @@ namespace Task6
             }
 
         }
+        public string SelectMaxDebtedSurname()
+        {
+            if(_flats.Count()==0)
+            {
+                Console.WriteLine("Список наразі порожній");
+                return null;
+            }
+            Console.Write("Введіть ціну за КВТ > ");
+            if (!double.TryParse(Console.ReadLine(), out double kilowattPrice))
+            {
+                Console.WriteLine("Невірний формат ціни");
+                return null;
+            }
+            FlatModel debtedFlat = _flats.Where(flat => flat.KilowattDebt == _flats.Select(flat => flat.KilowattDebt).Max()).First();
+            return $"Максимальний борг: {String.Format("{0:f4}",debtedFlat.GetDebtValue(kilowattPrice))}, має: {debtedFlat.OwnerSurname}";
+        }
+        public Flats SelectFlatsWithZeroDebt()
+        {
+            if (_flats.Count() == 0)
+            {
+                Console.WriteLine("Список наразі порожній");
+                return null;
+            }
+            Flats flats = new Flats(_flats.Where(flat => flat.KilowattDebt == 0),_quarter);
+            return flats;
+        }
         #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)

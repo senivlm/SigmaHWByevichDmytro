@@ -34,10 +34,10 @@ namespace Task6
         private bool InvokeSelectedOption()
         {
             string inputedValue = Console.ReadLine();
+            Console.Clear();
 
             if (inputedValue.ToLower() == "x")
             {
-                Console.Clear();
                 return false;
             }
             if (!int.TryParse(inputedValue, out int selectedOption) || selectedOption < 0 || selectedOption >= _options.Count)
