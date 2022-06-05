@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task6
 {
@@ -14,14 +11,15 @@ namespace Task6
         private string _ownerSurname;
         private double _startElectroMeterValue;
         private double _endElectroMeterValue;
-        private DateTime[] _datesOfTakingIndicators;
+        private DateTime[] _datesOfTakingIndicators;        
 
+        //add validate!
         public double EndElectroMeterValue
         {
             get { return _endElectroMeterValue; }
             set { _endElectroMeterValue = value; }
         }
-
+        //add validate!
         public double StartElectroMeterValue
         {
             get { return _startElectroMeterValue; }
@@ -40,7 +38,6 @@ namespace Task6
             set { _flatNumber = value; }
         }
         #endregion
-
         #region Ctors
         public FlatModel() : this(default, "", default, default, null)
         {
@@ -60,22 +57,23 @@ namespace Task6
         {
             _datesOfTakingIndicators = new DateTime[3];
             DataValidator(reader.ReadLine());
-        } 
+        }
 
         #endregion
+        #region Methods
         private void DataValidator(string DataLine)
         {
-            string exceptionMessage = null;            
-            string[] flatDataArr = DataLine.Trim().Split(' ',StringSplitOptions.RemoveEmptyEntries);
+            string exceptionMessage = null;
+            string[] flatDataArr = DataLine.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (flatDataArr.Length != 7)
             {
                 throw new ArgumentException("Невірна кількість записів у рядку");
             }
             if (!uint.TryParse(flatDataArr[0], out _flatNumber))
             {
-                exceptionMessage+=$"Невірний формат номеру кімнати: {flatDataArr[0]}; ";
+                exceptionMessage += $"Невірний формат номеру кімнати: {flatDataArr[0]}; ";
             }
-            OwnerSurname=flatDataArr[1];
+            OwnerSurname = flatDataArr[1];
             if (!double.TryParse(flatDataArr[2], out _startElectroMeterValue))
             {
                 exceptionMessage += $"Невірний формат вхідних показників: {flatDataArr[2]}; ";
@@ -99,55 +97,53 @@ namespace Task6
             if (exceptionMessage is not null)
             {
                 throw new ArgumentException(exceptionMessage);
-            }            
+            }
         }
         public bool IsDaysInQuarter(Quarter quarter)
         {
+            int startMonth = 1;
             switch (quarter)
             {
 
                 case Quarter.First:
-                    foreach (var day in _datesOfTakingIndicators)
-                    {
-                        if (day.Month>3)
-                        {
-                            return false;
-                        }
-                    }
+                    startMonth = 1;
                     break;
                 case Quarter.Second:
-                    foreach (var day in _datesOfTakingIndicators)
-                    {
-                        if (day.Month <=3 || day.Month>=7)
-                        {
-                            return false;
-                        }
-                    }
+                    startMonth = 4;
                     break;
                 case Quarter.Third:
-                    foreach (var day in _datesOfTakingIndicators)
-                    {
-                        if (day.Month <= 6 || day.Month >= 10)
-                        {
-                            return false;
-                        }
-                    }
+                    startMonth = 7;
                     break;
                 case Quarter.Fourth:
-                    foreach (var day in _datesOfTakingIndicators)
-                    {
-                        if (day.Month < 10)
-                        {
-                            return false;
-                        }
-                    }
+                    startMonth = 10;
                     break;
                 default:
                     return false;
             }
+            foreach (var day in _datesOfTakingIndicators)
+            {
+                if (day.Month != startMonth++)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
-
+        public string GetReportFormat()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(string.Format("{0,-16}", $"{FlatNumber} ") + "| ");
+            stringBuilder.Append(string.Format("{0,-18}", $"{OwnerSurname} ") + "| ");
+            stringBuilder.Append(string.Format("{0,-18}", $"{StartElectroMeterValue} ") + "| ");
+            stringBuilder.Append(string.Format("{0,-18}", $"{EndElectroMeterValue} ") + "| ");
+            foreach (var date in _datesOfTakingIndicators)
+            {
+                stringBuilder.Append(string.Format("{0,-18}", $"{date:M} ") + "| ");
+            }
+            return stringBuilder.ToString();
+        } 
+        #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)
         {
@@ -160,20 +156,16 @@ namespace Task6
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append($"Номер квартири: {FlatNumber}\t");
-            stringBuilder.Append($"Прізвище власника: {OwnerSurname}\t");
-            stringBuilder.Append($"Вхідні показники: {StartElectroMeterValue:f4}\t");
-            stringBuilder.Append($"Вихідні показники: {EndElectroMeterValue:f4}\t");
-            stringBuilder.Append($"Дати знаття показчиків: ");
-            foreach (var date in _datesOfTakingIndicators)
-            {
-                stringBuilder.Append($"{date:M}, ");
-            }
-            stringBuilder[stringBuilder.Length-2] = ';';
-            
-            return stringBuilder.ToString();           
-            
-        } 
+            stringBuilder.Append($"Номер квартири: {FlatNumber}; ");
+            stringBuilder.Append($"Прізвище власника: {OwnerSurname}; ");
+            stringBuilder.Append($"Вхідні значення: {StartElectroMeterValue}; ");
+            stringBuilder.Append($"Вихідні значення: {EndElectroMeterValue}; ");
+            stringBuilder.Append($"Перша фіксіція: {_datesOfTakingIndicators[0]:M}; ");
+            stringBuilder.Append($"Друга фіксіція: {_datesOfTakingIndicators[1]:M}; ");
+            stringBuilder.Append($"Третя фіксіція: {_datesOfTakingIndicators[2]:M}; ");
+            return stringBuilder.ToString();
+
+        }
         #endregion
     }
 }
