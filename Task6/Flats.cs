@@ -144,7 +144,7 @@ namespace Task6
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"Кількість записів: {_flats.Count()}");
             stringBuilder.AppendLine($"Квартал: {(int)_quarter}");
-            stringBuilder.AppendLine("Номер квартири | Прізвище власника | Вхідні значення | Вихідні значення | Перша фіксіція | Друга фіксіція | Третя фіксіція |");
+            stringBuilder.AppendLine("Номер квартири | Прізвище власника | Вхідні значення | Вихідні значення | Перша фіксіція | Друга фіксіція | Третя фіксіція | Днів з останньої фіксації |");
             foreach (var flat in _flats)
             {
                 stringBuilder.AppendLine(flat.GetReportFormat());

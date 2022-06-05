@@ -11,19 +11,36 @@ namespace Task6
         private string _ownerSurname;
         private double _startElectroMeterValue;
         private double _endElectroMeterValue;
-        private DateTime[] _datesOfTakingIndicators;        
-
+        private DateTime[] _datesOfTakingIndicators;
+        public int DaysFromLastCheck
+        {
+            get { return (int)(DateTime.Today - _datesOfTakingIndicators[2]).TotalDays; }
+        }
         //add validate!
         public double EndElectroMeterValue
         {
             get { return _endElectroMeterValue; }
-            set { _endElectroMeterValue = value; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Вхідні дані мають від'ємне значення");
+                }
+                _endElectroMeterValue = value;
+            }
         }
         //add validate!
         public double StartElectroMeterValue
         {
             get { return _startElectroMeterValue; }
-            set { _startElectroMeterValue = value; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Вихідні дані мають від'ємне значення");
+                }
+                _startElectroMeterValue = value;
+            }
         }
 
         public string OwnerSurname
@@ -74,14 +91,39 @@ namespace Task6
                 exceptionMessage += $"Невірний формат номеру кімнати: {flatDataArr[0]}; ";
             }
             OwnerSurname = flatDataArr[1];
-            if (!double.TryParse(flatDataArr[2], out _startElectroMeterValue))
+
+            if (!double.TryParse(flatDataArr[2], out double tmpStartElectroMeterValue))
             {
                 exceptionMessage += $"Невірний формат вхідних показників: {flatDataArr[2]}; ";
             }
-            if (!double.TryParse(flatDataArr[3], out _endElectroMeterValue))
+            else
+            {
+                if (tmpStartElectroMeterValue < 0)
+                {
+                    exceptionMessage += "Вхідні дані мають від'ємне значення";
+                }
+                else
+                {
+                    _startElectroMeterValue = tmpStartElectroMeterValue;
+                }
+            }
+
+            if (!double.TryParse(flatDataArr[3], out double tmpEndElectroMeterValue))
             {
                 exceptionMessage += $"Невірний формат вихідних показників: {flatDataArr[3]}; ";
             }
+            else
+            {
+                if (tmpEndElectroMeterValue < 0)
+                {
+                    exceptionMessage += "Вихідні дані мають від'ємне значення";
+                }
+                else
+                {
+                    _endElectroMeterValue = tmpEndElectroMeterValue;
+                }
+            }
+
             if (!DateTime.TryParse(flatDataArr[4], out _datesOfTakingIndicators[0]))
             {
                 exceptionMessage += $"Невірний формат першого місяця квартала: {flatDataArr[4]}; ";
@@ -141,8 +183,9 @@ namespace Task6
             {
                 stringBuilder.Append(string.Format("{0,-15}", $"{date:M} ") + "| ");
             }
+            stringBuilder.Append(string.Format("{0,-26}", $"{DaysFromLastCheck} ") + "| ");
             return stringBuilder.ToString();
-        } 
+        }
         #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)
@@ -163,6 +206,7 @@ namespace Task6
             stringBuilder.Append($"Перша фіксіція: {_datesOfTakingIndicators[0]:M}; ");
             stringBuilder.Append($"Друга фіксіція: {_datesOfTakingIndicators[1]:M}; ");
             stringBuilder.Append($"Третя фіксіція: {_datesOfTakingIndicators[2]:M}; ");
+            stringBuilder.Append($"Днів з останньої фіксації: {DaysFromLastCheck}; ");
             return stringBuilder.ToString();
 
         }

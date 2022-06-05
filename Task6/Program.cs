@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task6
 {
@@ -10,21 +11,15 @@ namespace Task6
             Console.InputEncoding = System.Text.Encoding.Unicode;
             FileHandler flatsDataFile = new FileHandler("../../../FlatsData.txt");
             FileHandler reportFile = new FileHandler("../../../Report.txt");
-
             Flats flats = new Flats();
 
-            flatsDataFile.ReadObject(flats);
-            reportFile.WriteObject(flats);
-
-            //try
-            //{
-            //    Console.WriteLine(flats[0]);
-            //}
-            //catch (IndexOutOfRangeException)
-            //{
-            //    Console.WriteLine("Невірний індекс");
-            //}
-            Console.WriteLine(flats);
+            var options = new List<Option>()
+            {
+               new Option("Зчитати дані з файлу", () => flatsDataFile.ReadObject(flats)),
+               new Option("Записати звіт у файл", () => reportFile.WriteObject(flats))
+            };
+            Menu menu = new Menu(options);
+            menu.PrintMenu();
         }
     }
 }
