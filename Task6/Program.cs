@@ -16,14 +16,15 @@ namespace Task6
             flatsDataFile.ReadObject(flats);
             reportFile.WriteObject(flats);
 
-            try
-            {
-                Console.WriteLine(flats[0]);
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Невірний індекс");
-            }
+            //try
+            //{
+            //    Console.WriteLine(flats[0]);
+            //}
+            //catch (IndexOutOfRangeException)
+            //{
+            //    Console.WriteLine("Невірний індекс");
+            //}
+            Console.WriteLine(flats);
         }
     }
 }

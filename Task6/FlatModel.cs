@@ -133,13 +133,13 @@ namespace Task6
         public string GetReportFormat()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(string.Format("{0,-16}", $"{FlatNumber} ") + "| ");
+            stringBuilder.Append(string.Format("{0,-15}", $"{FlatNumber} ") + "| ");
             stringBuilder.Append(string.Format("{0,-18}", $"{OwnerSurname} ") + "| ");
-            stringBuilder.Append(string.Format("{0,-18}", $"{StartElectroMeterValue} ") + "| ");
-            stringBuilder.Append(string.Format("{0,-18}", $"{EndElectroMeterValue} ") + "| ");
+            stringBuilder.Append(string.Format("{0,-16}", $"{StartElectroMeterValue} ") + "| ");
+            stringBuilder.Append(string.Format("{0,-17}", $"{EndElectroMeterValue} ") + "| ");
             foreach (var date in _datesOfTakingIndicators)
             {
-                stringBuilder.Append(string.Format("{0,-18}", $"{date:M} ") + "| ");
+                stringBuilder.Append(string.Format("{0,-15}", $"{date:M} ") + "| ");
             }
             return stringBuilder.ToString();
         } 
