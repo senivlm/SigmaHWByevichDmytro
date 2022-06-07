@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 
 namespace Task7
 {
@@ -40,13 +40,18 @@ namespace Task7
         #endregion
 
 
-        public Product() : this("name", default, default) { }
+        public Product() : this("name", 0, 0) { }
         public Product(string name, double price, double weight)
         {
             Name = name;
             Price = price;
             Weight = weight;
         }
+        public Product(params string[] productData)
+        {
+            ValidateParams(productData);
+        }
+
         public virtual void ChangePrice(int persent)
         {
             Price += Price / 100d * persent;
@@ -60,7 +65,25 @@ namespace Task7
             Console.Write("Input weight > ");
             double.TryParse(Console.ReadLine(), out _weight);
         }
-
+        
+        protected virtual void ValidateParams(string[] productData)
+        {
+            if (productData.Length != 3)
+            {
+                throw new ArgumentException("Невірна кількість записів");
+            }
+            Name = productData[0];
+            if (!double.TryParse(productData[1], out double price))
+            {
+                throw new ArgumentException("Невірний формат ціни");
+            }
+            Price = price;
+            if (!double.TryParse(productData[2], out double weight))
+            {
+                throw new ArgumentException("Невірний формат ваги");
+            }
+            Weight = weight;
+        }
 
         #region ObjectOverrides
 
@@ -79,10 +102,10 @@ namespace Task7
             return this.ToString().GetHashCode();
         }
 
-        public override string? ToString()
+        public override string ToString()
         {
-            return $"Name: {Name}, Price: {Math.Round(Price,3)}, Weight: {Math.Round(Weight, 3)}, ";
-        }
+            return $"Name: {Name}; Price: {Math.Round(Price,3)}; Weight: {Math.Round(Weight, 3)}; ";
+        }       
         #endregion
     }
 }

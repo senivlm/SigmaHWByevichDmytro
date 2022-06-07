@@ -20,7 +20,7 @@ namespace Task7
                     throw new ArgumentException("Invalid expiration");
                 _expirationDays = value;
             }
-        } 
+        }
         #endregion
 
         public DairyProduct() : this("name", default, default, 1) { }
@@ -29,6 +29,25 @@ namespace Task7
         {
             ExpirationDays = expirationDays;
         }
+
+        public DairyProduct(params string[] productData)
+        {
+            ValidateParams(productData);
+        }
+        protected override void ValidateParams(string[] productData)
+        {
+            if (productData.Length != 4)
+            {
+                throw new ArgumentException("Невірна кількість записів");
+            }
+            base.ValidateParams(productData[..3]);
+            if (!int.TryParse(productData[3], out int expirationDays))
+            {
+                throw new ArgumentException("Невірний формат терміну придатності");
+            }
+            ExpirationDays = expirationDays;
+        }
+
         public override void ConsoleSet()
         {
             base.ConsoleSet();
@@ -37,28 +56,24 @@ namespace Task7
         }
         public override void ChangePrice(int persent)
         {
+            Price += Price / 100d * persent;
             if (_expirationDays < 2)
             {
-                Price += Price / 100d * persent;
                 Price += Price / 100d * -90;
             }
             else if (_expirationDays < 4)
             {
-                Price += Price / 100d * persent;
                 Price += Price / 100d * -70;
             }
             else if (_expirationDays < 5)
             {
-                Price += Price / 100d * persent;
                 Price += Price / 100d * -50;
             }
             else if (_expirationDays < 7)
             {
-                Price += Price / 100d * persent;
                 Price += Price / 100d * -20;
             }
-            else
-                Price += Price / 100d * persent;
+
         }
 
         #region ObjectOverrides
@@ -78,8 +93,10 @@ namespace Task7
 
         public override string ToString()
         {
-            return base.ToString() + $"Expiration days: {ExpirationDays} ";
+            return base.ToString() + $"Expiration days: {ExpirationDays}; ";
         }
+
+
         #endregion
     }
 }

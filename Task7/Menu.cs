@@ -34,20 +34,21 @@ namespace Task7
         private bool InvokeSelectedOption()
         {
             string inputedValue = Console.ReadLine();
+            Console.Clear();
 
             if (inputedValue.ToLower() == "x")
             {
-                Console.Clear();
                 return false;
             }
-
-            var selectedOption = int.Parse(inputedValue);
-
-            if (selectedOption < 0 || selectedOption >= _options.Count)
-                throw new IndexOutOfRangeException("option does not exist");
-
-            _options[selectedOption].Run();
-            Console.WriteLine("\nPress any button to continue...");
+            if (!int.TryParse(inputedValue, out int selectedOption) || selectedOption < 0 || selectedOption >= _options.Count)
+            {
+                Console.WriteLine("Обран невірний пункт");
+            }
+            else
+            {
+                _options[selectedOption].Run();
+            }
+            Console.WriteLine("\nНажміть будь яку кнопку щоб продовжити...");
             Console.ReadKey();
             return true;
         }

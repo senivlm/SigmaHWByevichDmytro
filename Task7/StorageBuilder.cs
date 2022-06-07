@@ -22,12 +22,11 @@ namespace Task7
             _products.Add(product);
             return this;
         }
-        public StorageBuilder AddProductList(List<Product> products)
+        public StorageBuilder AddProductList(IEnumerable<Product> products)
         {
-            this._products.AddRange(products);
+            this._products.AddRange(products.ToList());
             return this;
         }
-        //доробити меню
         public StorageBuilder ConsoleMenuInput()
         {
             var options = new List<Option>()
@@ -39,7 +38,6 @@ namespace Task7
             menu.PrintMenu();
             return this;
         }
-
         public Storage Build()
         {
             return new Storage(this);
@@ -56,8 +54,5 @@ namespace Task7
             dairy.ConsoleSet();
             _products.Add(dairy);
         }
-
-
-
     }
 }

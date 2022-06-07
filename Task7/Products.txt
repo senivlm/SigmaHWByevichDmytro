@@ -1,0 +1,3 @@
+﻿product chips 74 0,250
+meat steak 230 1,2 Mutton First
+dairy milk 34 1 10

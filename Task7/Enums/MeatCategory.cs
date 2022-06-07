@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task7
 {
-    enum ProductCategory
+    enum MeatCategory
     {
         None,
         First,
