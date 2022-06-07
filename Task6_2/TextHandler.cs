@@ -22,8 +22,8 @@ namespace Task6_2
         }
         public IEnumerable<string> GetSentences()
         {
-            var result = new List<string>();    
             var sentances = _text.Trim().Split(".!?;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
+            var result = new List<string>();    
             foreach (var sentance in sentances)
             {
                 result.Add(string.Join(" ", sentance.Split(" \t\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))+".");
