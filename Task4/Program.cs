@@ -8,7 +8,8 @@ namespace Task4
     internal class Program
     {
         static void Main(string[] args)
-        {
+        {// Ваш номер 25
+            //Молодець, що заміряв Час
             Vector vectorAvaragePivot = new Vector(100000);
             Vector vectorMiddlePivot = new Vector(100000);
             var resultTimeAvaragePivot = new List<int>();
