@@ -272,7 +272,7 @@ namespace Task5
         /// <param name="tmpVectorFile">файл для проміжних результатів сортування</param>
         /// <param name="partsAmount">кулькість частин для поділу початкового масиву</param>
         /// <param name="trend">направлення сортування</param>
-        static public void FileSplitMergeSort(FileHandler dataFile, FileHandler sortedDataFile, FileHandler tmpVectorFile,uint partsAmount, Trend trend)
+        static public void FileSplitMergeSort(FileHandler dataFile, FileHandler sortedDataFile, FileHandler tmpVectorFile, uint partsAmount, Trend trend)
         {
             sortedDataFile.Clear();
             tmpVectorFile.Clear();
@@ -356,6 +356,24 @@ namespace Task5
 
 
         #endregion
+
+        public static Vector operator +(Vector a, Vector b)
+        {
+            if (b.Length > a.Length)
+            {
+                (a,b) = (b,a);
+            }
+            
+            Vector res = new Vector(a._array);
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                res._array[i] += b._array[i];
+            }
+
+            return res;
+        }
+
         #region Utilities
         private uint FindAvarage()
         {

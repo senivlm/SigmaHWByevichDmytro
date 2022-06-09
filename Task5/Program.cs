@@ -17,10 +17,11 @@ namespace Task5
             {
                 Vector.FileSplitMergeSort(arrayFile, sortFile, tmpVectorFile, 5, Trend.decrease);
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+
 
         }
     }

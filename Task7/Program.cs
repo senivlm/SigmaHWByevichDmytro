@@ -6,10 +6,26 @@ namespace Task7
     internal class Program
     {
         static void Main(string[] args)
-        {            
-           FileHandler productsFile = new FileHandler("../../../Products.txt");
-           Storage storage = new Storage(productsFile);
-           Console.WriteLine(storage);
+        {
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.InputEncoding = System.Text.Encoding.Unicode;
+
+
+            try
+            {
+
+                MainStorageMenu mainStorageMenu = new MainStorageMenu("../../../Products.txt", "../../../StorageLog.txt");
+                mainStorageMenu.PrintMenu();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+
+
         }
+
     }
 }

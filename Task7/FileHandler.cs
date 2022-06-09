@@ -26,7 +26,6 @@ namespace Task7
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
@@ -41,7 +40,6 @@ namespace Task7
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }

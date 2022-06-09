@@ -106,7 +106,7 @@ namespace Task7
 
         public override string ToString()
         {
-            return base.ToString() + $"Species: {Species}; Category: {Category}; ";
+            return base.ToString() + $" {Species} {Category}";
         }
 
         #endregion

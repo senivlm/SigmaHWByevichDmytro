@@ -93,7 +93,7 @@ namespace Task7
 
         public override string ToString()
         {
-            return base.ToString() + $"Expiration days: {ExpirationDays}; ";
+            return base.ToString() + $" {ExpirationDays}";
         }
 
 

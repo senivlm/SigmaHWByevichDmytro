@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task7
 {
-    internal class Storage : IFileReader
+    internal class Storage : IFileReader, IFileWriter
     {
         private List<Product> _products;
         public int Count { get => _products.Count; }
@@ -15,6 +15,10 @@ namespace Task7
         {
             get { return _products[index]; }
             set { _products[index] = value; }
+        }
+        public IEnumerable<Product> this[Range range]
+        {
+            get { return _products.GetRange(range.Start.Value, range.GetOffsetAndLength(_products.Count).Length); }
         }
         public Storage()
         {
@@ -33,37 +37,10 @@ namespace Task7
             _products = new List<Product>();
             storageFile.ReadToObject(this);
         }
-
         public void ReadFromStream(StreamReader reader)
         {
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                ValidateString(line);
-
-            }
-        }
-        private void ValidateString(string line)
-        {
-            string[] productData = line.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (!Enum.TryParse(productData[0], out ProductType productType))
-            {
-                throw new ArgumentException("Невідомий тип продукту");
-            }
-            switch (productType)
-            {
-                case ProductType.product:
-                    _products.Add(new Product(productData[1..]));
-                    break;
-                case ProductType.meat:
-                    _products.Add(new Meat(productData[1..]));
-                    break;
-                case ProductType.dairy:
-                    _products.Add(new DairyProduct(productData[1..]));
-                    break;
-                default:
-                    break;
-            }
+            _products = new List<Product>(new StorageBuilder().AddProductsFromFile(reader)
+                                                              .GetProducts());
         }
 
         public void ChangePrice(int precent)
@@ -83,15 +60,72 @@ namespace Task7
             meatProducts = _products.Where(x => x is Meat).ToList();
             return meatProducts;
         }
+        public bool TryAddProductFromLine(string line)
+        {
+            string[] productData = line.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (!Enum.TryParse(productData[0], out ProductType productType))
+            {
+                return false;
+            }
+            try
+            {
+                switch (productType)
+                {
+                    case ProductType.product:
+                        _products.Add(new Product(productData[1..]));
+                        break;
+                    case ProductType.meat:
+                        _products.Add(new Meat(productData[1..]));
+                        break;
+                    case ProductType.dairy:
+                        _products.Add(new DairyProduct(productData[1..]));
+                        break;
+                    default:
+                        return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
+            if (!_products.Any())
+            {
+                return null;
+            }
             foreach (var product in _products)
             {
                 stringBuilder.AppendLine(product.ToString());
             }
             return stringBuilder.ToString();
+        }
+
+        public void WriteToStream(StreamWriter writer, bool append = false)
+        {
+            foreach (var product in _products)
+            {
+                if (product is Meat)
+                {
+                    writer.WriteLine("meat" + " " + product.ToString());
+
+                }
+                else if (product is DairyProduct)
+                {
+                    writer.WriteLine("dairy" + " " + product.ToString());
+
+                }
+                else if (product is Product)
+                {
+                    writer.WriteLine("product" + " " + product.ToString());
+
+                }
+
+            }
         }
     }
 }

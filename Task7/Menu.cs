@@ -9,24 +9,27 @@ namespace Task7
     internal class Menu
     {
         private List<Option> _options;
+        public string Title { get; set; }
         public Menu()
         {
             _options = new List<Option>();
+            Title = "Select option: ";
         }
-        public Menu(List<Option> options)
+        public Menu(IEnumerable<Option> options, string title = "Select option: ")
         {
             _options = new List<Option>(options);
+            Title = title;
         }
         public void PrintMenu()
         {
             Console.Clear();
-            Console.WriteLine("Select option: ");
+            Console.WriteLine(Title);
             for (int i = 0; i < _options.Count; i++)
             {
                 Console.WriteLine($"{i} > {_options[i]};");
             }
-            Console.WriteLine("X > Close menu");
-            Console.Write("Input > ");
+            Console.WriteLine("X > Закінчити");
+            Console.Write("Введіть номер пункту > ");
             if (InvokeSelectedOption())
                 PrintMenu();
 
@@ -36,7 +39,7 @@ namespace Task7
             string inputedValue = Console.ReadLine();
             Console.Clear();
 
-            if (inputedValue.ToLower() == "x")
+            if (inputedValue.ToLower() == "x" || inputedValue.ToLower() == "х")
             {
                 return false;
             }

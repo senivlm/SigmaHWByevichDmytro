@@ -65,14 +65,14 @@ namespace Task7
             Console.Write("Input weight > ");
             double.TryParse(Console.ReadLine(), out _weight);
         }
-        
+
         protected virtual void ValidateParams(string[] productData)
         {
             if (productData.Length != 3)
             {
                 throw new ArgumentException("Невірна кількість записів");
             }
-            Name = productData[0];
+            Name = char.ToUpper(productData[0][0]) + productData[0][1..];
             if (!double.TryParse(productData[1], out double price))
             {
                 throw new ArgumentException("Невірний формат ціни");
@@ -87,7 +87,7 @@ namespace Task7
 
         #region ObjectOverrides
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             if (obj == null)
                 throw new ArgumentNullException(nameof(obj));
@@ -104,8 +104,8 @@ namespace Task7
 
         public override string ToString()
         {
-            return $"Name: {Name}; Price: {Math.Round(Price,3)}; Weight: {Math.Round(Weight, 3)}; ";
-        }       
+            return $"{Name} {Math.Round(Price, 3)} {Math.Round(Weight, 3)}";
+        }
         #endregion
     }
 }
