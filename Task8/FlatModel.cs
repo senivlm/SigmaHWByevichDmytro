@@ -193,11 +193,15 @@ namespace Task8_1
         #region ObjectOverrides
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if(obj != null && obj is FlatModel other)
+            {
+                return _flatNumber == other._flatNumber && _ownerSurname == other._ownerSurname;
+            }
+            return false;
         }
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return ToString().GetHashCode();
         }
         public override string ToString()
         {

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Task8_1
 {
-    internal class Flats : IFileReader, IFileWriter
+    internal class FlatsElectricityDebts : IFileReader, IFileWriter
     {
         #region Props
         private IEnumerable<FlatModel> _flats;
@@ -20,6 +20,7 @@ namespace Task8_1
         {
             get { return _faltsAmount; }
         }
+        public int Length => _flats.Count();
 
         public FlatModel this[int index]
         {
@@ -34,17 +35,23 @@ namespace Task8_1
         }
         #endregion
         #region Ctors
-        public Flats()
+        public FlatsElectricityDebts()
         {
             _flats = new List<FlatModel>();
+            _quarter = Quarter.None;
         }
-        public Flats(IEnumerable<FlatModel> flats, Quarter quarter)
+        public FlatsElectricityDebts(IEnumerable<FlatModel> flats, Quarter quarter)
         {
             _flats = new List<FlatModel>(flats);
             _faltsAmount = (uint)_flats.Count();
             _quarter = quarter;
         }
-        public Flats(string path)
+        public FlatsElectricityDebts(IEnumerable<FlatModel> flats)
+        {
+            _flats = new List<FlatModel>(flats);
+            _faltsAmount = (uint)_flats.Count();
+        }
+        public FlatsElectricityDebts(string path)
         {
             try
             {
@@ -131,7 +138,7 @@ namespace Task8_1
         }
         public string SelectMaxDebtedSurname()
         {
-            if(_flats.Count()==0)
+            if (_flats.Count() == 0)
             {
                 Console.WriteLine("Список наразі порожній");
                 return null;
@@ -143,27 +150,43 @@ namespace Task8_1
                 return null;
             }
             FlatModel debtedFlat = _flats.Where(flat => flat.KilowattDebt == _flats.Select(flat => flat.KilowattDebt).Max()).First();
-            return $"Максимальний борг: {String.Format("{0:f4}",debtedFlat.GetDebtValue(kilowattPrice))}, має: {debtedFlat.OwnerSurname}";
+            return $"Максимальний борг: {String.Format("{0:f4}", debtedFlat.GetDebtValue(kilowattPrice))}, має: {debtedFlat.OwnerSurname}";
         }
-        public Flats SelectFlatsWithZeroDebt()
+        public FlatsElectricityDebts SelectFlatsWithZeroDebt()
         {
             if (_flats.Count() == 0)
             {
                 Console.WriteLine("Список наразі порожній");
                 return null;
             }
-            Flats flats = new Flats(_flats.Where(flat => flat.KilowattDebt == 0),_quarter);
+            FlatsElectricityDebts flats = new FlatsElectricityDebts(_flats.Where(flat => flat.KilowattDebt == 0), _quarter);
             return flats;
+        }
+
+        public void Add(FlatModel flat)
+        {
+            _flats = _flats.Concat(new[] { flat });
         }
         #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if (obj is not null && obj is FlatsElectricityDebts other && this.Length == other.Length)
+            {
+                for (int i = 0; i < this.Length; i++)
+                {
+                    if (!this[i].Equals(other[i]))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return this.ToString().GetHashCode();
         }
         public override string ToString()
         {
@@ -179,5 +202,31 @@ namespace Task8_1
         }
 
         #endregion
+
+
+        public static FlatsElectricityDebts operator +(FlatsElectricityDebts a, FlatsElectricityDebts b)
+        {
+            var result = new FlatsElectricityDebts(a._flats);
+            for (int i = 0; i < b.Length; i++)
+            {
+                if (!result._flats.Contains(b[i]))
+                {
+                    result.Add(b[i]);
+                }
+            }
+            return result;
+        }
+        public static FlatsElectricityDebts operator -(FlatsElectricityDebts a, FlatsElectricityDebts b)
+        {
+            var result = new FlatsElectricityDebts();
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (!b._flats.Contains(a[i]))
+                {
+                    result.Add(a[i]);
+                }
+            }
+            return result;
+        }
     }
 }
