@@ -228,6 +228,5 @@ namespace Task8_1
             }
             return result;
         }
-
     }
 }
