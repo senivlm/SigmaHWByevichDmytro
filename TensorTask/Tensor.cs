@@ -8,8 +8,9 @@ namespace TensorTask
 {
     internal class Tensor<T>
     {
-        private int _dimention;
-        private List<TensorItem<T>> _tensorItems;
+        #region Props
+        protected int _dimention;
+        protected List<TensorItem<T>> _tensorItems;
         public int Dimention => _dimention;
         public int Length => _tensorItems.Count;
         public TensorItem<T> this[params int[] coord]
@@ -23,6 +24,8 @@ namespace TensorTask
                 return _tensorItems.FirstOrDefault(item => item.CoordEquals(coord));
             }
         }
+        #endregion
+        #region Ctors
         public Tensor()
         {
             _tensorItems = new();
@@ -44,6 +47,8 @@ namespace TensorTask
             _dimention = dimention;
             _tensorItems = new(tensorItems.Where(item => item.Dimention == _dimention));
         }
+        #endregion
+        #region Methods
         public void AddItem(TensorItem<T> tensorItem)
         {
             if (tensorItem.Dimention != _dimention)
@@ -56,7 +61,36 @@ namespace TensorTask
                 return;
             }
             _tensorItems.Add(tensorItem);
+        } 
+        #endregion
+        #region Operators
+        //TODO: Override operator +
+        //( create new Tensor with all elements of both and if coords repeat make it sum)
+        public static Tensor<T> operator +(Tensor<T> a, Tensor<T> b)
+        {
+            throw new NotImplementedException();
+        } 
+        #endregion
+        #region ObjectOverrides
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (TensorItem<T> item in _tensorItems)
+            {
+                stringBuilder.AppendLine(item.ToString());
+            }
+            return stringBuilder.ToString();
+        } 
+        #endregion
     }
 }

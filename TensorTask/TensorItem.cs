@@ -8,6 +8,7 @@ namespace TensorTask
 {
     internal class TensorItem<T>
     {
+        #region Props
         private T _value;
         private int[] _coords;
         private int _dimention;
@@ -18,7 +19,9 @@ namespace TensorTask
         {
             get { return _value; }
             set { _value = value; }
-        }
+        } 
+        #endregion
+        #region Ctors
         public TensorItem()
         {
             _dimention = 0;
@@ -41,6 +44,8 @@ namespace TensorTask
             _coords = new int[_dimention];
             _coords = coords[..];
         }
+        #endregion
+        #region Methods
         public bool CoordEquals(TensorItem<T> other)
         {
             if (_dimention != other._dimention)
@@ -70,8 +75,8 @@ namespace TensorTask
                 }
             }
             return true;
-        }
-
+        } 
+        #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)
         {
