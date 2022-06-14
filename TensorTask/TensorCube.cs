@@ -11,7 +11,7 @@ namespace TensorTask
         #region Props
         private int _sideSize;
 
-        public int SideSize => _sideSize; 
+        public int SideSize => _sideSize;
         #endregion
         #region Ctors
         public TensorCube() : base(3)
@@ -32,6 +32,59 @@ namespace TensorTask
         }
         #endregion
         #region Methods
+        public Tensor<int> GetMatrixOfHollow(CubeSides cubeSide)
+        {
+            Tensor<int> hollowMatrix = new Tensor<int>(2);
+            for (int i = 0; i < _sideSize; i++)
+            {
+                for (int j = 0; j < _sideSize; j++)
+                {
+                    int[] sideCoord = null;
+                    Axis3D axisTo = Axis3D.NONE;
+                    int coordTo = 0;
+                    switch (cubeSide)
+                    {
+                        case CubeSides.UP:
+                            sideCoord = new int[] { i, j, SideSize - 1 };
+                            axisTo = Axis3D.Z;
+                            break;
+                        case CubeSides.FRONT:
+                            sideCoord = new int[] { i, SideSize - 1, j };
+                            axisTo = Axis3D.Y;
+                            break;
+                        case CubeSides.RIGHT:
+                            sideCoord = new int[] { SideSize - 1, i, j };
+                            axisTo = Axis3D.X;
+                            break;
+                        case CubeSides.BOTTOM:
+                            sideCoord = new int[] { i, j, 0 };
+                            axisTo = Axis3D.Z;
+                            coordTo = SideSize - 1;
+                            break;
+                        case CubeSides.BACK:
+                            sideCoord = new int[] { i, 0, j };
+                            axisTo = Axis3D.Y;
+                            coordTo = SideSize - 1;
+                            break;
+                        case CubeSides.LEFT:
+                            sideCoord = new int[] { 0, i, j };
+                            axisTo = Axis3D.X;
+                            coordTo = SideSize - 1;
+                            break;
+                        default:
+                            throw new ArgumentException();
+                    }
+                    if (this[sideCoord].Value is null && IsHollowFromTo(sideCoord, axisTo, coordTo))
+                    {
+                        hollowMatrix.AddItem(new TensorItem<int>(2, 1, i, j));
+                        continue;
+                    }
+                    hollowMatrix.AddItem(new TensorItem<int>(2, 0, i, j));
+
+                }
+            }
+            return hollowMatrix;
+        }
         public bool IsHollowFromTo(int[] coord, Axis3D axisTo, int coordTo)
         {
             if (coord.Length != _dimention)
@@ -40,68 +93,77 @@ namespace TensorTask
             }
             return IsHollowFromTo(coord[0], coord[1], coord[2], axisTo, coordTo);
         }
-        //TODO: Come up with better methods name
         public bool IsHollowFromTo(int xFrom, int yFrom, int zFrom, Axis3D axisTo, int coordTo)
         {
             if (coordTo >= _sideSize || coordTo < 0)
             {
                 throw new IndexOutOfRangeException();
             }
-            int startPos = 0;
             switch (axisTo)
             {
                 case Axis3D.X:
-                    startPos = xFrom;
+                    if (xFrom > coordTo)
+                    {
+                        (xFrom, coordTo) = (coordTo, xFrom);
+                    }
                     break;
                 case Axis3D.Y:
-                    startPos = yFrom;
+                    if (yFrom > coordTo)
+                    {
+                        (yFrom, coordTo) = (coordTo, yFrom);
+                    }
                     break;
                 case Axis3D.Z:
-                    startPos = zFrom;
+                    if (zFrom > coordTo)
+                    {
+                        (zFrom, coordTo) = (coordTo, zFrom);
+                    }
                     break;
                 default:
                     throw new ArgumentException();
             }
-            if (startPos > coordTo)
-            {
-                (startPos, coordTo) = (coordTo, startPos);
-            }
-            switch (axisTo)
-            {
-                case Axis3D.X:
-                    if (!TryPassToCoord(startPos, yFrom, zFrom, startPos, coordTo))
-                    {
-                        return false;
-                    }
-                    break;
-                case Axis3D.Y:
-                    if (!TryPassToCoord(xFrom, startPos, zFrom, startPos, coordTo))
-                    {
-                        return false;
-                    }
-                    break;
-                case Axis3D.Z:
 
-                    if (!TryPassToCoord(xFrom, yFrom, startPos, startPos, coordTo))
+            return TryPassToCoord(xFrom, yFrom, zFrom, axisTo, coordTo);
+
+        }
+        private bool TryPassToCoord(int x, int y, int z, Axis3D startPos, int coordTo)
+        {
+            switch (startPos)
+            {
+                case Axis3D.X:
+                    while (x <= coordTo)
                     {
-                        return false;
+                        if (this[x, y, z].Value != null )
+                        {
+                            return false;
+                        }
+                        x++;
+                    }
+                    break;
+                case Axis3D.Y:
+                    while (y <= coordTo)
+                    {
+                        if (this[x, y, z].Value != null)
+                        {
+                            return false;
+                        }
+                        y++;
+                    }
+                    break;
+                case Axis3D.Z:
+                    while (z <= coordTo)
+                    {
+                        if (this[x, y, z].Value != null)
+                        {
+                            return false;
+                        }
+                        z++;
                     }
                     break;
                 default:
-                    throw new ArgumentException();
+                    break;
             }
-            return true;
-        }
-        private bool TryPassToCoord(int x, int y, int z, int startPos, int coordTo)
-        {
-            while (startPos < coordTo)
-            {
-                if (this[x, y, z].Value != null)
-                {
-                    return false;
-                }
-                startPos++;
-            }
+
             return true;
         }
         #endregion
@@ -120,81 +182,78 @@ namespace TensorTask
                 }
             }
         }
-        #endregion
-        #region Prints(temporary)
-        //TODO: Remake to method(s), that create another 2D Tensors from outer sides
-        // print it or return list of 2D Tensors
-        public void PrintTensorAsCubeSides()
+        public void InitializeWithSameValueAndRandomHollows(T value, int frequencyOfHollow)
         {
+            var rand = new Random();
+            for (int i = 0; i < _sideSize; i++)
+            {
+                for (int j = 0; j < _sideSize; j++)
+                {
+                    for (int k = 0; k < _sideSize; k++)
+                    {
+                        if (rand.Next(0, frequencyOfHollow) == 0)
+                        {
+                            AddItem(new TensorItem<T>(3, default, i, j, k));
+                            continue;
+                        }
+                        AddItem(new TensorItem<T>(3, value, i, j, k));
+                    }
+
+                }
+            }
+        }
+        #endregion
+        #region ToStrings
+        public string ToStringCubeSides()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
             bool isNewLine = false;
             for (int k = 0; k < 6; k++)
             {
-                switch (k)
-                {
-                    case 0:
-                        Console.WriteLine("A,A1,B1,B");
-                        break;
-                    case 1:
-                        Console.WriteLine("B,B1,C1,C");
-                        break;
-                    case 2:
-                        Console.WriteLine("A,B,C,D");
-                        break;
-                    case 3:
-                        Console.WriteLine("D,D1,C1,C");
-                        break;
-                    case 4:
-                        Console.WriteLine("A,A1,D1,D");
-                        break;
-                    case 5:
-                        Console.WriteLine("A1,B1,C1,D1");
-                        break;
-                    default:
-                        break;
-                }
+                CubeSides cubeSide = (CubeSides)k;
+                stringBuilder.AppendLine(cubeSide.ToString());
+
                 for (int i = 0; i < _sideSize; i++)
                 {
                     for (int j = 0; j < _sideSize; j++)
                     {
-                        if (this[i, j, 0] is not null)
+                        switch (cubeSide)
                         {
-                            switch (k)
-                            {
-                                case 0:
-                                    Console.Write($"{this[0, i, j]}\t");
-                                    break;
-                                case 1:
-                                    Console.Write($"{this[i, 0, j]}\t");
-                                    break;
-                                case 2:
-                                    Console.Write($"{this[i, j, 0]}\t");
-                                    break;
-                                case 3:
-                                    Console.Write($"{this[_sideSize - 1, i, j]}\t");
-                                    break;
-                                case 4:
-                                    Console.Write($"{this[i, _sideSize - 1, j]}\t");
-                                    break;
-                                case 5:
-                                    Console.Write($"{this[i, j, _sideSize - 1]}\t");
-                                    break;
-                                default:
-                                    break;
-                            }
-                            isNewLine = true;
+                            case CubeSides.FRONT:
+                                stringBuilder.Append($"{this[0, i, j]}\t");
+                                break;
+                            case CubeSides.UP:
+                                stringBuilder.Append($"{this[i, 0, j]}\t");
+                                break;
+                            case CubeSides.RIGHT:
+                                stringBuilder.Append($"{this[i, j, 0]}\t");
+                                break;
+                            case CubeSides.BOTTOM:
+                                stringBuilder.Append($"{this[_sideSize - 1, i, j]}\t");
+                                break;
+                            case CubeSides.BACK:
+                                stringBuilder.Append($"{this[i, _sideSize - 1, j]}\t");
+                                break;
+                            case CubeSides.LEFT:
+                                stringBuilder.Append($"{this[i, j, _sideSize - 1]}\t");
+                                break;
+                            default:
+                                break;
                         }
+                        isNewLine = true;
                     }
                     if (isNewLine)
                     {
-                        Console.WriteLine();
+                        stringBuilder.AppendLine();
                         isNewLine = false;
                     }
                 }
             }
+            return stringBuilder.ToString();
         }
-        //TODO: maybe change it to ToString()
-        public void PrintTensorAsCube()
+        public string ToStringAsCube()
         {
+            StringBuilder stringBuilder = new StringBuilder();
             bool isNewLine = false;
             for (int i = 0; i < _sideSize; i++)
             {
@@ -204,18 +263,61 @@ namespace TensorTask
                     {
                         if (this[i, j, k] is not null)
                         {
-                            Console.Write($"{this[i, j, k]}\t");
+                            stringBuilder.Append($"{this[i, j, k]}\t");
                             isNewLine = true;
                         }
                     }
                     if (isNewLine)
                     {
-                        Console.WriteLine();
+                        stringBuilder.AppendLine();
                         isNewLine = false;
                     }
                 }
             }
-        } 
+            return stringBuilder.ToString();
+        }
+        public string ToStringAllSidesHollows()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int k = 0; k < 6; k++)
+            {
+                CubeSides cubeSide = (CubeSides)k;
+                var matrixOfHollow = this.GetMatrixOfHollow(cubeSide);
+                stringBuilder.AppendLine($"Matrix of {cubeSide} side hollows: ");
+                for (int i = 0; i < this.SideSize; i++)
+                {
+                    for (int j = 0; j < this.SideSize; j++)
+                    {
+                        stringBuilder.Append(matrixOfHollow[i, j].ToString());
+
+                    }
+                    stringBuilder.AppendLine();
+                }
+            }
+            return stringBuilder.ToString();
+        }
+        public void PrintAllSidesHollowsToConsole()
+        {
+            for (int k = 0; k < 6; k++)
+            {
+                CubeSides cubeSide = (CubeSides)k;
+                var matrixOfHollow = this.GetMatrixOfHollow(cubeSide);
+                Console.WriteLine($"Matrix of {cubeSide} side hollows: ");
+                for (int i = 0; i < this.SideSize; i++)
+                {
+                    for (int j = 0; j < this.SideSize; j++)
+                    {
+                        if (matrixOfHollow[i, j].Value == 1)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        Console.Write(matrixOfHollow[i, j]);
+                        Console.ResetColor();
+                    }
+                    Console.WriteLine();
+                }
+            }
+        }
         #endregion
     }
 }

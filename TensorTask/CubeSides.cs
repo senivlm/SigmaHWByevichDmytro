@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace TensorTask
 {
-    public enum Axis3D
+    public enum CubeSides
     {
-        NONE,
-        X,
-        Y,
-        Z
+        UP,
+        FRONT,
+        RIGHT,
+        BOTTOM,
+        BACK,
+        LEFT
     }
 }

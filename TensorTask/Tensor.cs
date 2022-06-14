@@ -64,11 +64,26 @@ namespace TensorTask
         } 
         #endregion
         #region Operators
-        //TODO: Override operator +
-        //( create new Tensor with all elements of both and if coords repeat make it sum)
+
         public static Tensor<T> operator +(Tensor<T> a, Tensor<T> b)
         {
-            throw new NotImplementedException();
+            if (a._dimention != b._dimention)
+            {
+                throw new ArgumentException("Different dimentions ");
+            }
+            if (a.Length< b.Length)
+            {
+                (a, b) = (b, a);
+            }
+            Tensor<T> tensor = new(a._dimention,a._tensorItems);
+            foreach (TensorItem<T> item in b._tensorItems)
+            {
+                if(!tensor._tensorItems.Contains(item))
+                {
+                    tensor._tensorItems.Add(item);
+                }
+            }
+            return tensor;
         } 
         #endregion
         #region ObjectOverrides
