@@ -35,21 +35,7 @@ namespace Task8_1
             Console.WriteLine(flatsElectricityDebts1 + flatsElectricityDebts2);
             Console.WriteLine();
             Console.WriteLine(flatsElectricityDebts1 - flatsElectricityDebts2);
-            Console.WriteLine();
-            Console.WriteLine($"{DateTime.Parse("23:12:44 sunday"):dddd}");
-            /*
-             >100
-             max = 200
-             100/ max 0.5 
-             0.5 * max =100
-             25 * 0.5 = 12
-             */
-            Console.WriteLine();
-            Console.WriteLine("понедельник  # 10");
-            Console.WriteLine("вторник      # 100");
-            Console.WriteLine("среда        ## 200");
-            Console.WriteLine("четверг      ############ 12");
-            Console.WriteLine($"пятница      {string.Concat(Enumerable.Repeat("#",100))} 200");
+
 
         }
     }
