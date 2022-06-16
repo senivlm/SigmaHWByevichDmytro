@@ -8,9 +8,15 @@ namespace Task8_2
         {
             try
             {
-                VisitLogsGenerator generator = new VisitLogsGenerator(10,10);
-                generator.GenerateLogs();
-                Console.WriteLine(generator);
+                FileHandler siteStatisticsFile = new FileHandler("../../../SiteStatistics.txt");
+                //VisitLogsGenerator generator = new VisitLogsGenerator(100,100);
+                //generator.GenerateLogs();
+                //siteStatisticsFile.WriteFromObject(generator);
+                WebLogs webLogs = new WebLogs();
+                siteStatisticsFile.ReadToObject(webLogs);
+
+                Console.WriteLine(webLogs);
+
             }
             catch (Exception ex)
             {
