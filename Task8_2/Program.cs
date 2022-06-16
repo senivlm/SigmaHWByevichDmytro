@@ -8,15 +8,9 @@ namespace Task8_2
         {
             try
             {
-                VisitLogModel visitLog = new VisitLogModel("90.12.140.0   ", DateTime.Now);
-                Console.WriteLine(visitLog);
-
-                WebLogs webLogs = new WebLogs(new[] { visitLog } );
-                Console.WriteLine(webLogs);
-
-                visitLog.IP = "90.12.120.012";
-                Console.WriteLine(webLogs);
-                Console.WriteLine(visitLog);
+                VisitLogsGenerator generator = new VisitLogsGenerator(10,10);
+                generator.GenerateLogs();
+                Console.WriteLine(generator);
             }
             catch (Exception ex)
             {
