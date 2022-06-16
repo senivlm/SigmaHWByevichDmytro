@@ -1,5 +1,6 @@
 ﻿i-я
 go-йду
 to-до
-school-школаvery-дуже
+school-школа
 fast-швидко
+very-дуже
