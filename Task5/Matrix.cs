@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,13 +8,31 @@ using System.Threading.Tasks;
 
 namespace Task5
 {
-    internal class Matrix
+    internal class Matrix : IEnumerable
     {
         private int[,] _matrix;
         private int _columns;
         private int _rows;
         private Filling _filling;
         private Direction _direction;
+        public int Max
+        {
+            get
+            {
+                int max = _matrix[0, 0];
+                for (int i = 0; i < _rows; i++)
+                {
+                    for (int j = 0; j < _columns; j++)
+                    {
+                        if (max < _matrix[i, j])
+                        {
+                            max = _matrix[i, j];
+                        }
+                    }
+                }
+                return max;
+            }
+        }
         public Matrix() : this(default, default) { }
         public Matrix(int columns, int rows)
         {
@@ -187,7 +206,6 @@ namespace Task5
                     }
                 }
         }
-
         public void ReadMatrixFromFile(StreamReader reader)
         {
             string line = reader.ReadLine();
@@ -206,6 +224,16 @@ namespace Task5
                 }
             }
         }
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < _columns; i++)
+            {
+                for (int j = 0; j < _rows; j++)
+                {
+                    yield return _matrix[j, i];
+                }
+            }
+        }
 
         public void Print()
         {
@@ -218,27 +246,10 @@ namespace Task5
                 Console.WriteLine();
             }
         }
-        public int Max
-        {
-            get
-            {
-                int max = _matrix[0, 0];
-                for (int i = 0; i < _rows; i++)
-                {
-                    for (int j = 0; j < _columns; j++)
-                    {
-                        if (max < _matrix[i, j])
-                        {
-                            max = _matrix[i, j];
-                        }
-                    }
-                }
-                return max;
-            }
-        }
+
         public override string ToString()
         {
-            string formatSpace = "{0," + (Max.ToString().Length+1) + "}";
+            string formatSpace = "{0," + (Max.ToString().Length + 1) + "}";
             StringBuilder stringBuilder = new StringBuilder();
             for (int row = 0; row < _rows; row++)
             {
@@ -252,5 +263,7 @@ namespace Task5
 
 
         }
+
+
     }
 }
