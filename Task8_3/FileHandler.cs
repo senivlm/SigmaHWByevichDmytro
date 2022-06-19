@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Task7
+namespace Task8_3
 {
     internal class FileHandler
     {

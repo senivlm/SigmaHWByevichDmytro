@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 
-namespace Task7
+namespace Task8_3
 {
-    internal class Product
+    internal class Product : IComparable
     {
         #region Props
 
@@ -106,6 +106,16 @@ namespace Task7
         {
             return $"{Name} {Math.Round(Price, 3)} {Math.Round(Weight, 3)}";
         }
+
         #endregion
+        public int CompareTo(object obj)
+        {
+            Product other = obj as Product;
+            if (other is null)
+            {
+                throw (new ArgumentException("wrong object to compare"));
+            }
+            return ((other._price * other._weight).CompareTo(_price * _weight));
+        }
     }
 }
