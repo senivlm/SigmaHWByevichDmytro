@@ -94,7 +94,9 @@ namespace Task8_3
             if (obj == null)
                 throw new ArgumentNullException(nameof(obj));
             return (obj is Meat other &&
-                    Equals((this as Product), (other as Product)) &&
+                    this.Name == other.Name &&
+                    this.Price == other.Price &&
+                    this.Weight == other.Weight &&
                     Category == other.Category &&
                     Species == other.Species);
         }

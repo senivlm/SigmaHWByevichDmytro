@@ -42,6 +42,18 @@ namespace Task8_3
             _products = new List<Product>(new StorageBuilder().AddProductsFromFile(reader)
                                                               .GetProducts());
         }
+        public IEnumerable<Product> Subtract(Storage other)
+        {
+            return _products.Where(item => !other._products.Contains(item)).ToList();
+        }
+        public IEnumerable<Product> Intersection(Storage other)
+        {
+            return _products.Where(item => other._products.Contains(item)).ToList();
+        }
+        public IEnumerable<Product> Union(Storage other)
+        {
+            return Enumerable.Concat(this._products, other._products).Distinct();
+        }
 
         public void ChangePrice(int precent)
         {
@@ -90,21 +102,6 @@ namespace Task8_3
             }
             return true;
         }
-
-        public override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            if (!_products.Any())
-            {
-                return null;
-            }
-            foreach (var product in _products)
-            {
-                stringBuilder.AppendLine(product.ToString());
-            }
-            return stringBuilder.ToString();
-        }
-
         public void WriteToStream(StreamWriter writer, bool append = false)
         {
             foreach (var product in _products)
@@ -127,5 +124,20 @@ namespace Task8_3
 
             }
         }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (!_products.Any())
+            {
+                return null;
+            }
+            foreach (var product in _products)
+            {
+                stringBuilder.AppendLine(product.ToString());
+            }
+            return stringBuilder.ToString();
+        }
+
     }
 }
