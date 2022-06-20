@@ -33,7 +33,7 @@ namespace Task7
             }
         }
         private bool InvokeSelectedOption()
-        {
+        {//Switch прозоріший і структурованіший. Якраз для меню.
             string inputedValue = Console.ReadLine();
             Console.Clear();
 
