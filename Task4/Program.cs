@@ -7,7 +7,7 @@ namespace Task4
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Vector vectorAvaragePivot = new Vector(100000);
             Vector vectorMiddlePivot = new Vector(100000);

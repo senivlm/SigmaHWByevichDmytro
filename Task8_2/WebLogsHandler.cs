@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task8_2
+﻿namespace Task8_2
 {
     internal class WebLogsHandler
     {
@@ -12,7 +6,7 @@ namespace Task8_2
 
         private readonly IStatisticsAnalyst _statisticsAnalyst;
         private readonly IStatisticsWriter _statisticsWriter;
-        public WebLogsHandler(WebLogs webLogs,IStatisticsAnalyst statisticsAnalyst, IStatisticsWriter statisticsWriter)
+        public WebLogsHandler(WebLogs webLogs, IStatisticsAnalyst statisticsAnalyst, IStatisticsWriter statisticsWriter)
         {
             _statisticsAnalyst = statisticsAnalyst;
             _statisticsWriter = statisticsWriter;
@@ -23,7 +17,7 @@ namespace Task8_2
             _statisticsWriter.Write(_statisticsAnalyst.Analyze(_webLogs));
         }
 
-        
+
 
     }
 }

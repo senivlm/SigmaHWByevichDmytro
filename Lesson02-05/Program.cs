@@ -6,7 +6,7 @@ namespace Lesson02_05
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             List<(string, int, double)> students = new List<(string, int, double)>();
             try
@@ -42,7 +42,7 @@ namespace Lesson02_05
         }
         public static (string, int, double) Parse(string str)
         {
-            string[] data = str.Split(' ',StringSplitOptions.RemoveEmptyEntries);
+            string[] data = str.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             string exMessage = null;
             if (data.Length != 3)
             {
@@ -50,19 +50,19 @@ namespace Lesson02_05
             }
             string surname = data[0];
 
-            if (!int.TryParse(data[1],out int year))
+            if (!int.TryParse(data[1], out int year))
             {
-                exMessage+="Invalid year format; ";
+                exMessage += "Invalid year format; ";
             }
-            if (!double.TryParse(data[2],out double avarage))
+            if (!double.TryParse(data[2], out double avarage))
             {
-                exMessage+="Invalid avarage format; ";
+                exMessage += "Invalid avarage format; ";
             }
             if (exMessage is not null)
             {
                 throw new FormatException(exMessage);
             }
-            return (surname,year,avarage);
+            return (surname, year, avarage);
         }
     }
 }

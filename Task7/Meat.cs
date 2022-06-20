@@ -1,31 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task7
 {
     internal class Meat : Product
     {
-        MeatSpecies _species;
+        private MeatSpecies _species;
 
         public MeatSpecies Species
         {
             get => _species;
-            set
-            {
-                _species = value;
-            }
+            set => _species = value;
         }
-        MeatCategory _category;
+
+        private MeatCategory _category;
         public MeatCategory Category
         {
             get => _category;
-            set
-            {
-                _category = value;
-            }
+            set => _category = value;
 
         }
 
@@ -92,7 +83,10 @@ namespace Task7
         public override bool Equals(object obj)
         {
             if (obj == null)
+            {
                 throw new ArgumentNullException(nameof(obj));
+            }
+
             return (obj is Meat other &&
                     Equals((this as Product), (other as Product)) &&
                     Category == other.Category &&

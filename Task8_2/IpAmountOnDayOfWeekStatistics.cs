@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Task8_2
 {
     internal class IpAmountOnDayOfWeekStatistics : IStatisticsAnalyst
-    {      
+    {
         public Dictionary<string, int> Analyze(WebLogs webLogs)
         {
             Dictionary<string, int> statistics = new Dictionary<string, int>();
@@ -22,7 +18,7 @@ namespace Task8_2
                     statistics.Add(webLogs[i].LogDayOfWeek.ToString(), 1);
                 }
             }
-            
+
             return statistics;
         }
     }

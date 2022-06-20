@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task8_2
 {
-    internal class VisitLogsGenerator: IFileWriter
+    internal class VisitLogsGenerator : IFileWriter
     {
         private WebLogs _generatedLogs;
         private int _logsAmount;
         private int _ipAmount;
         private string[] _ipArray;
-
-        Random rnd = new Random();
+        private Random rnd = new Random();
         public int LogsAmount
         {
             get => _logsAmount;
             set => _logsAmount = value;
         }
 
-        public VisitLogsGenerator() : this(default,default) { }
+        public VisitLogsGenerator() : this(default, default) { }
         public VisitLogsGenerator(int logsAmount, int ipAmount)
         {
             _generatedLogs = new WebLogs();
@@ -52,7 +47,7 @@ namespace Task8_2
         {
             int ipIndex = rnd.Next(_ipArray.Length);
 
-            DayOfWeek logDayOfWeek = (DayOfWeek)rnd.Next(0,7);
+            DayOfWeek logDayOfWeek = (DayOfWeek)rnd.Next(0, 7);
 
             TimeSpan logTime = new TimeSpan(rnd.Next(24), rnd.Next(60), rnd.Next(60));
 

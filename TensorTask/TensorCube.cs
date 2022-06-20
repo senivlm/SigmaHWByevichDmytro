@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TensorTask
 {
@@ -133,7 +131,7 @@ namespace TensorTask
                 case Axis3D.X:
                     while (x <= coordTo)
                     {
-                        if (this[x, y, z].Value != null )
+                        if (this[x, y, z].Value != null)
                         {
                             return false;
                         }

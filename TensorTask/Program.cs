@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TensorTask
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
                 TensorCube<int?> cube = new TensorCube<int?>(3);
 
-                cube.InitializeWithSameValueAndRandomHollows(1,2);
+                cube.InitializeWithSameValueAndRandomHollows(1, 2);
 
                 Console.WriteLine(cube.ToStringAsCube());
                 Console.WriteLine();
@@ -39,9 +38,9 @@ namespace TensorTask
                 Console.WriteLine(t2);
                 Console.WriteLine("Tensor sum: ");
 
-                Console.WriteLine(t1+t2);
+                Console.WriteLine(t1 + t2);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

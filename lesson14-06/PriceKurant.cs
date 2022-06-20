@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace lesson14_06
 {
@@ -20,8 +16,8 @@ namespace lesson14_06
         public bool TryGetProductPrice(string productName, out double price)
         {
             if (!_productPrice.TryGetValue(productName, out double result))
-            {             
-                price = default;  
+            {
+                price = default;
                 return false;
             }
             price = result;

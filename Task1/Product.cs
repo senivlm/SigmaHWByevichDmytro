@@ -8,18 +8,21 @@ namespace Task1
         private string _name;
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get => _name;
+            set => _name = value;
         }
 
         private double _price;
         public double Price
         {
-            get { return _price; }
+            get => _price;
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException("Negative price");
+                }
+
                 _price = value;
             }
         }
@@ -27,11 +30,14 @@ namespace Task1
         private double _weight;
         public double Weight
         {
-            get { return _weight; }
+            get => _weight;
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException("Negative weight");
+                }
+
                 _weight = value;
             }
         }
@@ -46,9 +52,12 @@ namespace Task1
 
         public override bool Equals(object? obj)
         {
-            if(obj == null)
+            if (obj == null)
+            {
                 throw new ArgumentNullException(nameof(obj));
-            return (obj is  Product other &&
+            }
+
+            return (obj is Product other &&
                     this.Name == other.Name &&
                     this.Price == other.Price &&
                     this.Weight == other.Weight);

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task2_2
 {
@@ -90,12 +86,16 @@ namespace Task2_2
             for (int value = 0; value < _matrix.Length;)
             {
                 if (row == _rows - 1 || column == _columns - 1)
+                {
                     isDiagonal = true;
+                }
 
                 _matrix[row, column] = (++value);
 
                 if (value == _matrix.Length)
+                {
                     break;
+                }
 
                 if (!isDiagonal)
                 {
@@ -156,17 +156,27 @@ namespace Task2_2
             int columnEnd = 0;
             bool isDirectionUp = SetDirection();
             if (isDirectionUp)
+            {
                 for (int i = 0; i < _matrix.Length;)
                 {
                     _matrix[row, column] = ++i;
                     if (column == columnStart && row < _rows - rowEnd - 1)
+                    {
                         row++;
+                    }
                     else if (row == _rows - rowEnd - 1 && column != _columns - columnEnd - 1)
+                    {
                         column++;
+                    }
                     else if (column == _columns - columnEnd - 1 && row > rowStart)
+                    {
                         row--;
+                    }
                     else
+                    {
                         column--;
+                    }
+
                     if (column == columnStart + 1 && row == rowStart && rowStart != _rows - rowEnd - 1)
                     {
                         columnStart++;
@@ -175,18 +185,29 @@ namespace Task2_2
                         rowEnd++;
                     }
                 }
+            }
             else
+            {
                 for (int i = 0; i < _matrix.Length;)
                 {
                     _matrix[row, column] = ++i;
                     if (row == rowStart && column < _columns - columnEnd - 1)
+                    {
                         column++;
+                    }
                     else if (column == _columns - columnEnd - 1 && row != _rows - rowEnd - 1)
+                    {
                         row++;
+                    }
                     else if (row == _rows - rowEnd - 1 && column > columnStart)
+                    {
                         column--;
+                    }
                     else
+                    {
                         row--;
+                    }
+
                     if (row == rowStart + 1 && column == columnStart && columnStart != _columns - columnEnd - 1)
                     {
                         columnStart++;
@@ -195,6 +216,7 @@ namespace Task2_2
                         rowEnd++;
                     }
                 }
+            }
         }
 
 

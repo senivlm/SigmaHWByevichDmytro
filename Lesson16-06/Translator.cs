@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lesson16_06
 {
@@ -57,12 +54,12 @@ namespace Lesson16_06
                         }
                         result += _dictionary[word] + " ";
                     }
-                }                
+                }
                 catch (Exception)
                 {
                     throw;
                 }
-                
+
 
             }
             return result;
@@ -70,7 +67,7 @@ namespace Lesson16_06
         }
         private void AddToDictionary(string word)
         {
-            Console.Write($"Введіть переклад слова {word}> ");            
+            Console.Write($"Введіть переклад слова {word}> ");
             _dictionary[word] = Console.ReadLine();
             TextReader.AddToDictionary(_path, word, _dictionary[word]);
         }

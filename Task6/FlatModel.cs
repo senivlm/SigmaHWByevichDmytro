@@ -12,14 +12,11 @@ namespace Task6
         private double _startElectroMeterValue;
         private double _endElectroMeterValue;
         private DateTime[] _datesOfTakingIndicators;
-        public int DaysFromLastCheck
-        {
-            get { return (int)(DateTime.Today - _datesOfTakingIndicators[2]).TotalDays; }
-        }
+        public int DaysFromLastCheck => (int)(DateTime.Today - _datesOfTakingIndicators[2]).TotalDays;
         public double KilowattDebt => _endElectroMeterValue - _startElectroMeterValue;
         public double EndElectroMeterValue
         {
-            get { return _endElectroMeterValue; }
+            get => _endElectroMeterValue;
             set
             {
                 if (value < 0)
@@ -31,7 +28,7 @@ namespace Task6
         }
         public double StartElectroMeterValue
         {
-            get { return _startElectroMeterValue; }
+            get => _startElectroMeterValue;
             set
             {
                 if (value < 0)
@@ -44,14 +41,14 @@ namespace Task6
 
         public string OwnerSurname
         {
-            get { return _ownerSurname; }
-            set { _ownerSurname = value; }
+            get => _ownerSurname;
+            set => _ownerSurname = value;
         }
 
         public uint FlatNumber
         {
-            get { return _flatNumber; }
-            set { _flatNumber = value; }
+            get => _flatNumber;
+            set => _flatNumber = value;
         }
         #endregion
         #region Ctors

@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task3
 {
     internal class Vector
     {
         private int[] _array;
-        public int Length { get => _array.Length; }
+        public int Length => _array.Length;
 
         public int this[uint index]
         {
@@ -21,10 +20,7 @@ namespace Task3
                 }
                 throw new IndexOutOfRangeException();
             }
-            set
-            {
-                _array[index] = value;
-            }
+            set => _array[index] = value;
 
         }
 
@@ -76,15 +72,21 @@ namespace Task3
             for (int i = 0; i < Length; i++)
             {
                 if (pairs.Where(x => x.Element == _array[i]).Any())
+                {
                     continue;
+                }
 
-                var tmpPair = new Pair<int>();
-                tmpPair.Element = _array[i];
+                var tmpPair = new Pair<int>
+                {
+                    Element = _array[i]
+                };
 
                 for (int j = i; j < Length; j++)
                 {
                     if (_array[j] == tmpPair.Element)
+                    {
                         tmpPair.Freq++;
+                    }
                 }
                 pairs.Add(tmpPair);
             }
@@ -93,7 +95,7 @@ namespace Task3
         public Pair<int> LongestSubsequence()
         {
             int count;
-            Pair<int> pair = new Pair<int>(_array[0],1);
+            Pair<int> pair = new Pair<int>(_array[0], 1);
             for (int i = 0; i < Length - 1; i++)
             {
                 count = 1;
@@ -104,7 +106,10 @@ namespace Task3
                         count++;
                         i++;
                     }
-                    else break;
+                    else
+                    {
+                        break;
+                    }
                 }
                 if (count > pair.Freq)
                 {
@@ -119,7 +124,9 @@ namespace Task3
             for (int i = 0; i < Length / 2; i++)
             {
                 if (_array[i] != _array[Length - 1 - i])
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -128,7 +135,9 @@ namespace Task3
         {
             StringBuilder sb = new StringBuilder();
             foreach (var item in _array)
+            {
                 sb.Append($"{item} ");
+            }
 
             return sb.ToString();
 

@@ -12,14 +12,8 @@ namespace Task6
         private IEnumerable<FlatModel> _flats;
         private uint _faltsAmount;
         private Quarter _quarter;
-        public Quarter Quarter
-        {
-            get { return _quarter; }
-        }
-        public uint FlatsAmount
-        {
-            get { return _faltsAmount; }
-        }
+        public Quarter Quarter => _quarter;
+        public uint FlatsAmount => _faltsAmount;
 
         public FlatModel this[int index]
         {
@@ -131,7 +125,7 @@ namespace Task6
         }
         public string SelectMaxDebtedSurname()
         {
-            if(_flats.Count()==0)
+            if (_flats.Count() == 0)
             {
                 Console.WriteLine("Список наразі порожній");
                 return null;
@@ -143,7 +137,7 @@ namespace Task6
                 return null;
             }
             FlatModel debtedFlat = _flats.Where(flat => flat.KilowattDebt == _flats.Select(flat => flat.KilowattDebt).Max()).First();
-            return $"Максимальний борг: {String.Format("{0:f4}",debtedFlat.GetDebtValue(kilowattPrice))}, має: {debtedFlat.OwnerSurname}";
+            return $"Максимальний борг: {String.Format("{0:f4}", debtedFlat.GetDebtValue(kilowattPrice))}, має: {debtedFlat.OwnerSurname}";
         }
         public Flats SelectFlatsWithZeroDebt()
         {
@@ -152,7 +146,7 @@ namespace Task6
                 Console.WriteLine("Список наразі порожній");
                 return null;
             }
-            Flats flats = new Flats(_flats.Where(flat => flat.KilowattDebt == 0),_quarter);
+            Flats flats = new Flats(_flats.Where(flat => flat.KilowattDebt == 0), _quarter);
             return flats;
         }
         #endregion

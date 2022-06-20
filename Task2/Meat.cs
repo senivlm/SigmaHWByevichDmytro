@@ -1,31 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task2
 {
     internal class Meat : Product
     {
-        MeatSpecies _species;
+        private MeatSpecies _species;
 
         public MeatSpecies Species
         {
             get => _species;
-            set
-            {
-                _species = value;
-            }
+            set => _species = value;
         }
-        ProductCategory _category;
+
+        private ProductCategory _category;
         public ProductCategory Category
         {
             get => _category;
-            set
-            {
-                _category = value;
-            }
+            set => _category = value;
 
         }
 
@@ -37,7 +28,7 @@ namespace Task2
             Category = category;
         }
         public override void ConsoleSet()
-        {   
+        {
             base.ConsoleSet();
             Console.Write("Input meat species > ");
             Enum.TryParse(Console.ReadLine(), out _species);
@@ -72,7 +63,10 @@ namespace Task2
         public override bool Equals(object obj)
         {
             if (obj == null)
+            {
                 throw new ArgumentNullException(nameof(obj));
+            }
+
             return (obj is Meat other &&
                     Equals((this as Product), (other as Product)) &&
                     Category == other.Category &&
@@ -87,7 +81,7 @@ namespace Task2
         public override string ToString()
         {
             return base.ToString() + $"Species: {Species}, Category: {Category} ";
-        } 
+        }
         #endregion
     }
 }

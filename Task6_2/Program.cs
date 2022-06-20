@@ -5,7 +5,7 @@ namespace Task6_2
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -18,10 +18,10 @@ namespace Task6_2
                         textHandler.WriteSentancesInFile(sw);
                     }
                 }
-                
+
 
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

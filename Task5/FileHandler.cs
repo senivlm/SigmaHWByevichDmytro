@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task5
 {
@@ -13,8 +10,8 @@ namespace Task5
         private string _path;
         public string Path
         {
-            get { return _path; }
-            set { _path = value; }
+            get => _path;
+            set => _path = value;
         }
         public FileHandler() : this(null) { }
         public FileHandler(string path)
@@ -115,7 +112,7 @@ namespace Task5
                 Console.WriteLine(e.Message);
             }
         }
-        
+
         public IEnumerable<int> GetIntCollectionFromFile()
         {
             try
@@ -243,7 +240,7 @@ namespace Task5
                                 else
                                 {
                                     reader.Write(tmpVectorNum + " ");
-                                    IsReadNextWord=true;
+                                    IsReadNextWord = true;
                                 }
                             }
                             else

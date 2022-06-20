@@ -4,6 +4,6 @@ namespace Task8_2
 {
     internal interface IStatisticsWriter
     {
-        void Write(Dictionary<string,int> statistics);
+        void Write(Dictionary<string, int> statistics);
     }
 }

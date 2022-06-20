@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 
 namespace Task5
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //    FileHandler arrayFile = new FileHandler("../../../ArrayData.txt");
             //    FileHandler sortFile = new FileHandler("../../../SortedArray.txt");
@@ -22,7 +18,7 @@ namespace Task5
             //        Console.WriteLine(e);
             //    }
 
-            Matrix matrix = new Matrix(2,2);
+            Matrix matrix = new Matrix(2, 2);
             matrix.FIll(Filling.vertical, Direction.up);
             Console.WriteLine(matrix);
             foreach (int item in matrix)

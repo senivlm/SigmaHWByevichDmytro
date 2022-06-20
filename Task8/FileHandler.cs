@@ -5,8 +5,8 @@
         private string _path;
         public string Path
         {
-            get { return _path; }
-            set { _path = value; }
+            get => _path;
+            set => _path = value;
         }
         public FileHandler() : this(null) { }
         public FileHandler(string path)

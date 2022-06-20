@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Task8_2
 {
@@ -14,7 +9,7 @@ namespace Task8_2
         private TimeSpan _logtime;
         public string IP
         {
-            get { return _ip; }
+            get => _ip;
             set
             {
                 if (!TryValidateIP(value, out _ip))
@@ -27,10 +22,7 @@ namespace Task8_2
         public DayOfWeek LogDayOfWeek
         {
             get => _logDayOfWeek;
-            set
-            {               
-                _logDayOfWeek = value;
-            }
+            set => _logDayOfWeek = value;
         }
         public TimeSpan Logtime { get => _logtime; set => _logtime = value; }
 
@@ -54,7 +46,7 @@ namespace Task8_2
             {
                 return false;
             }
-            string[] parts = value.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);  
+            string[] parts = value.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length != 3)
             {
                 return false;
@@ -63,11 +55,11 @@ namespace Task8_2
             {
                 return false;
             }
-            if (!Enum.TryParse<DayOfWeek>(parts[1],out DayOfWeek dayOfWeekResult))
+            if (!Enum.TryParse<DayOfWeek>(parts[1], out DayOfWeek dayOfWeekResult))
             {
                 return false;
             }
-            if (!TimeSpan.TryParse(parts[2],out TimeSpan timeSpanResult))
+            if (!TimeSpan.TryParse(parts[2], out TimeSpan timeSpanResult))
             {
                 return false;
             }

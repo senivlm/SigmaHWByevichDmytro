@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lesson14_06
+﻿namespace lesson14_06
 {
     internal static class MenuService
     {
@@ -17,7 +11,8 @@ namespace lesson14_06
                 {
                     return false;
                 }
-                menuTotalSum+=sumPrice;
+
+                menuTotalSum += sumPrice;
             }
             return true;
         }
@@ -32,8 +27,8 @@ namespace lesson14_06
                 }
                 sumPrice += poductPrice * dish[key];
             }
-            return true;          
-           
+            return true;
+
         }
     }
 }

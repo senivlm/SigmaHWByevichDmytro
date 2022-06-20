@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task5
 {
@@ -17,7 +14,7 @@ namespace Task5
         public int WordCount => _wordCount;
         public uint PartsAmount => _partsAmount;
 
-        public int CurrentPart { get => _currentPart; }
+        public int CurrentPart => _currentPart;
 
         public SplitReader(Stream reader, uint partsAmount)
         {
@@ -29,7 +26,11 @@ namespace Task5
             _partsAmount = partsAmount;
             _partSize = (int)(_wordCount / partsAmount);
         }
-        public bool IsLastPart() => _currentPart == _partsAmount;
+        public bool IsLastPart()
+        {
+            return _currentPart == _partsAmount;
+        }
+
         public IEnumerable<int> GetNextIntPart()
         {
             _currentPart++;
@@ -44,7 +45,7 @@ namespace Task5
                     wordCount++;
                     if (!int.TryParse(word, out int num))
                     {
-                        Console.WriteLine(word+" is not int ");
+                        Console.WriteLine(word + " is not int ");
                     }
                     result.Add(num);
                 }

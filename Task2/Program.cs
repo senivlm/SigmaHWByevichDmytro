@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Task2
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
 
             Product product1 = new Product();
@@ -18,14 +17,16 @@ namespace Task2
             DairyProduct dairyProduct5 = new DairyProduct("someDairyProduct5", 100, 7.2, 1);
 
             Meat meat = new Meat("meatProd", 30.2, 2.2, MeatSpecies.Mutton, ProductCategory.First);
-            List<Product> products = new List<Product>();
-            products.Add(product1);
-            products.Add(product2);
-            products.Add(dairyProduct1);
-            products.Add(dairyProduct2);
-            products.Add(dairyProduct3);
-            products.Add(dairyProduct4);
-            products.Add(dairyProduct5);
+            List<Product> products = new List<Product>
+            {
+                product1,
+                product2,
+                dairyProduct1,
+                dairyProduct2,
+                dairyProduct3,
+                dairyProduct4,
+                dairyProduct5
+            };
 
             //Buy buy = new Buy(products);
             //Check.PrintCheck(buy);

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task5
 {
@@ -150,6 +147,7 @@ namespace Task5
             int columnEnd = 0;
             bool isDirectionUp = SetDirection();
             if (!isDirectionUp)
+            {
                 for (int i = 0; i < _matrix.Length;)
                 {
                     _matrix[row, column] = ++i;
@@ -177,7 +175,9 @@ namespace Task5
                         rowEnd++;
                     }
                 }
+            }
             else
+            {
                 for (int i = 0; i < _matrix.Length;)
                 {
                     _matrix[row, column] = ++i;
@@ -205,6 +205,7 @@ namespace Task5
                         rowEnd++;
                     }
                 }
+            }
         }
         public void ReadMatrixFromFile(StreamReader reader)
         {

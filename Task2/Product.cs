@@ -10,18 +10,21 @@ namespace Task2
         private string _name;
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get => _name;
+            set => _name = value;
         }
 
         private double _price;
         public double Price
         {
-            get { return _price; }
+            get => _price;
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException("Negative price");
+                }
+
                 _price = value;
             }
         }
@@ -29,11 +32,14 @@ namespace Task2
         private double _weight;
         public double Weight
         {
-            get { return _weight; }
+            get => _weight;
             set
             {
                 if (value < 0)
+                {
                     throw new ArgumentException("Negative weight");
+                }
+
                 _weight = value;
             }
         }
@@ -67,7 +73,10 @@ namespace Task2
         public override bool Equals(object? obj)
         {
             if (obj == null)
+            {
                 throw new ArgumentNullException(nameof(obj));
+            }
+
             return (obj is Product other &&
                     this.Name == other.Name &&
                     this.Price == other.Price &&
@@ -81,7 +90,7 @@ namespace Task2
 
         public override string? ToString()
         {
-            return $"Name: {Name}, Price: {Math.Round(Price,3)}, Weight: {Math.Round(Weight, 3)}, ";
+            return $"Name: {Name}, Price: {Math.Round(Price, 3)}, Weight: {Math.Round(Weight, 3)}, ";
         }
         #endregion
     }

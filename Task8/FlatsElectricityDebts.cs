@@ -12,14 +12,8 @@ namespace Task8_1
         private IEnumerable<FlatModel> _flats;
         private uint _faltsAmount;
         private Quarter _quarter;
-        public Quarter Quarter
-        {
-            get { return _quarter; }
-        }
-        public uint FlatsAmount
-        {
-            get { return _faltsAmount; }
-        }
+        public Quarter Quarter => _quarter;
+        public uint FlatsAmount => _faltsAmount;
         public int Length => _flats.Count();
 
         public FlatModel this[int index]

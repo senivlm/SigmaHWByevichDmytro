@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task6
 {
@@ -28,8 +25,9 @@ namespace Task6
             Console.WriteLine("X > Close menu");
             Console.Write("Input > ");
             if (InvokeSelectedOption())
+            {
                 PrintMenu();
-
+            }
         }
         private bool InvokeSelectedOption()
         {

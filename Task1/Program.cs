@@ -5,7 +5,7 @@ namespace Task1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
 
             Product product1 = new Product();
@@ -23,12 +23,13 @@ namespace Task1
 
                 Console.WriteLine(e.Message);
             }
-            List<Product> products = new List<Product>();
-
-            products.Add(product1);
-            products.Add(product2);
-            products.Add(product3);
-            products.Add(product4);
+            List<Product> products = new List<Product>
+            {
+                product1,
+                product2,
+                product3,
+                product4
+            };
 
 
             Buy buy = new Buy();

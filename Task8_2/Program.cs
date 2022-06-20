@@ -4,7 +4,7 @@ namespace Task8_2
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -16,7 +16,7 @@ namespace Task8_2
 
                 WebLogs webLogs = new WebLogs();
                 siteStatisticsFile.ReadToObject(webLogs);
-                    
+
                 DiagramWriter diagramWriter = new DiagramWriter();
 
                 Console.WriteLine("Visit amount per day of week");

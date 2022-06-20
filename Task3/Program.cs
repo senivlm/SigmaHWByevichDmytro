@@ -4,7 +4,7 @@ namespace Task3
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Vector vector = new Vector(11);
             vector.RandomInitialization(1, 10);

@@ -12,14 +12,11 @@ namespace Task8_1
         private double _startElectroMeterValue;
         private double _endElectroMeterValue;
         private DateTime[] _datesOfTakingIndicators;
-        public int DaysFromLastCheck
-        {
-            get { return (int)(DateTime.Today - _datesOfTakingIndicators[2]).TotalDays; }
-        }
+        public int DaysFromLastCheck => (int)(DateTime.Today - _datesOfTakingIndicators[2]).TotalDays;
         public double KilowattDebt => _endElectroMeterValue - _startElectroMeterValue;
         public double EndElectroMeterValue
         {
-            get { return _endElectroMeterValue; }
+            get => _endElectroMeterValue;
             set
             {
                 if (value < 0)
@@ -31,7 +28,7 @@ namespace Task8_1
         }
         public double StartElectroMeterValue
         {
-            get { return _startElectroMeterValue; }
+            get => _startElectroMeterValue;
             set
             {
                 if (value < 0)
@@ -44,14 +41,14 @@ namespace Task8_1
 
         public string OwnerSurname
         {
-            get { return _ownerSurname; }
-            set { _ownerSurname = value; }
+            get => _ownerSurname;
+            set => _ownerSurname = value;
         }
 
         public uint FlatNumber
         {
-            get { return _flatNumber; }
-            set { _flatNumber = value; }
+            get => _flatNumber;
+            set => _flatNumber = value;
         }
         #endregion
         #region Ctors
@@ -193,7 +190,7 @@ namespace Task8_1
         #region ObjectOverrides
         public override bool Equals(object obj)
         {
-            if(obj != null && obj is FlatModel other)
+            if (obj != null && obj is FlatModel other)
             {
                 return _flatNumber == other._flatNumber && _ownerSurname == other._ownerSurname;
             }

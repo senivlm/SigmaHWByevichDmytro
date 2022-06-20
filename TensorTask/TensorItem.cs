@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TensorTask
 {
@@ -17,9 +14,9 @@ namespace TensorTask
 
         public T Value
         {
-            get { return _value; }
-            set { _value = value; }
-        } 
+            get => _value;
+            set => _value = value;
+        }
         #endregion
         #region Ctors
         public TensorItem()
@@ -75,7 +72,7 @@ namespace TensorTask
                 }
             }
             return true;
-        } 
+        }
         #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)
@@ -98,7 +95,7 @@ namespace TensorTask
             stringBuilder.Append("{ ");
             foreach (int coord in _coords)
             {
-                stringBuilder.Append(string.Format("{0:f2}", coord+ " "));
+                stringBuilder.Append(string.Format("{0:f2}", coord + " "));
             }
             stringBuilder.Append("}");
             stringBuilder.Append($":{_value}; ");

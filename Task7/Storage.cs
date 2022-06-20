@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task7
 {
     internal class Storage : IFileReader, IFileWriter
     {
         private List<Product> _products;
-        public int Count { get => _products.Count; }
+        public int Count => _products.Count;
         public Product this[int index]
         {
-            get { return _products[index]; }
-            set { _products[index] = value; }
+            get => _products[index];
+            set => _products[index] = value;
         }
-        public IEnumerable<Product> this[Range range]
-        {
-            get { return _products.GetRange(range.Start.Value, range.GetOffsetAndLength(_products.Count).Length); }
-        }
+        public IEnumerable<Product> this[Range range] => _products.GetRange(range.Start.Value, range.GetOffsetAndLength(_products.Count).Length);
         public Storage()
         {
             _products = new List<Product>();
@@ -46,13 +42,17 @@ namespace Task7
         public void ChangePrice(int precent)
         {
             foreach (Product product in _products)
+            {
                 product.ChangePrice(precent);
+            }
         }
         public void PrintProducts()
         {
             Console.WriteLine("\nProducts storage:");
             foreach (Product product in _products)
+            {
                 Console.WriteLine(product);
+            }
         }
         public IEnumerable<Product> GetMeatProducts()
         {

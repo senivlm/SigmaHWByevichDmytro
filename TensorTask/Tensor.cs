@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TensorTask
 {
@@ -61,7 +60,7 @@ namespace TensorTask
                 return;
             }
             _tensorItems.Add(tensorItem);
-        } 
+        }
         #endregion
         #region Operators
 
@@ -71,20 +70,20 @@ namespace TensorTask
             {
                 throw new ArgumentException("Different dimentions ");
             }
-            if (a.Length< b.Length)
+            if (a.Length < b.Length)
             {
                 (a, b) = (b, a);
             }
-            Tensor<T> tensor = new(a._dimention,a._tensorItems);
+            Tensor<T> tensor = new(a._dimention, a._tensorItems);
             foreach (TensorItem<T> item in b._tensorItems)
             {
-                if(!tensor._tensorItems.Contains(item))
+                if (!tensor._tensorItems.Contains(item))
                 {
                     tensor._tensorItems.Add(item);
                 }
             }
             return tensor;
-        } 
+        }
         #endregion
         #region ObjectOverrides
         public override bool Equals(object obj)
@@ -105,7 +104,7 @@ namespace TensorTask
                 stringBuilder.AppendLine(item.ToString());
             }
             return stringBuilder.ToString();
-        } 
+        }
         #endregion
     }
 }

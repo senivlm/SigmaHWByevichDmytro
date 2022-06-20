@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task8_3
 {
@@ -13,11 +9,14 @@ namespace Task8_3
 
         public int ExpirationDays
         {
-            get { return _expirationDays; }
+            get => _expirationDays;
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("Invalid expiration");
+                }
+
                 _expirationDays = value;
             }
         }
@@ -80,7 +79,10 @@ namespace Task8_3
         public override bool Equals(object obj)
         {
             if (obj == null)
+            {
                 throw new ArgumentNullException(nameof(obj));
+            }
+
             return (obj is DairyProduct other &&
                     this.Name == other.Name &&
                     this.Price == other.Price &&

@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task4
 {
     internal class Vector
     {
         private int[] _array;
-        public int Length { get => _array.Length; }
-        public int Max { get => _array.Max(); }
-        public int Min { get => _array.Min(); }
+        public int Length => _array.Length;
+        public int Max => _array.Max();
+        public int Min => _array.Min();
 
         public int this[uint index]
         {
@@ -23,10 +22,7 @@ namespace Task4
                 }
                 throw new IndexOutOfRangeException();
             }
-            set
-            {
-                _array[index] = value;
-            }
+            set => _array[index] = value;
 
         }
 
@@ -54,7 +50,9 @@ namespace Task4
                             }
                         }
                         if (isSorted)
+                        {
                             break;
+                        }
                     }
                     break;
                 case Trend.increase:
@@ -70,7 +68,9 @@ namespace Task4
                             }
                         }
                         if (isSorted)
+                        {
                             break;
+                        }
                     }
                     break;
                 default:
@@ -193,7 +193,9 @@ namespace Task4
             for (int i = 0; i < Length - 1; i++)
             {
                 if (_array[i] > _array[i + 1])
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -207,9 +209,14 @@ namespace Task4
                 for (uint i = 0; i < Length / 2; i++)
                 {
                     if (_array[i] < avg + (avg / 3d) * k && _array[i] > avg - (avg / 3d) * k)
+                    {
                         return i;
+                    }
+
                     if (_array[Length - i - 1] < avg + (avg / 3d) * k && _array[Length - i - 1] > avg - (avg / 3d) * k)
+                    {
                         return (uint)Length - i - 1;
+                    }
                 }
                 k++;
             }
@@ -273,15 +280,21 @@ namespace Task4
             for (int i = 0; i < Length; i++)
             {
                 if (pairs.Where(x => x.Element == _array[i]).Any())
+                {
                     continue;
+                }
 
-                var tmpPair = new Pair<int>();
-                tmpPair.Element = _array[i];
+                var tmpPair = new Pair<int>
+                {
+                    Element = _array[i]
+                };
 
                 for (int j = i; j < Length; j++)
                 {
                     if (_array[j] == tmpPair.Element)
+                    {
                         tmpPair.Freq++;
+                    }
                 }
                 pairs.Add(tmpPair);
             }
@@ -301,7 +314,10 @@ namespace Task4
                         count++;
                         i++;
                     }
-                    else break;
+                    else
+                    {
+                        break;
+                    }
                 }
                 if (count > pair.Freq)
                 {
@@ -316,7 +332,9 @@ namespace Task4
             for (int i = 0; i < Length / 2; i++)
             {
                 if (_array[i] != _array[Length - 1 - i])
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -325,7 +343,9 @@ namespace Task4
         {
             StringBuilder sb = new StringBuilder();
             foreach (var item in _array)
+            {
                 sb.Append($"{item} ");
+            }
 
             return sb.ToString();
 

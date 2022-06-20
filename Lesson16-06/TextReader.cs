@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lesson16_06
 {
@@ -12,28 +9,28 @@ namespace Lesson16_06
         public static IEnumerable<string> ReadText(string filePath)
         {
             List<string> text = new List<string>();
-            using (StreamReader reader = new(filePath) )
+            using (StreamReader reader = new(filePath))
             {
-                while(!reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
                     yield return reader.ReadLine();
                 }
             }
         }
-        public static void AddToDictionary(string filePath,string key, string value)
+        public static void AddToDictionary(string filePath, string key, string value)
         {
-            using (StreamWriter writer = new StreamWriter(filePath,true))
+            using (StreamWriter writer = new StreamWriter(filePath, true))
             {
-                writer.Write('\n'+key + '-'+ value);
+                writer.Write('\n' + key + '-' + value);
             }
         }
-        public static Dictionary<string,string> ReadDictionary(string filePath)
+        public static Dictionary<string, string> ReadDictionary(string filePath)
         {
             if (!File.Exists(filePath))
             {
                 throw new FileNotFoundException("File not founded");
             }
-            Dictionary<string,string> result = new Dictionary<string,string>();
+            Dictionary<string, string> result = new Dictionary<string, string>();
             using (StreamReader reader = new StreamReader(filePath))
             {
                 while (!reader.EndOfStream)
@@ -50,7 +47,7 @@ namespace Lesson16_06
                     }
                 }
             }
-            return result;  
+            return result;
         }
     }
 }

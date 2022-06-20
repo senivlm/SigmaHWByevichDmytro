@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task5
 {
@@ -11,9 +10,9 @@ namespace Task5
     {
         #region Props
         private int[] _array;
-        public int Length { get => _array.Length; }
-        public int Max { get => _array.Max(); }
-        public int Min { get => _array.Min(); }
+        public int Length => _array.Length;
+        public int Max => _array.Max();
+        public int Min => _array.Min();
         public int this[uint index]
         {
             get
@@ -24,10 +23,7 @@ namespace Task5
                 }
                 throw new IndexOutOfRangeException();
             }
-            set
-            {
-                _array[index] = value;
-            }
+            set => _array[index] = value;
 
         }
         #endregion
@@ -43,7 +39,9 @@ namespace Task5
             int[] arr = array.ToArray();
             _array = new int[arr.Length];
             for (int i = 0; i < arr.Length; i++)
+            {
                 _array[i] = arr[i];
+            }
         }
         #endregion
         #region Sorting
@@ -65,7 +63,9 @@ namespace Task5
                             }
                         }
                         if (isSorted)
+                        {
                             break;
+                        }
                     }
                     break;
                 case Trend.increase:
@@ -81,7 +81,9 @@ namespace Task5
                             }
                         }
                         if (isSorted)
+                        {
                             break;
+                        }
                     }
                     break;
                 default:
@@ -226,7 +228,10 @@ namespace Task5
         }
         private void SplitMergeSortRecur(int firstIndex, int lastIndex, Trend trend)
         {
-            if (lastIndex - firstIndex <= 1) return;
+            if (lastIndex - firstIndex <= 1)
+            {
+                return;
+            }
 
             int middle = (firstIndex + lastIndex) / 2;
             SplitMergeSortRecur(firstIndex, middle, trend);
@@ -361,9 +366,9 @@ namespace Task5
         {
             if (b.Length > a.Length)
             {
-                (a,b) = (b,a);
+                (a, b) = (b, a);
             }
-            
+
             Vector res = new Vector(a._array);
 
             for (int i = 0; i < b.Length; i++)
@@ -385,9 +390,14 @@ namespace Task5
                 for (uint i = 0; i < Length / 2; i++)
                 {
                     if (_array[i] < avg + (avg / 3d) * k && _array[i] > avg - (avg / 3d) * k)
+                    {
                         return i;
+                    }
+
                     if (_array[Length - i - 1] < avg + (avg / 3d) * k && _array[Length - i - 1] > avg - (avg / 3d) * k)
+                    {
                         return (uint)Length - i - 1;
+                    }
                 }
                 k++;
             }
@@ -418,15 +428,21 @@ namespace Task5
             for (int i = 0; i < Length; i++)
             {
                 if (pairs.Where(x => x.Element == _array[i]).Any())
+                {
                     continue;
+                }
 
-                var tmpPair = new Pair<int>();
-                tmpPair.Element = _array[i];
+                var tmpPair = new Pair<int>
+                {
+                    Element = _array[i]
+                };
 
                 for (int j = i; j < Length; j++)
                 {
                     if (_array[j] == tmpPair.Element)
+                    {
                         tmpPair.Freq++;
+                    }
                 }
                 pairs.Add(tmpPair);
             }
@@ -446,7 +462,10 @@ namespace Task5
                         count++;
                         i++;
                     }
-                    else break;
+                    else
+                    {
+                        break;
+                    }
                 }
                 if (count > pair.Freq)
                 {
@@ -461,7 +480,9 @@ namespace Task5
             for (int i = 0; i < Length / 2; i++)
             {
                 if (_array[i] != _array[Length - 1 - i])
+                {
                     return false;
+                }
             }
             return true;
         }
@@ -504,7 +525,10 @@ namespace Task5
         {
             StringBuilder sb = new StringBuilder();
             foreach (var item in _array)
+            {
                 sb.Append($"{item} ");
+            }
+
             return sb.ToString();
         }
         #endregion
