@@ -7,7 +7,7 @@ using System.Text;
 namespace Task8_1
 {
     internal class FlatsElectricityDebts : IFileReader, IFileWriter
-    {
+    {//молодець.
         #region Props
         private IEnumerable<FlatModel> _flats;
         private uint _faltsAmount;
