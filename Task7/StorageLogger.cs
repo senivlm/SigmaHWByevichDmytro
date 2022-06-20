@@ -7,7 +7,7 @@ namespace Task7
     {
         static public string Path { get; set; }
         static private bool IsPathIntroduced()
-        {
+        {//??
             return Path is not null;
         }
         static public void LogAppend(string logLine)
