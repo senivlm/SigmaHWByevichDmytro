@@ -39,7 +39,7 @@ namespace Task8_3
                                                               .GetProducts());
         }
         public IEnumerable<Product> Subtract(Storage other)
-        {
+        {// теж більше люблю методи розширення.
             return _products.Where(item => !other._products.Contains(item)).ToList();
         }
         public IEnumerable<Product> Intersection(Storage other)
