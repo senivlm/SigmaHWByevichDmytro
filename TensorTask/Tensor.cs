@@ -6,7 +6,7 @@ using System.Text;
 namespace TensorTask
 {
     internal class Tensor<T>
-    {
+    {//Треба обговорити
         #region Props
         protected int _dimention;
         protected List<TensorItem<T>> _tensorItems;
