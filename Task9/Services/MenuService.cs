@@ -2,21 +2,20 @@
 {
     internal static class MenuService
     {
-        static public bool TryGetMenuTotalSum(Menu menu, PriceKurant priceKurant, out double menuTotalSum)
+        static public bool TryGetMenuTotalSum(MenuModel menu, PriceKurantModel priceKurant, out double menuTotalSum)
         {
             menuTotalSum = default;
-            for (int i = 0; i < menu.Length; i++)
+            foreach (DishModel dish in menu)
             {
-                if (!TryGetDishPrice(menu[i], priceKurant, out double sumPrice))
+                if (!TryGetDishPrice(dish, priceKurant, out double sumPrice))
                 {
                     return false;
                 }
-
                 menuTotalSum += sumPrice;
             }
             return true;
         }
-        static public bool TryGetDishPrice(Dish dish, PriceKurant priceKurant, out double sumPrice)
+        static public bool TryGetDishPrice(DishModel dish, PriceKurantModel priceKurant, out double sumPrice)
         {
             sumPrice = default;
             foreach (string key in dish.Keys)
