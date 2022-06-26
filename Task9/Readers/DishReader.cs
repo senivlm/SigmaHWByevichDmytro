@@ -6,7 +6,7 @@ namespace Task9.Readers
 {
     internal class DishReader : IStreamReader<DishModel>
     {
-        public void Read(out DishModel obj, StreamReader stream, IStringValidator<DishModel> validator)
+        public void Read(out DishModel obj, StreamReader stream, IStringValidator<DishModel>? validator)
         {
             obj = new DishModel();
             try
@@ -18,7 +18,7 @@ namespace Task9.Readers
                     {
                         break;
                     }
-                    if (validator.IsValid(line))
+                    if (validator?.IsValid(line) ?? true)
                     {
                         validator.Validate(line, obj);
                     }

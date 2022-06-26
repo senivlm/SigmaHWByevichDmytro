@@ -13,7 +13,7 @@ namespace Task9.FIleHandler
         {
             Path = path;
         }
-        public void ReadToObject(out T obj, IStreamReader<T> streamReader, IStringValidator<T> validator)
+        public void ReadToObject(out T obj, IStreamReader<T> streamReader, IStringValidator<T>? validator)
         {
 
             if (!File.Exists(Path))

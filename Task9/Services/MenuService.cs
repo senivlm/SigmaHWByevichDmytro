@@ -3,10 +3,10 @@ using Task9.Exceptions;
 
 namespace Task9
 {
-    internal delegate bool productNotFindExceptionBehevior(ref PriceKurantModel priceKurant, string name);
+    internal delegate bool ProductNotFindExceptionBehevior(ref PriceKurantModel priceKurant, string name);
     internal static class MenuService
     {
-        static public bool TryGetMenuTotalSum(MenuModel menu, PriceKurantModel priceKurant, out double menuTotalSum, productNotFindExceptionBehevior behevior)
+        static public bool TryGetMenuTotalSum(MenuModel menu, PriceKurantModel priceKurant, out double menuTotalSum, ProductNotFindExceptionBehevior behevior)
         {
             menuTotalSum = default;
             foreach (DishModel dish in menu)
@@ -39,7 +39,7 @@ namespace Task9
             }
             return ingrWeight;
         }
-        static public bool TryGetDishPrice(DishModel dish, PriceKurantModel priceKurant, out double sumPrice, productNotFindExceptionBehevior behevior)
+        static public bool TryGetDishPrice(DishModel dish, PriceKurantModel priceKurant, out double sumPrice, ProductNotFindExceptionBehevior behevior)
         {
             sumPrice = default;
             foreach (string key in dish.Keys)

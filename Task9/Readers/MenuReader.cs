@@ -7,7 +7,7 @@ namespace Task9.Readers
 {
     internal class MenuReader : IStreamReader<MenuModel>
     {
-        public void Read(out MenuModel obj, StreamReader stream, IStringValidator<MenuModel> validator)
+        public void Read(out MenuModel obj, StreamReader stream, IStringValidator<MenuModel>? validator)
         {
             obj = new MenuModel();
             DishReader dishReader = new DishReader();

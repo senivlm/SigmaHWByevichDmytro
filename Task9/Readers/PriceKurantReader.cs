@@ -6,7 +6,7 @@ namespace Task9.Readers
 {
     internal class PriceKurantReader : IStreamReader<PriceKurantModel>
     {
-        public void Read(out PriceKurantModel obj, StreamReader stream, IStringValidator<PriceKurantModel> validator)
+        public void Read(out PriceKurantModel obj, StreamReader stream, IStringValidator<PriceKurantModel>? validator)
         {
             obj = new PriceKurantModel();
             try
@@ -18,7 +18,7 @@ namespace Task9.Readers
                     {
                         break;
                     }
-                    if (validator.IsValid(line))
+                    if (validator?.IsValid(line) ?? true)
                     {
                         validator.Validate(line, obj);
                     }
