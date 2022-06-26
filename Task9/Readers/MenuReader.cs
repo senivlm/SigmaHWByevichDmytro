@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task9.Services;
 using Task9.Validator;
 
@@ -19,10 +15,10 @@ namespace Task9.Readers
             {
                 while (!stream.EndOfStream)
                 {
-                    dishReader.Read(out DishModel dish1, stream, ValidatorsService.DishValidator);
-                    if (!string.IsNullOrEmpty(dish1.Name))
+                    dishReader.Read(out DishModel dish, stream, ValidatorsService.DishValidator);
+                    if (string.IsNullOrEmpty(dish.Name) == false)
                     {
-                        obj.Add(dish1);
+                        obj.Add(dish);
                     }
                 }
 

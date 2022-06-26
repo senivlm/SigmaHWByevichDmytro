@@ -17,7 +17,11 @@ namespace Task9
         {
             _dishes = dishes;
         }
-        public void Add(DishModel dish)=> _dishes.Add(dish);
+        public void Add(DishModel dish)
+        {
+            _dishes.Add(dish);
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _dishes.GetEnumerator();
@@ -30,7 +34,7 @@ namespace Task9
             {
                 stringBuilder.AppendLine(dish.ToString());
             }
-            return stringBuilder.ToString();    
+            return stringBuilder.ToString();
         }
     }
 }

@@ -30,6 +30,10 @@ namespace Task9.Validator
             }
             else if (splitedStr.Length == 2)
             {
+                if (string.IsNullOrEmpty(obj.Name))
+                {
+                    throw new ArgumentException("Хибний формат запи, можливо назва іде післе інгрідієнту");
+                }
                 if (!double.TryParse(splitedStr[1], out double weight))
                 {
                     throw new ArgumentException("Хибний формат ваги");
@@ -41,7 +45,7 @@ namespace Task9.Validator
             }
             else
             {
-                throw new ArgumentException("Хибний запису");
+                throw new ArgumentException("Хибний формат запису");
             }
         }
     }

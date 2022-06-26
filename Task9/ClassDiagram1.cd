@@ -1,34 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Task9.Dish">
-    <Position X="9.25" Y="2" Width="1.5" />
+  <Class Name="Task9.FIleHandler.FileHandler&lt;T&gt;">
+    <Position X="12.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAABAACAAAAABAAAAAAAAAAAAgAAAAAAQ=</HashCode>
-      <FileName>Dish.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAABEAAAAAAAAAAA=</HashCode>
+      <FileName>FIleHandler\FileHandler.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Task9.Menu">
-    <Position X="11" Y="2" Width="1.5" />
+  <Class Name="Task9.Validator.DishValidator" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAACAAAAABAAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Menu.cs</FileName>
+      <HashCode>AAAAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validator\DishValidator.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <Lollipop Position="0.179" Collapsed="true" />
+  </Class>
+  <Class Name="Task9.Services.StreamReadersService">
+    <Position X="8" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\StreamReadersService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task9.Services.ValidatorsService">
+    <Position X="4.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ValidatorsService.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="Task9.MenuService">
-    <Position X="7.5" Y="2" Width="1.5" />
+    <Position X="6.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MenuService.cs</FileName>
+      <FileName>Services\MenuService.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Task9.PriceKurant">
-    <Position X="12.75" Y="2" Width="1.5" />
+  <Class Name="Task9.DishModel" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAACAAAAAABAECAAAAARAAAAAAAAAAAAgAAAAAAQ=</HashCode>
+      <FileName>Models\DishModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Task9.MenuModel" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAIAAAAAAAAAECAAAAABAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MenuModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Task9.PriceKurantModel">
+    <Position X="1.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
-      <FileName>PriceKurant.cs</FileName>
+      <FileName>Models\PriceKurantModel.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Task9.Readers.DishReader" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\DishReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Task9.Readers.MenuReader" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\MenuReader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Task9.FIleHandler.ITxtSerializer">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FIleHandler\ITxtSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task9.Validator.IStringValidator&lt;T&gt;">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Validator\IStringValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Task9.Readers.IStreamReader&lt;T&gt;">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Readers\IStreamReader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

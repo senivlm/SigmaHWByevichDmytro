@@ -35,6 +35,10 @@ namespace Task9.FIleHandler
         }
         public void WriteToFile(ITxtSerializer obj, bool append = false)
         {
+            if (!File.Exists(Path))
+            {
+                throw new FileNotFoundException();
+            }
             try
             {
                 using (StreamWriter writer = new StreamWriter(Path, append))
