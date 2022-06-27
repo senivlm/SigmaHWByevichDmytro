@@ -53,11 +53,24 @@ namespace Task10
                         tmpResultWord = word;
                     }
                     string pattern = $@"\b{tmpResultWord}\b";
-                    while (_dictionary.ContainsKey(tmpResultWord) == false)
+
+                    while (_dictionary.ContainsKey(tmpResultWord.ToLower()) == false)
                     {
                         OnNotFoundedInDictionary(word, ref _dictionary);
                     }
-                    result = Regex.Replace(result, pattern, _dictionary[tmpResultWord]);
+
+                    string tmpTranslate = _dictionary[tmpResultWord.ToLower()];
+
+                    if (word.ToUpper() == word)
+                    {
+                        tmpTranslate = tmpTranslate.ToUpper();
+                    }
+                    else if (char.IsUpper(word[0]))
+                    {
+                        tmpTranslate = char.ToUpper(tmpTranslate[0]) + tmpTranslate[1..];
+                    }
+
+                    result = Regex.Replace(result, pattern, tmpTranslate);
                 }
                 catch (Exception)
                 {

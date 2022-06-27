@@ -25,17 +25,18 @@ namespace Task10
 
                 Console.WriteLine(translator.TranslateWords());
             }
-            catch (WordNotInDictionaryException)
+            catch (WordNotInDictionaryException )
             {
-                Console.WriteLine("Не знайдено слово, та не вдалося успішно додати");
+                Console.WriteLine("Не знайдено слово, та не вдалося успішно додати");                
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException )
             {
                 Console.WriteLine("Файл не знайдено");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
         }
         public static void AddToDictionary(string word, ref Dictionary<string, string> dictionary)
