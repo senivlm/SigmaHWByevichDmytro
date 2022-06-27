@@ -17,7 +17,6 @@ namespace Task10
                 IEnumerable<string> text = TextReader.ReadText("../../../Text.txt");
 
                 Translator translator = new Translator();
-                translator.SetPath("../../../Dictionary.txt");
 
                 translator.SetDictionary(dictionary);
 
@@ -28,7 +27,6 @@ namespace Task10
                 }
 
                 Console.WriteLine(translator.TranslateWords());
-
             }
             catch (WordNotInDictionaryException)
             {

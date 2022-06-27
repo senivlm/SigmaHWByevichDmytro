@@ -1,5 +1,1 @@
-﻿i, 
-go 
-very fast
-	to 
-school.
+﻿i, go very fast			to    school.
