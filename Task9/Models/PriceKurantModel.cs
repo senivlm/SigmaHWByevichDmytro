@@ -16,7 +16,7 @@ namespace Task9
         {
             foreach (var item in productPrice)
             {
-                _productPrice.TryAdd(item.Key,item.Value);
+                _productPrice.TryAdd(item.Key, item.Value);
             }
         }
         public bool ContainsKey(string key)

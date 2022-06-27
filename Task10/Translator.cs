@@ -35,7 +35,7 @@ namespace Task10
         }
         public string TranslateWords()
         {
-            string result = _text;            
+            string result = _text;
             var words = _text.Split(" \t\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
             foreach (string word in words)
             {

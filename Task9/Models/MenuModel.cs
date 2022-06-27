@@ -17,7 +17,7 @@ namespace Task9
         {
             foreach (DishModel dish in dishes)
             {
-                _dishes.Add(new (dish));
+                _dishes.Add(new(dish));
             }
         }
         public void Add(DishModel dish)

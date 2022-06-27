@@ -10,7 +10,7 @@ namespace Task9.Models
     {
         private Dictionary<string, double> _changer;
 
-        
+
         public ChangerModel()
         {
             _changer = new();

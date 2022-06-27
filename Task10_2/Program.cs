@@ -4,9 +4,9 @@ namespace Task10_2
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Matrix matrix = new Matrix(4,3);
+            Matrix matrix = new Matrix(4, 3);
             matrix.FIll(Filling.diagonal, Direction.down);
 
             Console.WriteLine(matrix);
