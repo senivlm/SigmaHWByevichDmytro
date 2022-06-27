@@ -6,7 +6,7 @@ namespace Task10
 {
     internal class TextReader
     {
-        public static IEnumerable<string> ReadText(string filePath)
+        public static IEnumerable<string> ReadTextByLine(string filePath)
         {
             List<string> text = new List<string>();
             using (StreamReader reader = new(filePath))
@@ -15,6 +15,13 @@ namespace Task10
                 {
                     yield return reader.ReadLine();
                 }
+            }
+        }
+        public static string ReadAllText(string filePath)
+        {
+            using (StreamReader reader = new(filePath))
+            {
+                return reader.ReadToEnd();
             }
         }
         public static void AddToDictionary(string filePath, string key, string value)

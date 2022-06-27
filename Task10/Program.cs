@@ -14,17 +14,14 @@ namespace Task10
             try
             {
                 Dictionary<string, string> dictionary = TextReader.ReadDictionary("../../../Dictionary.txt");
-                IEnumerable<string> text = TextReader.ReadText("../../../Text.txt");
 
                 Translator translator = new Translator();
 
                 translator.SetDictionary(dictionary);
 
                 translator.OnNotFoundedInDictionary += AddToDictionary;
-                foreach (string line in text)
-                {
-                    translator.AddText(line);
-                }
+
+                translator.AddText(TextReader.ReadAllText("../../../Text.txt"));
 
                 Console.WriteLine(translator.TranslateWords());
             }

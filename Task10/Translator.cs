@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Task10
 {
@@ -33,8 +35,8 @@ namespace Task10
         }
         public string TranslateWords()
         {
-            string result = string.Empty;
-            string[] words = _text.Split(" \t".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            string result = _text;            
+            var words = _text.Split(" \t\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
             foreach (string word in words)
             {
                 try
@@ -50,11 +52,12 @@ namespace Task10
                     {
                         tmpResultWord = word;
                     }
+                    string pattern = $@"\b{tmpResultWord}\b";
                     while (_dictionary.ContainsKey(tmpResultWord) == false)
                     {
                         OnNotFoundedInDictionary(word, ref _dictionary);
                     }
-                    result += _dictionary[tmpResultWord] + punct + " ";
+                    result = Regex.Replace(result, pattern, _dictionary[tmpResultWord]);
                 }
                 catch (Exception)
                 {
