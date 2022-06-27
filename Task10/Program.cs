@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Lesson16_06
+namespace Task10
 {
     internal class Program
     {

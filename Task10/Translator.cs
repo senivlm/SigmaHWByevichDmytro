@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lesson16_06
+namespace Task10
 {
     public delegate void NotFoundedInDictionaryHandler<T, G>(string word, ref Dictionary<T, G> dictioanry);
     internal class Translator
