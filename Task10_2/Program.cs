@@ -15,6 +15,7 @@ namespace Task10_2
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine();
             foreach (int item in matrix.GetHorizontalSnakeEnumerator())
             {
                 Console.WriteLine(item);

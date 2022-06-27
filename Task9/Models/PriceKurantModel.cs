@@ -14,7 +14,10 @@ namespace Task9
         }
         public PriceKurantModel(Dictionary<string, double> productPrice) : this()
         {
-            _productPrice = productPrice;
+            foreach (var item in productPrice)
+            {
+                _productPrice.TryAdd(item.Key,item.Value);
+            }
         }
         public bool ContainsKey(string key)
         {

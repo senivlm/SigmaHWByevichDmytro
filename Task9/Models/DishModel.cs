@@ -21,8 +21,15 @@ namespace Task9
         }
         public DishModel(Dictionary<string, double> ingridients, string name) : this()
         {
-            _ingridients = ingridients;
+            Name = name;
+            foreach (var item in ingridients)
+            {
+                _ingridients.TryAdd(item.Key, item.Value);
+            }
         }
+
+        public DishModel(DishModel dish) : this(dish._ingridients, dish.Name) { }
+
         public bool TryAddIngridient(string name, double weight)
         {
             return _ingridients.TryAdd(name, weight);

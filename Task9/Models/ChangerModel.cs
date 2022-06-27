@@ -10,20 +10,17 @@ namespace Task9.Models
     {
         private Dictionary<string, double> _changer;
 
-
-
-        public IEnumerator GetEnumerator()
-        {
-            return _changer.GetEnumerator();
-        }
-
+        
         public ChangerModel()
         {
             _changer = new();
         }
         public ChangerModel(Dictionary<string, double> changePrices) : this()
         {
-            _changer = changePrices;
+            foreach (KeyValuePair<string, double> change in changePrices)
+            {
+                _changer.TryAdd(change.Key, change.Value);
+            }
         }
         public bool ContainsCurrency(string currency)
         {
@@ -51,6 +48,10 @@ namespace Task9.Models
                 stringBuilder.AppendLine($"{changePair.Key} {changePair.Value}");
             }
             return stringBuilder.ToString();
+        }
+        public IEnumerator GetEnumerator()
+        {
+            return _changer.GetEnumerator();
         }
 
         public override string ToString()

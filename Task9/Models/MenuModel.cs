@@ -15,7 +15,10 @@ namespace Task9
         }
         public MenuModel(List<DishModel> dishes) : this()
         {
-            _dishes = dishes;
+            foreach (DishModel dish in dishes)
+            {
+                _dishes.Add(new (dish));
+            }
         }
         public void Add(DishModel dish)
         {
