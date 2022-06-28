@@ -7,7 +7,7 @@ namespace Task10
 {
     public delegate void NotFoundedInDictionaryHandler<T, G>(string word, ref Dictionary<T, G> dictioanry);
     internal class Translator
-    {
+    {// Події тут те, що треба.
         public event NotFoundedInDictionaryHandler<string, string> OnNotFoundedInDictionary;
         private string _path;
         private Dictionary<string, string> _dictionary;
