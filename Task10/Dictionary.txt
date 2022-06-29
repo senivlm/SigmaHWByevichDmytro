@@ -1,7 +1,8 @@
-﻿i-я
-go-йду
-to-до
-school-школа
-very-дуже
-fast-швидко
-my-моєї
+﻿i - я
+go - йду
+to - до
+school - школа
+very - дуже
+fast - швидко
+my - моєї
+test-test - result of test

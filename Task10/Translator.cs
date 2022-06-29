@@ -36,22 +36,14 @@ namespace Task10
         public string TranslateWords()
         {
             string result = _text;
-            var words = _text.Split(" \t\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
+            _text = Regex.Replace(_text, " - ", " ");
+            var words = _text.Split(" \t\r\n.,".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
             foreach (string word in words)
             {
                 try
                 {
-                    string tmpResultWord = string.Empty;
-                    char punct = default;
-                    if (char.IsPunctuation(word[word.Length - 1]))
-                    {
-                        punct = word[word.Length - 1];
-                        tmpResultWord = word[..^1];
-                    }
-                    else
-                    {
-                        tmpResultWord = word;
-                    }
+                    string tmpResultWord = word;
+                    
                     string pattern = $@"\b{tmpResultWord}\b";
 
                     while (_dictionary.ContainsKey(tmpResultWord.ToLower()) == false)
