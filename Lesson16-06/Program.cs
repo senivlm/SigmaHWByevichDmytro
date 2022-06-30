@@ -51,7 +51,7 @@ namespace Lesson16_06
                 Console.Write($"Введіть переклад слова {word}> ");
                 try
                 {
-                    var tmpWord = Console.ReadLine();
+                    string tmpWord = Console.ReadLine();
                     if (string.IsNullOrEmpty(tmpWord) == false)
                     {
                         dictionary[word] = tmpWord;

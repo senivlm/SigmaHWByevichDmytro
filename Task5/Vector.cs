@@ -277,7 +277,7 @@ namespace Task5
         /// <param name="tmpVectorFile">файл для проміжних результатів сортування</param>
         /// <param name="partsAmount">кулькість частин для поділу початкового масиву</param>
         /// <param name="trend">направлення сортування</param>
-        static public void FileSplitMergeSort(FileHandler dataFile, FileHandler sortedDataFile, FileHandler tmpVectorFile, uint partsAmount, Trend trend)
+        public static void FileSplitMergeSort(FileHandler dataFile, FileHandler sortedDataFile, FileHandler tmpVectorFile, uint partsAmount, Trend trend)
         {
             sortedDataFile.Clear();
             tmpVectorFile.Clear();
@@ -383,7 +383,7 @@ namespace Task5
         private uint FindAvarage()
         {
             int sum = _array.Sum();
-            var avg = sum / Length;
+            int avg = sum / Length;
             int k = 1;
             while (avg + (avg / 3d) * k < Max)
             {
@@ -405,7 +405,7 @@ namespace Task5
         }
         private static void Swap(ref int a, ref int b)
         {
-            var tmp = a;
+            int tmp = a;
             a = b;
             b = tmp;
         }
@@ -417,7 +417,7 @@ namespace Task5
         {
             for (int i = 0; i < Length / 2; i++)
             {
-                var tmp = _array[Length - 1 - i];
+                int tmp = _array[Length - 1 - i];
                 _array[Length - 1 - i] = _array[i];
                 _array[i] = tmp;
             }
@@ -432,7 +432,7 @@ namespace Task5
                     continue;
                 }
 
-                var tmpPair = new Pair<int>
+                Pair<int> tmpPair = new Pair<int>
                 {
                     Element = _array[i]
                 };
@@ -524,7 +524,7 @@ namespace Task5
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var item in _array)
+            foreach (int item in _array)
             {
                 sb.Append($"{item} ");
             }

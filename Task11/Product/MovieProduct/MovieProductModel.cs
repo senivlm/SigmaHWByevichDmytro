@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task11.Product._General;
 using Task11.Product.General;
 
@@ -19,7 +15,7 @@ namespace Task11.Product.MovieProduct
         #endregion
 
         #region Ctors
-        public MovieProductModel() : 
+        public MovieProductModel() :
             this(default, default, default, default, default, default)
         { }
 
@@ -32,7 +28,7 @@ namespace Task11.Product.MovieProduct
             Link = link;
             AuthorName = authorName;
         }
-        public MovieProductModel(IMovieProduct other) : 
+        public MovieProductModel(IMovieProduct other) :
             this(other.Name, other.Price, other.Genre, other.Duration, other.Link, other.AuthorName)
         { }
 
@@ -51,7 +47,7 @@ namespace Task11.Product.MovieProduct
         #region ObjectOverrides
         public override string ToString()
         {
-            return base.ToString()+$"Жанр: {Genre}; Тривалість:{Duration}; Посилання: {Link}; Ім'я Автора: {AuthorName} ";
+            return base.ToString() + $"Жанр: {Genre}; Тривалість:{Duration}; Посилання: {Link}; Ім'я Автора: {AuthorName} ";
         }
         #endregion
 

@@ -39,7 +39,7 @@ namespace Task8_2
             _logDayOfWeek = other._logDayOfWeek;
             _logtime = other._logtime;
         }
-        static public bool TryParse(string value, out VisitLogModel result)
+        public static bool TryParse(string value, out VisitLogModel result)
         {
             result = default;
             if (string.IsNullOrEmpty(value))

@@ -9,7 +9,7 @@ namespace Task3
             Vector vector = new Vector(11);
             vector.RandomInitialization(1, 10);
             Console.WriteLine(vector);
-            foreach (var item in vector.CalculateFreq())
+            foreach (Pair<int> item in vector.CalculateFreq())
             {
                 Console.WriteLine(item);
             }

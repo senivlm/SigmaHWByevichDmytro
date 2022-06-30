@@ -202,7 +202,7 @@ namespace Task4
         private uint FindAvarage()
         {
             int sum = _array.Sum();
-            var avg = sum / Length;
+            int avg = sum / Length;
             int k = 1;
             while (avg + (avg / 3d) * k < Max)
             {
@@ -224,7 +224,7 @@ namespace Task4
         }
         private static void Swap(ref int a, ref int b)
         {
-            var tmp = a;
+            int tmp = a;
             a = b;
             b = tmp;
         }
@@ -268,7 +268,7 @@ namespace Task4
         {
             for (int i = 0; i < Length / 2; i++)
             {
-                var tmp = _array[Length - 1 - i];
+                int tmp = _array[Length - 1 - i];
                 _array[Length - 1 - i] = _array[i];
                 _array[i] = tmp;
             }
@@ -284,7 +284,7 @@ namespace Task4
                     continue;
                 }
 
-                var tmpPair = new Pair<int>
+                Pair<int> tmpPair = new Pair<int>
                 {
                     Element = _array[i]
                 };
@@ -342,7 +342,7 @@ namespace Task4
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var item in _array)
+            foreach (int item in _array)
             {
                 sb.Append($"{item} ");
             }

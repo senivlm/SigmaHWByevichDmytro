@@ -26,12 +26,12 @@ namespace Task2
         //доробити меню
         public StorageBuilder ConsoleMenuInput()
         {
-            var options = new List<Option>()
+            List<Option> options = new List<Option>()
             {
                new Option("Add meat product", () => ConsoleAddMeatProduct()),
                new Option("Add diary product", () => ConsoleAddDairyProduct())
             };
-            var menu = new Menu(options);
+            Menu menu = new Menu(options);
             menu.PrintMenu();
             return this;
         }
@@ -42,13 +42,13 @@ namespace Task2
         }
         private void ConsoleAddMeatProduct()
         {
-            var meat = new Meat();
+            Meat meat = new Meat();
             meat.ConsoleSet();
             _products.Add(meat);
         }
         private void ConsoleAddDairyProduct()
         {
-            var dairy = new DairyProduct();
+            DairyProduct dairy = new DairyProduct();
             dairy.ConsoleSet();
             _products.Add(dairy);
         }

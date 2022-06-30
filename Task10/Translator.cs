@@ -37,13 +37,13 @@ namespace Task10
         {
             string result = _text;
             _text = Regex.Replace(_text, " - ", " ");
-            var words = _text.Split(" \t\r\n.,".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
+            List<string> words = _text.Split(" \t\r\n.,".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
             foreach (string word in words)
             {
                 try
                 {
                     string tmpResultWord = word;
-                    
+
                     string pattern = $@"\b{tmpResultWord}\b";
 
                     while (_dictionary.ContainsKey(tmpResultWord.ToLower()) == false)

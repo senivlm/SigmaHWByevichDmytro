@@ -26,7 +26,7 @@ namespace Task11.Product
             this.meatSpecies = meatSpecies;
             this.meatCategory = meatCategory;
             _daysToExpirationAndPresentOfChange = new SortedDictionary<int, int>();
-            foreach (var item in daysToExpirationAndPresentOfChange)
+            foreach (KeyValuePair<int, int> item in daysToExpirationAndPresentOfChange)
             {
                 _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
             }

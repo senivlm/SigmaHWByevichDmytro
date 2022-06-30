@@ -60,7 +60,7 @@ namespace Task3
         {
             for (int i = 0; i < Length / 2; i++)
             {
-                var tmp = _array[Length - 1 - i];
+                int tmp = _array[Length - 1 - i];
                 _array[Length - 1 - i] = _array[i];
                 _array[i] = tmp;
             }
@@ -76,7 +76,7 @@ namespace Task3
                     continue;
                 }
 
-                var tmpPair = new Pair<int>
+                Pair<int> tmpPair = new Pair<int>
                 {
                     Element = _array[i]
                 };
@@ -134,7 +134,7 @@ namespace Task3
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (var item in _array)
+            foreach (int item in _array)
             {
                 sb.Append($"{item} ");
             }

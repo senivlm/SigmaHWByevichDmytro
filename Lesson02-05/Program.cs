@@ -34,7 +34,7 @@ namespace Lesson02_05
             {
                 Console.WriteLine(e.Message);
             }
-            foreach (var student in students)
+            foreach ((string, int, double) student in students)
             {
                 Console.WriteLine($"Name: {student.Item1}, Birth year: {student.Item2}, Avarage bal: {student.Item3}");
             }

@@ -76,7 +76,7 @@ namespace Task8_1
         }
         public void ReadFromFile(string filePath)
         {
-            var flats = new List<FlatModel>();
+            List<FlatModel> flats = new List<FlatModel>();
             try
             {
                 using (StreamReader reader = new StreamReader(filePath))
@@ -188,7 +188,7 @@ namespace Task8_1
             stringBuilder.AppendLine($"Кількість записів: {_flats.Count()}");
             stringBuilder.AppendLine($"Квартал: {(int)_quarter}");
             stringBuilder.AppendLine("Номер квартири | Прізвище власника | Вхідні значення | Вихідні значення | Перша фіксіція | Друга фіксіція | Третя фіксіція | Днів з останньої фіксації |");
-            foreach (var flat in _flats)
+            foreach (FlatModel flat in _flats)
             {
                 stringBuilder.AppendLine(flat.GetReportFormat());
             }
@@ -200,7 +200,7 @@ namespace Task8_1
 
         public static FlatsElectricityDebts operator +(FlatsElectricityDebts a, FlatsElectricityDebts b)
         {
-            var result = new FlatsElectricityDebts(a._flats);
+            FlatsElectricityDebts result = new FlatsElectricityDebts(a._flats);
             for (int i = 0; i < b.Length; i++)
             {
                 if (!result._flats.Contains(b[i]))
@@ -212,7 +212,7 @@ namespace Task8_1
         }
         public static FlatsElectricityDebts operator -(FlatsElectricityDebts a, FlatsElectricityDebts b)
         {
-            var result = new FlatsElectricityDebts();
+            FlatsElectricityDebts result = new FlatsElectricityDebts();
             for (int i = 0; i < a.Length; i++)
             {
                 if (!b._flats.Contains(a[i]))

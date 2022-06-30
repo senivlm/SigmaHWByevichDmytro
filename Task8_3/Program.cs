@@ -24,28 +24,28 @@ namespace Task8_3
                                                   .AddProduct(meat2)
                                                   .AddProduct(dairyProduct1)
                                                   .Build();
-            var subtract = storage1.Subtract(storage2);
-            var intersection = storage1.Intersection(storage2);
-            var union = storage1.Union(storage2);
+            System.Collections.Generic.IEnumerable<Product> subtract = storage1.Subtract(storage2);
+            System.Collections.Generic.IEnumerable<Product> intersection = storage1.Intersection(storage2);
+            System.Collections.Generic.IEnumerable<Product> union = storage1.Union(storage2);
             Console.WriteLine("storage 1:");
             Console.WriteLine(storage1);
             Console.WriteLine("storage 2:");
             Console.WriteLine(storage2);
 
             Console.WriteLine("\nsubtract");
-            foreach (var item in subtract)
+            foreach (Product item in subtract)
             {
                 Console.WriteLine(item);
             }
 
             Console.WriteLine("\nintersection");
-            foreach (var item in intersection)
+            foreach (Product item in intersection)
             {
                 Console.WriteLine(item);
             }
 
             Console.WriteLine("\nunion");
-            foreach (var item in union)
+            foreach (Product item in union)
             {
                 Console.WriteLine(item);
             }

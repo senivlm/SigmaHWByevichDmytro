@@ -182,7 +182,7 @@ namespace TensorTask
         }
         public void InitializeWithSameValueAndRandomHollows(T value, int frequencyOfHollow)
         {
-            var rand = new Random();
+            Random rand = new Random();
             for (int i = 0; i < _sideSize; i++)
             {
                 for (int j = 0; j < _sideSize; j++)
@@ -280,7 +280,7 @@ namespace TensorTask
             for (int k = 0; k < 6; k++)
             {
                 CubeSides cubeSide = (CubeSides)k;
-                var matrixOfHollow = this.GetMatrixOfHollow(cubeSide);
+                Tensor<int> matrixOfHollow = this.GetMatrixOfHollow(cubeSide);
                 stringBuilder.AppendLine($"Matrix of {cubeSide} side hollows: ");
                 for (int i = 0; i < this.SideSize; i++)
                 {
@@ -299,7 +299,7 @@ namespace TensorTask
             for (int k = 0; k < 6; k++)
             {
                 CubeSides cubeSide = (CubeSides)k;
-                var matrixOfHollow = this.GetMatrixOfHollow(cubeSide);
+                Tensor<int> matrixOfHollow = this.GetMatrixOfHollow(cubeSide);
                 Console.WriteLine($"Matrix of {cubeSide} side hollows: ");
                 for (int i = 0; i < this.SideSize; i++)
                 {

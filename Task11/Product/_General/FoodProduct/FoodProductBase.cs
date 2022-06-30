@@ -51,7 +51,7 @@ namespace Task11.Product.General
         protected virtual double GetPriceByExpiration()
         {
             int daysToExpiretion = ExpirationTime.Subtract(DateTime.Today).Days;
-            foreach (var item in _daysToExpirationAndPresentOfChange)
+            foreach (KeyValuePair<int, int> item in _daysToExpirationAndPresentOfChange)
             {
                 if (daysToExpiretion <= item.Key)
                 {
@@ -64,7 +64,7 @@ namespace Task11.Product.General
         #region ObjectOverrides
         public override string ToString()
         {
-            return base.ToString()+$"Вага: {Weight} Термін придатності: {ExpirationTime.Date:d}; ";
+            return base.ToString() + $"Вага: {Weight} Термін придатності: {ExpirationTime.Date:d}; ";
         }
 
         #endregion

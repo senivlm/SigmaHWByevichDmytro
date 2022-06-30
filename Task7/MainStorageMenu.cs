@@ -67,7 +67,7 @@ namespace Task7
             try
             {
                 List<Option> options = new List<Option>();
-                foreach (var item in _logHandler.GetLogsAfterDate(start))
+                foreach (string item in _logHandler.GetLogsAfterDate(start))
                 {
                     options.Add(new Option(item, () => LogHandler(item)));
                 }

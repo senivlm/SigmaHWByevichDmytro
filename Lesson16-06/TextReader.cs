@@ -38,7 +38,7 @@ namespace Lesson16_06
                     string tmp = reader.ReadLine();
                     if (!string.IsNullOrEmpty(tmp))
                     {
-                        var str = tmp.Trim().Split('-');
+                        string[] str = tmp.Trim().Split('-');
                         if (str.Length != 2)
                         {
                             throw new ArgumentException("Incorrect dictionary format");

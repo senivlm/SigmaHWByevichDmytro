@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Task11.Enums;
 using Task11.FileHandler;
-using Task11.Product;
-using Task11.Product.General;
-using Task11.Product.MovieProduct;
 using Task11.Readers;
 using Task11.Validators;
 

@@ -19,7 +19,7 @@ namespace Task9.Validator
 
         public void Validate(string str, DishModel obj)
         {
-            var splitedStr = str.Trim().Split(" -".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] splitedStr = str.Trim().Split(" -".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             if (splitedStr.Length == 1)
             {
                 if (!string.IsNullOrEmpty(obj.Name))

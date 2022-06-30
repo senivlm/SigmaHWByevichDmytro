@@ -22,7 +22,7 @@ namespace Task9
         public DishModel(Dictionary<string, double> ingridients, string name) : this()
         {
             Name = name;
-            foreach (var item in ingridients)
+            foreach (KeyValuePair<string, double> item in ingridients)
             {
                 _ingridients.TryAdd(item.Key, item.Value);
             }

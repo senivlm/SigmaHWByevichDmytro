@@ -9,11 +9,11 @@ namespace Task6_2
         {
             try
             {
-                using (var sr = new StreamReader("../../../Text.txt"))
+                using (StreamReader sr = new StreamReader("../../../Text.txt"))
                 {
                     TextHandler textHandler = new TextHandler(sr);
                     Console.WriteLine(textHandler.GetMaxMinWordsInSentences());
-                    using (var sw = new StreamWriter("../../../Result.txt"))
+                    using (StreamWriter sw = new StreamWriter("../../../Result.txt"))
                     {
                         textHandler.WriteSentancesInFile(sw);
                     }

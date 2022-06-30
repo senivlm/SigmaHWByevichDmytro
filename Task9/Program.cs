@@ -27,7 +27,7 @@ namespace Task9
                 courseFile.ReadToObject(out ChangerModel changer, StreamReadersService.ChangerReader, ValidatorsService.ChangerValidator);
 
                 Console.WriteLine("Вага продуктів у всіх стравах: ");
-                foreach (var item in MenuService.GetIngridientsWeight(menu))
+                foreach (System.Collections.Generic.KeyValuePair<string, double> item in MenuService.GetIngridientsWeight(menu))
                 {
                     Console.WriteLine(item.Key + " " + item.Value);
                 }

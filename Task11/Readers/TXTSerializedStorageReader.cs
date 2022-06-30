@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Task11.Validators;
 
 namespace Task11.Readers
 {
-    internal class TXTSerializedStorageReader<T> : IStreamCollectionReader<ProductStorage<T>,T>
+    internal class TXTSerializedStorageReader<T> : IStreamCollectionReader<ProductStorage<T>, T>
         where T : IProduct
     {
         public void ReadCollection(out ProductStorage<T> obj, StreamReader stream, Dictionary<string, IStringParser<T>> validator)
@@ -28,7 +25,7 @@ namespace Task11.Readers
                         {
                             if (validator.ContainsKey(type))
                             {
-                                var Linevalidator = validator[type];
+                                IStringParser<T> Linevalidator = validator[type];
                                 obj.Add(Linevalidator.Parse(line));
                             }
                         }

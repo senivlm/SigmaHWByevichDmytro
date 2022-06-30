@@ -9,7 +9,7 @@ namespace Task1
         {
             Console.WriteLine();
             Console.WriteLine($"<------------------ Check {_checkCounter} ------------------>");
-            foreach (var product in buy.ProductList)
+            foreach (Product product in buy.ProductList)
             {
                 Console.WriteLine(product);
             }

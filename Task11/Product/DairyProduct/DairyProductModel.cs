@@ -26,7 +26,7 @@ namespace Task11.Product
             _daysToExpirationAndPresentOfChange = new SortedDictionary<int, int>();
             if (daysToExpirationAndPresentOfChange is not null)
             {
-                foreach (var item in daysToExpirationAndPresentOfChange)
+                foreach (KeyValuePair<int, int> item in daysToExpirationAndPresentOfChange)
                 {
                     _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
                 }
@@ -46,7 +46,7 @@ namespace Task11.Product
         {
             StringBuilder sb = new();
             sb.Append('{');
-            foreach (var item in _daysToExpirationAndPresentOfChange)
+            foreach (KeyValuePair<int, int> item in _daysToExpirationAndPresentOfChange)
             {
                 sb.Append($"({item.Key} {item.Value})");
             }

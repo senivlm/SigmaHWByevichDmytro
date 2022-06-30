@@ -6,7 +6,7 @@ namespace Task9
     internal delegate bool ProductNotFindExceptionBehevior(ref PriceKurantModel priceKurant, string name);
     internal static class MenuService
     {
-        static public bool TryGetMenuTotalSum(MenuModel menu, PriceKurantModel priceKurant, out double menuTotalSum, ProductNotFindExceptionBehevior behevior)
+        public static bool TryGetMenuTotalSum(MenuModel menu, PriceKurantModel priceKurant, out double menuTotalSum, ProductNotFindExceptionBehevior behevior)
         {
             menuTotalSum = default;
             foreach (DishModel dish in menu)
@@ -19,7 +19,7 @@ namespace Task9
             }
             return true;
         }
-        static public Dictionary<string, double> GetIngridientsWeight(MenuModel menu)
+        public static Dictionary<string, double> GetIngridientsWeight(MenuModel menu)
         {
             Dictionary<string, double> ingrWeight = new Dictionary<string, double>();
             foreach (DishModel dish in menu)
@@ -39,7 +39,7 @@ namespace Task9
             }
             return ingrWeight;
         }
-        static public bool TryGetDishPrice(DishModel dish, PriceKurantModel priceKurant, out double sumPrice, ProductNotFindExceptionBehevior behevior)
+        public static bool TryGetDishPrice(DishModel dish, PriceKurantModel priceKurant, out double sumPrice, ProductNotFindExceptionBehevior behevior)
         {
             sumPrice = default;
             foreach (string key in dish.Keys)

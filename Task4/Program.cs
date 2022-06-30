@@ -11,14 +11,14 @@ namespace Task4
         {
             Vector vectorAvaragePivot = new Vector(100000);
             Vector vectorMiddlePivot = new Vector(100000);
-            var resultTimeAvaragePivot = new List<int>();
-            var resultTimeMiddlePivot = new List<int>();
+            List<int> resultTimeAvaragePivot = new List<int>();
+            List<int> resultTimeMiddlePivot = new List<int>();
             for (int i = 0; i < 10; i++)
             {
                 vectorAvaragePivot.RandomInitialization(1, 5000, i);
                 vectorMiddlePivot.RandomInitialization(1, 5000, i);
 
-                var st = Stopwatch.StartNew();
+                Stopwatch st = Stopwatch.StartNew();
                 vectorAvaragePivot.QuickSort(Pivot.avarage);
                 st.Stop();
                 resultTimeAvaragePivot.Add((int)st.ElapsedMilliseconds);
@@ -28,7 +28,7 @@ namespace Task4
                 Console.WriteLine("time: " + st.ElapsedMilliseconds);
                 Console.WriteLine();
 
-                var st1 = Stopwatch.StartNew();
+                Stopwatch st1 = Stopwatch.StartNew();
                 vectorMiddlePivot.QuickSort(Pivot.middleItem);
                 st1.Stop();
                 resultTimeMiddlePivot.Add((int)st1.ElapsedMilliseconds);

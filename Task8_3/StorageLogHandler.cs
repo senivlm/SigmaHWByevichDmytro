@@ -35,8 +35,8 @@ namespace Task8_3
 
             return _logs.Where(x =>
             {
-                var tmpSlpitedLine = x.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                var time = DateTime.Parse(tmpSlpitedLine[^2] + " " + tmpSlpitedLine[^1]);
+                string[] tmpSlpitedLine = x.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                DateTime time = DateTime.Parse(tmpSlpitedLine[^2] + " " + tmpSlpitedLine[^1]);
                 return time > startDate;
             });
         }

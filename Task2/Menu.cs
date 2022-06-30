@@ -39,7 +39,7 @@ namespace Task2
                 return false;
             }
 
-            var selectedOption = int.Parse(inputedValue);
+            int selectedOption = int.Parse(inputedValue);
 
             if (selectedOption < 0 || selectedOption >= _options.Count)
             {

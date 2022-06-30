@@ -104,7 +104,7 @@ namespace Task8_3
         }
         public void WriteToStream(StreamWriter writer, bool append = false)
         {
-            foreach (var product in _products)
+            foreach (Product product in _products)
             {
                 if (product is Meat)
                 {
@@ -132,7 +132,7 @@ namespace Task8_3
             {
                 return null;
             }
-            foreach (var product in _products)
+            foreach (Product product in _products)
             {
                 stringBuilder.AppendLine(product.ToString());
             }

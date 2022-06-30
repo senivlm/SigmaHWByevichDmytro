@@ -162,7 +162,7 @@ namespace Task6
                 default:
                     return false;
             }
-            foreach (var day in _datesOfTakingIndicators)
+            foreach (DateTime day in _datesOfTakingIndicators)
             {
                 if (day.Month != startMonth++)
                 {
@@ -179,7 +179,7 @@ namespace Task6
             stringBuilder.Append(string.Format("{0,-18}", $"{OwnerSurname} ") + "| ");
             stringBuilder.Append(string.Format("{0,-16}", $"{StartElectroMeterValue} ") + "| ");
             stringBuilder.Append(string.Format("{0,-17}", $"{EndElectroMeterValue} ") + "| ");
-            foreach (var date in _datesOfTakingIndicators)
+            foreach (DateTime date in _datesOfTakingIndicators)
             {
                 stringBuilder.Append(string.Format("{0,-15}", $"{date:M} ") + "| ");
             }

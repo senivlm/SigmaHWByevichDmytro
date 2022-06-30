@@ -5,12 +5,12 @@ namespace Task7
 {
     internal static class StorageLogger
     {
-        static public string Path { get; set; }
-        static private bool IsPathIntroduced()
+        public static string Path { get; set; }
+        private static bool IsPathIntroduced()
         {
             return Path is not null;
         }
-        static public void LogAppend(string logLine)
+        public static void LogAppend(string logLine)
         {
             if (!IsPathIntroduced())
             {

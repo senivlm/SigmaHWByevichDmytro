@@ -7,11 +7,9 @@ namespace Task11
     internal class ProductStorage<T> : IList<T>
         where T : IProduct
     {
-
         #region Props
         private List<T> _products;
         #endregion
-
         #region Ctors
         public ProductStorage()
         {
@@ -25,7 +23,6 @@ namespace Task11
             }
         }
         #endregion
-
         #region IList
         public T this[int index]
         {
@@ -86,11 +83,10 @@ namespace Task11
         }
 
         #endregion
-
         #region Methods
         public IEnumerable<G> GetAll<G>() where G : IProduct
         {
-            foreach (var item in _products)
+            foreach (T item in _products)
             {
                 if (item is G result)
                 {
@@ -100,8 +96,6 @@ namespace Task11
         }
 
         #endregion
-
-
         #region ObjectOverrides
         public override string ToString()
         {
@@ -110,11 +104,10 @@ namespace Task11
             {
                 sb.AppendLine(product.ToString());
             }
-            return sb.ToString();   
+            return sb.ToString();
         }
 
         #endregion
-
 
     }
 }

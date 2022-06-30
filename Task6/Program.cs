@@ -13,7 +13,7 @@ namespace Task6
             FileHandler reportFile = new FileHandler("../../../Report.txt");
             Flats flats = new Flats();
 
-            var options = new List<Option>()
+            List<Option> options = new List<Option>()
             {
                new Option("Зчитати дані з файлу", () => flatsDataFile.ReadObject(flats)),
                new Option("Записати звіт у файл", () => reportFile.WriteObject(flats)),

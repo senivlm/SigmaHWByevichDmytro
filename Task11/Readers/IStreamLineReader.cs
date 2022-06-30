@@ -5,6 +5,6 @@ namespace Task11.Readers
 {
     internal interface IStreamLineReader<T>
     {
-        void ReadLine<G>(out G obj, StreamReader stream, IStringParser<G>? validator) where G : T,new();
+        void ReadLine<G>(out G obj, StreamReader stream, IStringParser<G>? validator) where G : T, new();
     }
 }

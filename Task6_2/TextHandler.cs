@@ -21,9 +21,9 @@ namespace Task6_2
         }
         public IEnumerable<string> GetSentences()
         {
-            var sentances = _text.Trim().Split(".!?;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
-            var result = new List<string>();
-            foreach (var sentance in sentances)
+            List<string> sentances = _text.Trim().Split(".!?;".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> result = new List<string>();
+            foreach (string sentance in sentances)
             {
                 result.Add(string.Join(" ", sentance.Split(" \t\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)) + ".");
             }
@@ -35,9 +35,9 @@ namespace Task6_2
             IEnumerable<string> sentances = GetSentences();
             foreach (string sentance in sentances)
             {
-                var words = sentance.Split(" ,.:<>'\"\\/[]{}()%$#@*_=+-№.".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                var minWord = words.Where(word => word.Length == words.Select(word => word.Length).Min()).FirstOrDefault();
-                var maxWord = words.Where(word => word.Length == words.Select(word => word.Length).Max()).FirstOrDefault();
+                string[] words = sentance.Split(" ,.:<>'\"\\/[]{}()%$#@*_=+-№.".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                string minWord = words.Where(word => word.Length == words.Select(word => word.Length).Min()).FirstOrDefault();
+                string maxWord = words.Where(word => word.Length == words.Select(word => word.Length).Max()).FirstOrDefault();
                 stringBuilder.AppendLine($"Речення: {sentance}");
                 stringBuilder.AppendLine($"Найкоротше слово: {minWord}");
                 stringBuilder.AppendLine($"Найдовше слово: {maxWord}");
@@ -47,7 +47,7 @@ namespace Task6_2
         }
         public void WriteSentancesInFile(StreamWriter writer)
         {
-            foreach (var sentence in GetSentences())
+            foreach (string sentence in GetSentences())
             {
                 writer.WriteLine(sentence);
             }

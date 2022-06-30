@@ -25,11 +25,11 @@ namespace Task10
 
                 Console.WriteLine(translator.TranslateWords());
             }
-            catch (WordNotInDictionaryException )
+            catch (WordNotInDictionaryException)
             {
-                Console.WriteLine("Не знайдено слово, та не вдалося успішно додати");                
+                Console.WriteLine("Не знайдено слово, та не вдалося успішно додати");
             }
-            catch (FileNotFoundException )
+            catch (FileNotFoundException)
             {
                 Console.WriteLine("Файл не знайдено");
             }
@@ -47,7 +47,7 @@ namespace Task10
                 Console.Write($"Введіть переклад слова {word}> ");
                 try
                 {
-                    var tmpWord = Console.ReadLine();
+                    string tmpWord = Console.ReadLine();
                     if (string.IsNullOrEmpty(tmpWord) == false)
                     {
                         dictionary[word] = tmpWord;

@@ -20,7 +20,7 @@ namespace Task9.Validator
             {
                 throw new ArgumentException("Хибний формат запису");
             }
-            var splitedStr = str.Trim().Split("- ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] splitedStr = str.Trim().Split("- ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             if (!double.TryParse(splitedStr[1], out double price))
             {
                 throw new ArgumentException("Хибний формат ціни");

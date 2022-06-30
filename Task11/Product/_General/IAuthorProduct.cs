@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task11.Product.General
+﻿namespace Task11.Product.General
 {
-    internal interface IAuthorProduct: IProduct
+    internal interface IAuthorProduct : IProduct
     {
         string AuthorName { get; set; }
     }
