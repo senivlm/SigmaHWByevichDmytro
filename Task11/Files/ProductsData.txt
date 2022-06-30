@@ -1,0 +1,4 @@
+﻿<DairyProduct>;<Name: name>;<Price: 24>;<Weight: 2>;<ExpirationTime: 30.06.2022>;<DaysToExpirationAndPresentOfChange: {(3 40)(1 45)}>
+
+<DairyProduct>;<Name: Name>;<Price: 10,31>;<Weight: 2>;<ExpirationTime: 01.01.2022>;<DaysToExpirationAndPresentOfChange: {(8 10)(6 20)(3 50)}>
+

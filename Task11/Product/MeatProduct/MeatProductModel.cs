@@ -12,7 +12,6 @@ namespace Task11.Product
         public MeatSpecies meatSpecies { get; set; }
         public MeatCategory meatCategory { get; set; }
         #endregion
-
         #region Ctors
         public MeatProductModel() :
             this(default, default, default, default, default, default, default)
@@ -38,30 +37,13 @@ namespace Task11.Product
         { }
 
         #endregion
-
         #region Methods
-        protected override double GetPriceByExpiration()
-        {
-            return base.GetPriceByExpiration();
-        }
-
-        public override void ChangePrice(int present)
-        {
-            base.ChangePrice(present);
-        }
-
-        public override int CompareTo(object obj)
-        {
-            return base.CompareTo(obj);
-        }
-
         public override object Clone()
         {
             return new MeatProductModel(this);
         }
 
         #endregion
-
         #region ObjectOverrides
         public override string ToString()
         {

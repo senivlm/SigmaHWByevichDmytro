@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using Task11.Product._General;
 
 namespace Task11.Product.General
 {
-    internal abstract class FoodProductBase : IFoodProduct
+    internal abstract class FoodProductBase : ProductBase, IFoodProduct
     {
 
         #region Props
 
-        protected SortedDictionary<int, int> _daysToExpirationAndPresentOfChange;
-
-        public DateTime ExpirationTime { get; set; }
-
         protected double _weight;
-        public double Weight
+        protected SortedDictionary<int, int> _daysToExpirationAndPresentOfChange;
+        public virtual DateTime ExpirationTime { get; set; }
+        public virtual double Weight
         {
             get => _weight;
             set
@@ -25,9 +24,7 @@ namespace Task11.Product.General
                 _weight = value;
             }
         }
-
-        protected double _price;
-        public double Price
+        public override double Price
         {
             get => GetPriceByExpiration();
             set
@@ -39,17 +36,10 @@ namespace Task11.Product.General
                 _price = value;
             }
         }
-        public string Name { get; set; }
+
         #endregion
-
-
         #region Methods
-        public abstract object Clone();
-        public virtual void ChangePrice(int present)
-        {
-            Price += _price / 100d * present;
-        }
-        public virtual int CompareTo(object obj)
+        public override int CompareTo(object obj)
         {
             IFoodProduct other = obj as IFoodProduct;
             if (other is null)
@@ -71,11 +61,10 @@ namespace Task11.Product.General
             return _price;
         }
         #endregion
-
         #region ObjectOverrides
         public override string ToString()
         {
-            return $"Назва: {Name}; Ціна: {Price}; Вага: {Weight} Термін придатності: {ExpirationTime.Date:d}; ";
+            return base.ToString()+$"Вага: {Weight} Термін придатності: {ExpirationTime.Date:d}; ";
         }
 
         #endregion

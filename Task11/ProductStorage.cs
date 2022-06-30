@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Task11
 {
@@ -104,7 +105,12 @@ namespace Task11
         #region ObjectOverrides
         public override string ToString()
         {
-            return base.ToString();
+            StringBuilder sb = new();
+            foreach (IProduct product in _products)
+            {
+                sb.AppendLine(product.ToString());
+            }
+            return sb.ToString();   
         }
 
         #endregion

@@ -15,7 +15,6 @@ namespace Task9.FIleHandler
         }
         public void ReadToObject(out T obj, IStreamReader<T> streamReader, IStringValidator<T>? validator)
         {
-
             if (!File.Exists(Path))
             {
                 throw new FileNotFoundException();

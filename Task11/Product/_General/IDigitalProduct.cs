@@ -2,5 +2,6 @@
 {
     internal interface IDigitalProduct : IProduct
     {
+        string Link { get; set; }
     }
 }
