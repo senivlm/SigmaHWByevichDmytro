@@ -26,7 +26,7 @@ namespace Task11
         #region IList
         public T this[int index]
         {
-            get => _products[index];
+            get => (T)_products[index].Clone();
             set => _products[index] = (T)value.Clone();
         }
 
@@ -84,7 +84,7 @@ namespace Task11
 
         #endregion
         #region Methods
-        public IEnumerable<G> GetAll<G>() where G : IProduct
+        public IEnumerable<G> GetAll<G>() where G : T
         {
             foreach (T item in _products)
             {
@@ -94,6 +94,7 @@ namespace Task11
                 }
             }
         }
+
 
         #endregion
         #region ObjectOverrides

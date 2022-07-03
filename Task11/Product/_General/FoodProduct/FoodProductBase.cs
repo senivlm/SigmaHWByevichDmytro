@@ -10,7 +10,7 @@ namespace Task11.Product.General
         #region Props
 
         protected double _weight;
-        protected SortedDictionary<int, int> _daysToExpirationAndPresentOfChange;
+        protected readonly SortedDictionary<int, int> _daysToExpirationAndPresentOfChange;
         public virtual DateTime ExpirationTime { get; set; }
         public virtual double Weight
         {
@@ -37,6 +37,29 @@ namespace Task11.Product.General
             }
         }
 
+        public virtual SortedDictionary<int, int> DaysToExpirationAndPresentOfChange => _daysToExpirationAndPresentOfChange;
+
+        #endregion
+        #region Ctors
+        protected FoodProductBase() : this(default, default, default, default, default)
+        {
+            _daysToExpirationAndPresentOfChange = new SortedDictionary<int, int>();
+        }
+
+        protected FoodProductBase(string name, double price, double weight, DateTime expirationTime, SortedDictionary<int, int> daysToExpirationAndPresentOfChange) :
+            base(name, price)
+        {
+            ExpirationTime = expirationTime;
+            Weight = weight;
+            _daysToExpirationAndPresentOfChange = new SortedDictionary<int, int>();
+            if (daysToExpirationAndPresentOfChange is not null)
+            {
+                foreach (KeyValuePair<int, int> item in daysToExpirationAndPresentOfChange)
+                {
+                    _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
+                }
+            }
+        }
         #endregion
         #region Methods
         public override int CompareTo(object obj)
@@ -48,7 +71,7 @@ namespace Task11.Product.General
             }
             return ((other.Price * other.Weight).CompareTo(Price * Weight));
         }
-        protected virtual double GetPriceByExpiration()
+        public virtual double GetPriceByExpiration()
         {
             int daysToExpiretion = ExpirationTime.Subtract(DateTime.Today).Days;
             foreach (KeyValuePair<int, int> item in _daysToExpirationAndPresentOfChange)
@@ -64,11 +87,10 @@ namespace Task11.Product.General
         #region ObjectOverrides
         public override string ToString()
         {
-            return base.ToString() + $"Вага: {Weight} Термін придатності: {ExpirationTime.Date:d}; ";
+            return base.ToString() + $"Вага: {Weight}; Термін придатності: {ExpirationTime.Date:d}; ";
         }
 
         #endregion
-
-
+       
     }
 }

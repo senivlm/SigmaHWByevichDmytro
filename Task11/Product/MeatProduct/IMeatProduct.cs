@@ -4,7 +4,7 @@ namespace Task11
 {
     internal interface IMeatProduct : IFoodProduct
     {
-        MeatSpecies meatSpecies { get; set; }
-        MeatCategory meatCategory { get; set; }
+        MeatSpecies MeatSpeciesProp { get; set; }
+        MeatCategory MeatCategoryProp { get; set; }
     }
 }

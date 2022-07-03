@@ -16,22 +16,9 @@ namespace Task11.Product
             this(default, default, default, default, default)
         { }
 
-        public DairyProductModel(string name, double price, double weight, DateTime expirationTime, SortedDictionary<int, int> daysToExpirationAndPresentOfChange)
-        {
-            Name = name;
-            Price = price;
-            Weight = weight;
-            ExpirationTime = expirationTime;
-
-            _daysToExpirationAndPresentOfChange = new SortedDictionary<int, int>();
-            if (daysToExpirationAndPresentOfChange is not null)
-            {
-                foreach (KeyValuePair<int, int> item in daysToExpirationAndPresentOfChange)
-                {
-                    _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
-                }
-            }
-        }
+        public DairyProductModel(string name, double price, double weight, DateTime expirationTime, SortedDictionary<int, int> daysToExpirationAndPresentOfChange) :
+            base(name, price, weight, expirationTime, daysToExpirationAndPresentOfChange)
+        { }
 
         public DairyProductModel(DairyProductModel other) :
             this(other.Name, other.Price, other.Weight, other.ExpirationTime, other._daysToExpirationAndPresentOfChange)

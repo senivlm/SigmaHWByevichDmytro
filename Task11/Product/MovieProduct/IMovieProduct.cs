@@ -1,7 +1,8 @@
-﻿namespace Task11.Product.General
+﻿using Task11.Product._General;
+
+namespace Task11.Product.General
 {
-    internal interface IMovieProduct : IDurationDigitalProduct, IAuthorProduct
+    internal interface IMovieProduct : IDigitalProduct, IAuthorProduct, IGenreProduct, IDurationProduct
     {
-        string Genre { get; set; }
     }
 }

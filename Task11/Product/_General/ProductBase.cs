@@ -18,7 +18,14 @@ namespace Task11.Product._General
                 _price = value;
             }
         }
-
+        #region Ctors
+        protected ProductBase() : this(default, default) { }
+        protected ProductBase(string name, double price)
+        {
+            Name = name;
+            Price = price;
+        }
+        #endregion
         public virtual void ChangePrice(int present)
         {
             Price += _price / 100d * present;

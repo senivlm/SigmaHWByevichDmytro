@@ -19,7 +19,7 @@ namespace Task11.Readers
                     string line = stream.ReadLine();
                     if (string.IsNullOrEmpty(line) == false)
                     {
-                        Regex typePattern = new Regex("^<([A-Za-z]+)>");
+                        Regex typePattern = new("^<([A-Za-z]+)>");
                         string type = typePattern.Match(line).Groups[1].Value;
                         if (string.IsNullOrEmpty(type) == false)
                         {

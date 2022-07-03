@@ -1,39 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Task11.Enums;
+using Task11.FileHandler;
 using Task11.Product.General;
 
 namespace Task11.Product
 {
-    internal class MeatProductModel : FoodProductBase, IMeatProduct
+    internal class MeatProductModel : FoodProductBase, IMeatProduct, ITXTSerializer
     {
 
         #region Props
-        public MeatSpecies meatSpecies { get; set; }
-        public MeatCategory meatCategory { get; set; }
+        public MeatSpecies MeatSpeciesProp { get; set; }
+        public MeatCategory MeatCategoryProp { get; set; }
         #endregion
         #region Ctors
         public MeatProductModel() :
             this(default, default, default, default, default, default, default)
         { }
 
-        public MeatProductModel(string name, double price, double weight, DateTime expirationTime, MeatSpecies meatSpecies, MeatCategory meatCategory, SortedDictionary<int, int> daysToExpirationAndPresentOfChange)
+        public MeatProductModel(string name, double price, double weight, DateTime expirationTime, MeatSpecies meatSpecies, MeatCategory meatCategory, SortedDictionary<int, int> daysToExpirationAndPresentOfChange) :
+            base(name, price, weight, expirationTime, daysToExpirationAndPresentOfChange)
         {
-            Name = name;
-            Price = price;
-            Weight = weight;
-            ExpirationTime = expirationTime;
-            this.meatSpecies = meatSpecies;
-            this.meatCategory = meatCategory;
-            _daysToExpirationAndPresentOfChange = new SortedDictionary<int, int>();
-            foreach (KeyValuePair<int, int> item in daysToExpirationAndPresentOfChange)
-            {
-                _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
-            }
+            MeatSpeciesProp = meatSpecies;
+            MeatCategoryProp = meatCategory;
         }
 
         public MeatProductModel(MeatProductModel other) :
-            this(other.Name, other.Price, other.Weight, other.ExpirationTime, other.meatSpecies, other.meatCategory, other._daysToExpirationAndPresentOfChange)
+            this(other.Name, other.Price, other.Weight, other.ExpirationTime, other.MeatSpeciesProp, other.MeatCategoryProp, other._daysToExpirationAndPresentOfChange)
         { }
 
         #endregion
@@ -42,13 +36,26 @@ namespace Task11.Product
         {
             return new MeatProductModel(this);
         }
+        public string SerializeTxt()
+        {
+            StringBuilder sb = new();
+            sb.Append('{');
+            foreach (KeyValuePair<int, int> item in _daysToExpirationAndPresentOfChange)
+            {
+                sb.Append($"({item.Key} {item.Value})");
+            }
+            sb.Append('}');
+            return $"<MeatProduct>;<Name: {Name}>;<Price: {Price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<MeatSpecies: {MeatSpeciesProp}>;<MeatCategoryProp: {MeatCategoryProp}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
+        }
 
         #endregion
         #region ObjectOverrides
         public override string ToString()
         {
-            return base.ToString() + $"Вид м'яса: {meatSpecies}; Категорія м'яса: {meatCategory}";
+            return base.ToString() + $"Вид м'яса: {MeatSpeciesProp}; Категорія м'яса: {MeatCategoryProp}";
         }
+
+        
 
         #endregion
 

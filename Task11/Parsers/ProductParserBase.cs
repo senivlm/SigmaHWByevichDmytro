@@ -5,9 +5,6 @@ namespace Task11.Parsers
 {
     internal abstract class ProductParserBase : IStringParser<IProduct>
     {
-        public virtual IProduct Parse(string str)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IProduct Parse(string str);
     }
 }

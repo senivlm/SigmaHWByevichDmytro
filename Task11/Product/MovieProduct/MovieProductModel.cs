@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Text;
+using Task11.FileHandler;
 using Task11.Product._General;
 using Task11.Product.General;
 
 namespace Task11.Product.MovieProduct
 {
-    internal class MovieProductModel : ProductBase, IMovieProduct
+    internal class MovieProductModel : ProductBase, IMovieProduct, ITXTSerializer
     {
         #region Props
         public string Genre { get; set; }
@@ -19,10 +21,9 @@ namespace Task11.Product.MovieProduct
             this(default, default, default, default, default, default)
         { }
 
-        public MovieProductModel(string name, double price, string genre, TimeSpan duration, string link, string authorName)
+        public MovieProductModel(string name, double price, string genre, TimeSpan duration, string link, string authorName):
+            base(name, price)
         {
-            Name = name;
-            Price = price;
             Genre = genre;
             Duration = duration;
             Link = link;
@@ -39,9 +40,10 @@ namespace Task11.Product.MovieProduct
         {
             return new MovieProductModel(this);
         }
-
-
-
+        public string SerializeTxt()
+        {         
+            return $"<MovieProduct>;<Name: {Name}>;<Price: {Price}>;<Genre: {Genre}>;<Duration: {Duration}>;<Link: {Link}>;<AuthorName: {AuthorName}>";
+        }
         #endregion
 
         #region ObjectOverrides
@@ -49,6 +51,8 @@ namespace Task11.Product.MovieProduct
         {
             return base.ToString() + $"Жанр: {Genre}; Тривалість:{Duration}; Посилання: {Link}; Ім'я Автора: {AuthorName} ";
         }
+
+        
         #endregion
 
 
