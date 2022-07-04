@@ -146,7 +146,7 @@ namespace Task11.Parsers
                 if (logDescriptionLine.Length != discriptionConst.Length)
                 {
                     logDescriptionLine.Append(" >;");
-                    OnBadFormatLogger.Invoke(str + logDescriptionLine.ToString());
+                    OnBadFormatLogger?.Invoke(str + logDescriptionLine.ToString());
                     return null;
                 }
 
