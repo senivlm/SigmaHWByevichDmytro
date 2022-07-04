@@ -25,8 +25,11 @@ namespace Task11.Readers
                         {
                             if (validator.ContainsKey(type))
                             {
-                                IStringParser<T> Linevalidator = validator[type];
-                                obj.Add(Linevalidator.Parse(line));
+                                var tmpRes = validator[type].Parse(line);
+                                if (tmpRes is not null)
+                                {
+                                    obj.Add(tmpRes);
+                                }
                             }
                         }
                     }

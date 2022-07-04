@@ -4,6 +4,6 @@
     internal interface IStringParser<T>
     {
         T Parse(string str);
-        //event LoggerOnBadFormat OnBadFormat;
+        event LoggerOnBadFormat OnBadFormatLogger;
     }
 }

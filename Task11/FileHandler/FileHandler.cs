@@ -9,7 +9,7 @@ namespace Task11.FileHandler
     internal static class FileHandlerService
     {
 
-        public static void ReadToObject<G>(out G obj, IStreamLineReader<G> streamReader, IStringParser<G>? validator, string path)
+        public static bool TryReadToObject<G>(out G obj, IStreamLineReader<G> streamReader, IStringParser<G> validator, string path)
             where G : new()
         {
             if (!File.Exists(path))
@@ -20,7 +20,7 @@ namespace Task11.FileHandler
             {
                 using (StreamReader stream = new StreamReader(path))
                 {
-                    streamReader.ReadLine(out obj, stream, validator);
+                    return streamReader.TryReadLine(out obj, stream, validator);
                 }
             }
             catch (Exception)
@@ -29,7 +29,7 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void ReadToCollection<T, G>(out T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, IStringParser<G>> validator, string path)
+        public static void ReadToCollection<T, G>(out T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, IStringParser<G>> parser, string path)
             where T : IEnumerable<G>
         {
             if (!File.Exists(path))
@@ -40,7 +40,7 @@ namespace Task11.FileHandler
             {
                 using (StreamReader stream = new StreamReader(path))
                 {
-                    collectionReader.ReadCollection(out obj, stream, validator);
+                    collectionReader.ReadCollection(out obj, stream, parser);
                 }
             }
             catch (Exception)

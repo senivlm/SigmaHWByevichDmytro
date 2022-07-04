@@ -29,6 +29,10 @@ namespace Task11
             get => (T)_products[index].Clone();
             set => _products[index] = (T)value.Clone();
         }
+        public void Sort()
+        {
+            _products.Sort();
+        }
 
         public int Count => _products.Count;
 

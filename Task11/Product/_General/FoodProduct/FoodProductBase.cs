@@ -10,7 +10,7 @@ namespace Task11.Product.General
         #region Props
 
         protected double _weight;
-        protected readonly SortedDictionary<int, int> _daysToExpirationAndPresentOfChange;
+        protected SortedDictionary<int, int> _daysToExpirationAndPresentOfChange;
         public virtual DateTime ExpirationTime { get; set; }
         public virtual double Weight
         {
@@ -37,7 +37,18 @@ namespace Task11.Product.General
             }
         }
 
-        public virtual SortedDictionary<int, int> DaysToExpirationAndPresentOfChange => _daysToExpirationAndPresentOfChange;
+        public virtual SortedDictionary<int, int> DaysToExpirationAndPresentOfChange
+        {
+            get => new(_daysToExpirationAndPresentOfChange);
+            set
+            {
+                _daysToExpirationAndPresentOfChange = new();
+                foreach (var item in value)
+                {
+                    _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
+                }
+            }
+        }
 
         #endregion
         #region Ctors
@@ -67,6 +78,10 @@ namespace Task11.Product.General
             IFoodProduct other = obj as IFoodProduct;
             if (other is null)
             {
+                if (obj is IProduct otherProduct)
+                {
+                    return ((otherProduct.Price).CompareTo(Price));
+                }
                 throw (new ArgumentException("wrong object to compare"));
             }
             return ((other.Price * other.Weight).CompareTo(Price * Weight));
@@ -91,6 +106,6 @@ namespace Task11.Product.General
         }
 
         #endregion
-       
+
     }
 }

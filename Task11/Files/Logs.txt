@@ -1,0 +1,2 @@
+﻿<MovieProduct>;<Name: 12 Chairs>;<Price: 12,.32>;<Genre: >;<Duration: 0230:00>;<Link: https://www.amazon.com12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid Gayday><Description: Хибний формат ціни; Хибний формат жанру; Хибний формат тривалості;  >;
+<MovieProduct>;<Name: 12 Chairs>;<Price: 12,32>;<Genre: Comedy>;<Duration: 0230:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid Gayday><Description: Хибний формат тривалості;  >;<LogTime: 04.07.2022 16:11:14>;

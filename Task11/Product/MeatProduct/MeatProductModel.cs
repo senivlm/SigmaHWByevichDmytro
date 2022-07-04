@@ -13,6 +13,7 @@ namespace Task11.Product
         #region Props
         public MeatSpecies MeatSpeciesProp { get; set; }
         public MeatCategory MeatCategoryProp { get; set; }
+
         #endregion
         #region Ctors
         public MeatProductModel() :
@@ -45,7 +46,7 @@ namespace Task11.Product
                 sb.Append($"({item.Key} {item.Value})");
             }
             sb.Append('}');
-            return $"<MeatProduct>;<Name: {Name}>;<Price: {Price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<MeatSpecies: {MeatSpeciesProp}>;<MeatCategoryProp: {MeatCategoryProp}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
+            return $"<MeatProduct>;<Name: {Name}>;<Price: {Price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<MeatSpecies: {MeatSpeciesProp}>;<MeatCategory: {MeatCategoryProp}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
         }
 
         #endregion

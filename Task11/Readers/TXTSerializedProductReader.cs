@@ -7,7 +7,7 @@ namespace Task11.Readers
     internal class TXTSerializedProductReader<T> : IStreamLineReader<T>
         where T : IProduct
     {
-        void IStreamLineReader<T>.ReadLine<G>(out G obj, StreamReader stream, IStringParser<G> validator)
+        bool IStreamLineReader<T>.TryReadLine<G>(out G obj, StreamReader stream, IStringParser<G> validator)
         {
             obj = new();
             try
@@ -16,7 +16,9 @@ namespace Task11.Readers
                 if (string.IsNullOrEmpty(line) == false)
                 {
                     obj = validator.Parse(line);
+                    return obj is not null;
                 }
+                return false;
             }
             catch (Exception)
             {
