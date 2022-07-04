@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Task11.FileHandler;
 
 namespace Task11
 {
-    internal class ProductStorage<T> : IList<T>
+    internal class ProductStorage<T> : IList<T>, ITXTSerializer
         where T : IProduct
     {
         #region Props
@@ -98,7 +99,18 @@ namespace Task11
                 }
             }
         }
-
+        public string SerializeTxt()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (T item in _products)
+            {
+                if (item is ITXTSerializer serializer)
+                {
+                    sb.AppendLine(serializer.SerializeTxt());
+                }
+            }
+            return sb.ToString();
+        }
 
         #endregion
         #region ObjectOverrides
@@ -111,6 +123,8 @@ namespace Task11
             }
             return sb.ToString();
         }
+
+
 
         #endregion
 

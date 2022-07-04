@@ -46,7 +46,7 @@ namespace Task11.Product
                 sb.Append($"({item.Key} {item.Value})");
             }
             sb.Append('}');
-            return $"<MeatProduct>;<Name: {Name}>;<Price: {Price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<MeatSpecies: {MeatSpeciesProp}>;<MeatCategory: {MeatCategoryProp}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
+            return $"<MeatProduct>;<Name: {Name}>;<Price: {_price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<MeatSpecies: {MeatSpeciesProp}>;<MeatCategory: {MeatCategoryProp}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
         }
 
         #endregion

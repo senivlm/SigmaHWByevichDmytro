@@ -41,7 +41,7 @@ namespace Task11.Product.MovieProduct
         }
         public string SerializeTxt()
         {
-            return $"<MovieProduct>;<Name: {Name}>;<Price: {Price}>;<Genre: {Genre}>;<Duration: {Duration}>;<Link: {Link}>;<AuthorName: {AuthorName}>";
+            return $"<MovieProduct>;<Name: {Name}>;<Price: {Price}>;<Genre: {Genre}>;<Duration: {Duration}>;<Link: {Link}>;<AuthorName: {AuthorName}>;";
         }
         #endregion
 

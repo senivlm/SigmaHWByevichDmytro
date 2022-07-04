@@ -39,7 +39,7 @@ namespace Task11.Product
                 sb.Append($"({item.Key} {item.Value})");
             }
             sb.Append('}');
-            return $"<DairyProduct>;<Name: {Name}>;<Price: {Price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<DaysToExpirationAndPresentOfChange: {sb}>";
+            return $"<DairyProduct>;<Name: {Name}>;<Price: {_price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
         }
         #endregion
         #region ObjectOverrides

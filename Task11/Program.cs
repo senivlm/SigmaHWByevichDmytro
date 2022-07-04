@@ -18,12 +18,6 @@ namespace Task11
             Logger.Instance.Path = "../../../Files/Logs.txt";
             try
             {
-                //FileHandlerService.WriteToFile
-                //(
-                //    obj: new MeatProductModel("Steak", 120, 3, DateTime.Today.AddDays(7), MeatSpecies.MUTTON, MeatCategory.FIRST, new SortedDictionary<int, int> { { 2, 40 }, { 5, 20 }, { 7, 10 } }),
-                //    path: "../../../Files/ProductsData.txt",
-                //    append: true
-                //);
 
                 Dictionary<string, IStringParser<IProduct>> ParsersByType = new()
                 {
@@ -36,11 +30,11 @@ namespace Task11
                 FileHandlerService.ReadToCollection
                 (
                     obj: out ProductStorage<IProduct> storage,
-                    collectionReader: new TXTSerializedStorageReader<IProduct>(),
+                    collectionReader: new TXTSerializedStorageReader<IProduct>(Logger.Instance.Log),
                     parser: ParsersByType,
                     path: "../../../Files/ProductsData.txt"
                 );
-
+                FileHandlerService.WriteToFile(storage, "../../../Files/ProductsData.txt");
                 Console.WriteLine(storage);
 
 
