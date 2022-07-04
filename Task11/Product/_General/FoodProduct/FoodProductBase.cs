@@ -43,7 +43,7 @@ namespace Task11.Product.General
             set
             {
                 _daysToExpirationAndPresentOfChange = new();
-                foreach (var item in value)
+                foreach (KeyValuePair<int, int> item in value)
                 {
                     _daysToExpirationAndPresentOfChange.Add(item.Key, item.Value);
                 }

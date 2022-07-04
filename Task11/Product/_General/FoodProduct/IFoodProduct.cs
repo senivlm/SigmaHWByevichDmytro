@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Task11
+﻿namespace Task11
 {
     internal interface IFoodProduct : IExpirationProduct, IPhysicalProduct
     {

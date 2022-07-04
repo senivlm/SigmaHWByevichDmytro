@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using Task11.FileHandler;
 using Task11.Product._General;
 using Task11.Product.General;
@@ -21,7 +20,7 @@ namespace Task11.Product.MovieProduct
             this(default, default, default, default, default, default)
         { }
 
-        public MovieProductModel(string name, double price, string genre, TimeSpan duration, string link, string authorName):
+        public MovieProductModel(string name, double price, string genre, TimeSpan duration, string link, string authorName) :
             base(name, price)
         {
             Genre = genre;
@@ -41,7 +40,7 @@ namespace Task11.Product.MovieProduct
             return new MovieProductModel(this);
         }
         public string SerializeTxt()
-        {         
+        {
             return $"<MovieProduct>;<Name: {Name}>;<Price: {Price}>;<Genre: {Genre}>;<Duration: {Duration}>;<Link: {Link}>;<AuthorName: {AuthorName}>";
         }
         #endregion
@@ -52,7 +51,7 @@ namespace Task11.Product.MovieProduct
             return base.ToString() + $"Жанр: {Genre}; Тривалість:{Duration}; Посилання: {Link}; Ім'я Автора: {AuthorName} ";
         }
 
-        
+
         #endregion
 
 

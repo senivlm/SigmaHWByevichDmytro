@@ -14,7 +14,7 @@ namespace Task11.Product
         #region Ctors
         public DairyProductModel() :
             this(default, default, default, default, default)
-            
+
         { }
 
         public DairyProductModel(string name, double price, double weight, DateTime expirationTime, SortedDictionary<int, int> daysToExpirationAndPresentOfChange) :

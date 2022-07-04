@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Task11.Enums;
 using Task11.FileHandler;
 using Task11.Parsers;
-using Task11.Product;
 using Task11.Readers;
 using Task11.Validators;
 
@@ -29,7 +27,7 @@ namespace Task11
 
                 Dictionary<string, IStringParser<IProduct>> ParsersByType = new()
                 {
-                    { "DairyProduct", new DairyProductParser(Logger.Instance.Log)  },
+                    { "DairyProduct", new DairyProductParser(Logger.Instance.Log) },
                     { "MovieProduct", new MovieProductParser(Logger.Instance.Log) },
                     { "MeatProduct", new MeatProductParser(Logger.Instance.Log) }
                 };

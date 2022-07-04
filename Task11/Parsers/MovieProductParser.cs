@@ -16,10 +16,10 @@ namespace Task11.Parsers
         private Regex _linkPattern = new(@"<(Link:) ([^>]*)>");
         private Regex _authorNamePattern = new(@"<(AuthorName:) ([^>]*)>");
         public MovieProductParser()
-        {  }
+        { }
 
         public MovieProductParser(LoggerOnBadFormat loggerOnBad) : base(loggerOnBad)
-        {  }
+        { }
 
         public override event LoggerOnBadFormat OnBadFormatLogger;
 
@@ -37,7 +37,7 @@ namespace Task11.Parsers
                 Match genreMatch = _genrePattern.Match(str);
                 Match durationMatch = _durationPattern.Match(str);
                 Match linkMatch = _linkPattern.Match(str);
-                Match authorNameMatch = _authorNamePattern.Match(str); 
+                Match authorNameMatch = _authorNamePattern.Match(str);
                 #endregion
 
                 #region NameValidate
@@ -140,7 +140,7 @@ namespace Task11.Parsers
                     {
                         _model.AuthorName = authorNameMatch.Groups[2].Value;
                     }
-                } 
+                }
                 #endregion
 
                 if (logDescriptionLine.Length != discriptionConst.Length)

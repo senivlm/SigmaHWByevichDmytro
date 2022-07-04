@@ -56,7 +56,7 @@ namespace Task11.Product
             return base.ToString() + $"Вид м'яса: {MeatSpeciesProp}; Категорія м'яса: {MeatCategoryProp}";
         }
 
-        
+
 
         #endregion
 

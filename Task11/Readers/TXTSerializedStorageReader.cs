@@ -25,7 +25,7 @@ namespace Task11.Readers
                         {
                             if (validator.ContainsKey(type))
                             {
-                                var tmpRes = validator[type].Parse(line);
+                                T tmpRes = validator[type].Parse(line);
                                 if (tmpRes is not null)
                                 {
                                     obj.Add(tmpRes);

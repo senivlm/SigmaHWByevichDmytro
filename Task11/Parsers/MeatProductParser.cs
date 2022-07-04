@@ -41,7 +41,7 @@ namespace Task11.Parsers
                 Match changePriceByDaysDictionaryMatch = _changePriceByDaysDictionaryPattern.Match(str);
                 Match meatSpeciesMatch = _meatSpeciesPattern.Match(str);
                 Match meatCategoryMatch = _meatCategoryPattern.Match(str);
-                
+
 
                 #region NameValidate
                 if (nameMatch.Success == false)
