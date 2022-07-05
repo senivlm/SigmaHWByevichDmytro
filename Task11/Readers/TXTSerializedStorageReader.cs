@@ -19,9 +19,12 @@ namespace Task11.Readers
             OnBadFormatLogger += onBadFormatLogger;
         }
 
-        public void ReadCollection(out ProductStorage<T> obj, StreamReader stream, Dictionary<string, IStringParser<T>> validator)
+        public void ReadCollection(ref ProductStorage<T> obj, StreamReader stream, Dictionary<string, IStringParser<T>> validator)
         {
-            obj = new();
+            if (obj is null)
+            {
+                obj = new();
+            }
             try
             {
                 while (stream.EndOfStream == false)

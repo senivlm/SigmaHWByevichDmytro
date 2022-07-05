@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using Task11.FileHandler;
 using Task11.Parsers;
+using Task11.Product;
 using Task11.Readers;
+using Task11.Services;
 using Task11.Validators;
 
 namespace Task11
@@ -15,9 +17,9 @@ namespace Task11
             Console.OutputEncoding = System.Text.Encoding.Unicode;
             Console.InputEncoding = System.Text.Encoding.Unicode;
 
-            Logger.Instance.Path = "../../../Files/Logs.txt";
             try
             {
+                Logger.Instance.Path = "../../../Files/Logs.txt";
 
                 Dictionary<string, IStringParser<IProduct>> ParsersByType = new()
                 {
@@ -26,16 +28,26 @@ namespace Task11
                     { "MeatProduct", new MeatProductParser(Logger.Instance.Log) }
                 };
 
+                ProductStorage<IProduct> storage = new ProductStorage<IProduct>();
+                storage.OnProductPreAddFaceControl += PreAddBehaviorService.IsProductNotExpired;
+                storage.OnBadProductLogger += Logger.Instance.Log;
 
                 FileHandlerService.ReadToCollection
                 (
-                    obj: out ProductStorage<IProduct> storage,
+                    obj: ref storage,
                     collectionReader: new TXTSerializedStorageReader<IProduct>(Logger.Instance.Log),
                     parser: ParsersByType,
                     path: "../../../Files/ProductsData.txt"
                 );
+
                 FileHandlerService.WriteToFile(storage, "../../../Files/ProductsData.txt");
+                storage.Sort();
+                foreach (var product in storage.GetAll<IDairyProduct>(product => product.Price > 10))
+                {
+                    Console.WriteLine(product);
+                }
                 Console.WriteLine(storage);
+                Console.WriteLine($"Price: {storage.Pirice}");
 
 
             }
@@ -48,8 +60,7 @@ namespace Task11
             {
                 Console.WriteLine($"Програма заверешeна, у логи було занесено: {Logger.Instance.ExCount} запис(ів)");
             }
-
-
         }
+
     }
 }

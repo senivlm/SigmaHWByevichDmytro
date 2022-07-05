@@ -7,9 +7,7 @@ namespace Task11.Parsers
         public abstract event LoggerOnBadFormat OnBadFormatLogger;
         public abstract IProduct Parse(string str);
         protected ProductParserBase()
-        {
-
-        }
+        { }
         protected ProductParserBase(LoggerOnBadFormat loggerOnBad)
         {
             OnBadFormatLogger += loggerOnBad;

@@ -29,7 +29,7 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void ReadToCollection<T, G>(out T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, IStringParser<G>> parser, string path)
+        public static void ReadToCollection<T, G>(ref T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, IStringParser<G>> parser, string path)
             where T : IEnumerable<G>
         {
             if (!File.Exists(path))
@@ -40,7 +40,7 @@ namespace Task11.FileHandler
             {
                 using (StreamReader stream = new StreamReader(path))
                 {
-                    collectionReader.ReadCollection(out obj, stream, parser);
+                    collectionReader.ReadCollection(ref obj, stream, parser);
                 }
             }
             catch (Exception)
