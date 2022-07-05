@@ -1,0 +1,6 @@
+<DairyProduct>;<Name: Name>;<Price: 10,31>;<Weight: 3>;<ExpirationTime: 01.01.2022>;<DaysToExpirationAndPresentOfChange: {(3 50)(6 20)(8 10)}>;
+<DairyProduct>;<Name: name>;<Price: 24>;<Weight: 2>;<ExpirationTime: 30.06.2022>;<DaysToExpirationAndPresentOfChange: {(1 45)(3 40)}>;
+<MovieProduct>;<Name: 12 Chairs>;<Price: 12,32>;<Genre: Comedy>;<Duration: 02:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid Gayday>;
+<MovieProduct>;<Name: 31 Styl>;<Price: 31,12>;<Genre: Horror>;<Duration: 03:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid>;
+<MeatP³duct>;<Name: Steak>;<Price: 108>;<Weight: 3>;<ExpirationTime: 10.07.2022>;<MeatSpecies: MUTTON>;<MeatCategory: FIRST>;<DaysToExpirationAndPresentOfChange: {(2 40)(5 20)(7 10)}>;
+
