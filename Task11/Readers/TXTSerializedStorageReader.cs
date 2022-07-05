@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using Task11.FileHandler;
-using Task11.Parsers;
 using Task11.Validators;
 
 namespace Task11.Readers

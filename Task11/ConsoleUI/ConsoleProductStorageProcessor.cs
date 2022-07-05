@@ -63,7 +63,7 @@ namespace Task11.ConsoleUI
         }
         private void ReadProductStorageFormFile()
         {
-            FileHandlerService.ReadToCollection<ProductStorage<T>,T>
+            FileHandlerService.ReadToCollection
                 (
                     obj: ref _producStorage,
                     collectionReader: new TXTSerializedStorageReader<T>(Logger.Instance.Log),

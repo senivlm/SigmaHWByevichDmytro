@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Task11.ConsoleUI;
 using Task11.ConsoleUI.ConsoleProductAdders;
 using Task11.Parsers;
-using Task11.Product;
-using Task11.Product.MovieProduct;
 using Task11.Services;
 using Task11.Validators;
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Task11.Enums;
-using Task11.FileHandler;
 using Task11.Product.General;
 
 namespace Task11.Product
@@ -37,7 +35,7 @@ namespace Task11.Product
         {
             return new MeatProductModel(this);
         }
-       
+
 
         #endregion
         #region ObjectOverrides

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Text.RegularExpressions;
 using Task11.FileHandler;
 using Task11.Product.General;
 using Task11.Product.MovieProduct;

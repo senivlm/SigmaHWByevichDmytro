@@ -75,7 +75,7 @@ namespace Task11.FileHandler
             }
         }
         public static void WriteToFileCollection<T>(T obj, string path, bool append = false)
-            where T : IEnumerable   
+            where T : IEnumerable
         {
             if (!File.Exists(path))
             {
@@ -90,7 +90,7 @@ namespace Task11.FileHandler
                     {
                         writer.WriteLine();
                     }
-                    foreach (var item in obj)
+                    foreach (object item in obj)
                     {
                         writer.WriteLine(txtSerializer.Serialize(item));
                     }

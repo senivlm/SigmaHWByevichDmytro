@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Task11.FileHandler;
 using Task11.Product.General;
 
 namespace Task11.Product
@@ -29,7 +27,7 @@ namespace Task11.Product
         public override object Clone()
         {
             return new DairyProductModel(this);
-        }      
+        }
         #endregion
         #region ObjectOverrides
         public override string ToString()

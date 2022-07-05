@@ -21,8 +21,10 @@ namespace Task11
         public TXTSerializedParameters Serialize<T>(in T obj)
             where T : class
         {
-            TXTSerializedParameters txtSerializedParameters = new TXTSerializedParameters();
-            txtSerializedParameters.Add("Type", obj.GetType().Name);
+            TXTSerializedParameters txtSerializedParameters = new TXTSerializedParameters
+            {
+                { "Type", obj.GetType().Name }
+            };
             foreach (PropertyInfo property in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
             {
                 if (property.PropertyType.GetInterfaces().Contains(typeof(ICollection)))

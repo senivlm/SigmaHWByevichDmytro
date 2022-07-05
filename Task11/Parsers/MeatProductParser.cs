@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
-using Task11.Enums;
 using Task11.FileHandler;
 using Task11.Product;
 using Task11.Validators;
@@ -11,7 +8,7 @@ namespace Task11.Parsers
 {
     internal class MeatProductParser : FoodProductParserBase
     {
-        public MeatProductParser():base()
+        public MeatProductParser() : base()
         { }
 
         public MeatProductParser(LoggerOnBadFormat loggerOnBad) : base(loggerOnBad)
