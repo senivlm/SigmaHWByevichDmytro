@@ -1,43 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Task11.ProductStorage&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.25" Y="2.5" Width="1.5" />
+    <Position X="37.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEIAAECIAAAAEBAUCAAQBgQAAAAAAAAECoAABABQIAA=</HashCode>
+      <HashCode>AEIAAEAIAAAAEBAUCAAQBgQAAAAAAAAECoAABABQIAA=</HashCode>
       <FileName>ProductStorage.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Task11.Program" Collapsed="true">
-    <Position X="24" Y="3.5" Width="1.5" />
+    <Position X="32.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Task11.Menu" Collapsed="true">
-    <Position X="24" Y="2.5" Width="1.5" />
+    <Position X="32.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAEAAAAAAAIAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ConsoleUI\Navigation\Menu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Task11.FileHandler.FileHandlerService" Collapsed="true">
-    <Position X="27.5" Y="1.5" Width="1.5" />
+    <Position X="36" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAEAAABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAACAAAAAAAAACAAAAAAAAAAEAAABAAAAAAA=</HashCode>
       <FileName>FileHandler\FileHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Task11.FileHandler.TXTSerializedLineAnalyzer" Collapsed="true">
+    <Position X="34.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>FileHandler\TXTSerializedLineAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task11.FileHandler.TXTSerializedParameters" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAAAEABAUCAAABAQAAAAAAAAEAAAgAABQIAA=</HashCode>
+      <FileName>FileHandler\TXTSerializedParameters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
   <Class Name="Task11.Validators.DairyProductParser" Collapsed="true">
-    <Position X="21.25" Y="10.25" Width="1.5" />
+    <Position X="21.75" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Parsers\DairyProductParser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Task11.Parsers.ProductParserBase" Collapsed="true">
-    <Position X="19" Y="7.5" Width="1.5" />
+    <Position X="19.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAgAAAAAAAAAAgAAAAAAAAAAAAg=</HashCode>
       <FileName>Parsers\ProductParserBase.cs</FileName>
@@ -45,37 +60,22 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Parsers.MeatProductParser" Collapsed="true">
-    <Position X="19" Y="10.25" Width="1.5" />
+    <Position X="19.5" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Parsers\MeatProductParser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Task11.Parsers.MovieProductParser" Collapsed="true">
-    <Position X="16.75" Y="8.75" Width="1.5" />
+    <Position X="17.25" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Parsers\MovieProductParser.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Task11.Parsers.TXTSerializedLineAnalyzer" Collapsed="true">
-    <Position X="25.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
-      <FileName>Parsers\TXTSerializedLineAnalyzer.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Task11.Parsers.TXTSerializedParameters" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="27.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>CAIAAAAAAAAEABAUCAAABAQAAAAAAAAEAAAgAABQIAA=</HashCode>
-      <FileName>Parsers\TXTSerializedParameters.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
   <Class Name="Task11.Parsers.FoodProductParserBase" Collapsed="true">
-    <Position X="20" Y="8.75" Width="1.5" />
+    <Position X="20.5" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAgAAAAAAAgAAAAAAQEACAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Parsers\FoodProductParserBase.cs</FileName>
@@ -83,7 +83,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Product.General.FoodProductBase" Collapsed="true">
-    <Position X="12" Y="7.75" Width="1.5" />
+    <Position X="20.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAADAAAAAQAgAAQEAAAAAQAAACAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Product\_General\FoodProduct\FoodProductBase.cs</FileName>
@@ -91,7 +91,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Product._General.ProductBase" Collapsed="true">
-    <Position X="11" Y="6.5" Width="1.5" />
+    <Position X="19.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAQAAABQEAAAAAAQAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Product\_General\ProductBase.cs</FileName>
@@ -99,31 +99,31 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Product.DairyProductModel" Collapsed="true">
-    <Position X="11" Y="9.25" Width="1.5" />
+    <Position X="19.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Product\DairyProduct\DairyProductModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Product.MeatProductModel" Collapsed="true">
-    <Position X="13.25" Y="9.25" Width="1.5" />
+    <Position X="21.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAACAAAAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Product\MeatProduct\MeatProductModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Product.MovieProduct.MovieProductModel" Collapsed="true">
-    <Position X="8.75" Y="7.75" Width="1.5" />
+    <Position X="17.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAACAAAECAIAAAAAAAAAAAAAAAAAQAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAECAIAAAAAAAAAAAAAAAAAQAAAABA=</HashCode>
       <FileName>Product\MovieProduct\MovieProductModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Task11.Readers.TXTSerializedProductReader&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.25" Y="3.5" Width="1.5" />
+    <Position X="37.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Readers\TXTSerializedProductReader.cs</FileName>
@@ -131,7 +131,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Task11.Readers.TXTSerializedStorageReader&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24" Y="4.5" Width="1.5" />
+    <Position X="32.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAg=</HashCode>
       <FileName>Readers\TXTSerializedStorageReader.cs</FileName>
@@ -139,7 +139,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Task11.ConsoleUI.ConsoleProductAdders.DairyProductConsoleReaderBehavior" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="25.75" Y="1.5" Width="1.5" />
+    <Position X="34.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>ConsoleUI\ConsoleProductAdders\DairyProductConsoleReaderBehavior.cs</FileName>
@@ -147,7 +147,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Task11.ConsoleUI.ConsoleProductAdders.MeatProductConsoleReaderBehavior" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="29.25" Y="1.5" Width="1.5" />
+    <Position X="37.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>ConsoleUI\ConsoleProductAdders\MeatProductConsoleReaderBehavior.cs</FileName>
@@ -155,7 +155,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Task11.ConsoleUI.ConsoleProductAdders.MovieProductConsoleReaderBehavior" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="25.75" Y="2.5" Width="1.5" />
+    <Position X="34.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>ConsoleUI\ConsoleProductAdders\MovieProductConsoleReaderBehavior.cs</FileName>
@@ -163,147 +163,140 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Task11.ConsoleUI.ConsoleProductStorageProcessor&lt;T&gt;" Collapsed="true">
-    <Position X="24" Y="1.5" Width="1.5" />
+    <Position X="32.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAABCgAQgAAAAAAAAgCAAAAQAICAAAAAAAAAgAAAQAI=</HashCode>
       <FileName>ConsoleUI\ConsoleProductStorageProcessor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Task11.Services.PreAddBehaviorService" Collapsed="true">
-    <Position X="27.5" Y="2.5" Width="1.5" />
+    <Position X="36" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\PreAddBehaviorService.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Task11.IFoodProduct" Collapsed="true">
-    <Position X="19.25" Y="4.5" Width="1.5" />
+    <Position X="26.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\_General\FoodProduct\IFoodProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.IDigitalProduct" Collapsed="true">
-    <Position X="12.5" Y="3" Width="1.5" />
+    <Position X="23.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>Product\_General\IDigitalProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.IExpirationProduct" Collapsed="true">
-    <Position X="17" Y="3" Width="1.5" />
+    <Position X="25.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Product\_General\IExpirationProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.IPhysicalProduct" Collapsed="true">
-    <Position X="21.5" Y="3" Width="1.5" />
+    <Position X="27.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\_General\IPhysicalProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.IProduct" Collapsed="true">
-    <Position X="15.75" Y="1.5" Width="1.5" />
+    <Position X="24.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAABAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\_General\IProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.IMeatProduct" Collapsed="true">
-    <Position X="18" Y="6" Width="1.5" />
+    <Position X="27.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\MeatProduct\IMeatProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Task11.FileHandler.ITXTSerializer" Collapsed="true">
-    <Position X="24" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FileHandler\ITXTSerializer.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="Task11.Validators.IStringParser&lt;T&gt;" Collapsed="true">
-    <Position X="29.25" Y="5.75" Width="1.5" />
+    <Position X="37.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Parsers\IStringParser.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Product.General.IAuthorProduct" Collapsed="true">
-    <Position X="10.25" Y="3" Width="1.5" />
+    <Position X="30" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\_General\IAuthorProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Product.General.IMovieProduct" Collapsed="true">
-    <Position X="14.75" Y="4.5" Width="1.5" />
+    <Position X="24.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\MovieProduct\IMovieProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Product._General.IDurationProduct" Collapsed="true">
-    <Position X="14.75" Y="3" Width="1.5" />
+    <Position X="18.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\_General\IDurationProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Product._General.IGenreProduct" Collapsed="true">
-    <Position X="19.25" Y="3" Width="1.5" />
+    <Position X="21" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\_General\IGenreProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Product.IDairyProduct" Collapsed="true">
-    <Position X="20.25" Y="6" Width="1.5" />
+    <Position X="29.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Product\DairyProduct\IDairyProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Readers.IStreamCollectionReader&lt;T, G&gt;" Collapsed="true">
-    <Position X="25.75" Y="5.75" Width="1.5" />
+    <Position X="34.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAg=</HashCode>
       <FileName>Readers\IStreamCollectionReader.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.Readers.IStreamLineReader&lt;T&gt;" Collapsed="true">
-    <Position X="27.5" Y="5.75" Width="1.5" />
+    <Position X="36" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Readers\IStreamLineReader.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Task11.ConsoleUI.ConsoleProductAdders.IConsoleProductReader&lt;T&gt;" Collapsed="true">
-    <Position X="24" Y="5.75" Width="1.5" />
+    <Position X="32.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>ConsoleUI\ConsoleProductAdders\IConsoleProductReader.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Task11.Enums.MeatCategory" Collapsed="true">
-    <Position X="24" Y="7.5" Width="1.5" />
+    <Position X="32.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAwABAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Enums\MeatCategory.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Task11.Enums.MeatSpecies" Collapsed="true">
-    <Position X="25.75" Y="7.5" Width="1.5" />
+    <Position X="34.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQCAAAAAAQAAgAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>Enums\MeatSpecies.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Delegate Name="Task11.Validators.LoggerOnBadFormat" Collapsed="true">
-    <Position X="24" Y="8.5" Width="1.5" />
+    <Position X="32.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parsers\IStringParser.cs</FileName>
