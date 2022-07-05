@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Task11.ConsoleUI;
 using Task11.ConsoleUI.ConsoleProductAdders;
 using Task11.Parsers;
+using Task11.Product;
+using Task11.Product.MovieProduct;
 using Task11.Services;
 using Task11.Validators;
 
@@ -22,12 +24,12 @@ namespace Task11
 
                 Dictionary<string, IStringParser<IProduct>> ParsersByType = new()
                 {
-                    { "DairyProduct", new DairyProductParser(Logger.Instance.Log) },
-                    { "MovieProduct", new MovieProductParser(Logger.Instance.Log) },
-                    { "MeatProduct", new MeatProductParser(Logger.Instance.Log) }
+                    { "DairyProductModel", new DairyProductParser(Logger.Instance.Log) },
+                    { "MovieProductModel", new MovieProductParser(Logger.Instance.Log) },
+                    { "MeatProductModel", new MeatProductParser(Logger.Instance.Log) }
                 };
 
-                Dictionary<string, IConsoleProductReader> ConsoleReaderByType = new()
+                Dictionary<string, IConsoleProductReader<IProduct>> ConsoleReaderByType = new()
                 {
                     { "Молочний продукт", new DairyProductConsoleReaderBehavior() },
                     { "М'ясний продукт", new MeatProductConsoleReaderBehavior() },
@@ -38,9 +40,8 @@ namespace Task11
                 storage.OnProductPreAddFaceControl += PreAddBehaviorService.IsProductNotExpired;
                 storage.OnBadProductLogger += Logger.Instance.Log;
 
-                ConsoleProductStorageProcessor consoleProductStorageProcessor = new(storage, ConsoleReaderByType, ParsersByType);
+                ConsoleProductStorageProcessor<IProduct> consoleProductStorageProcessor = new(storage, ConsoleReaderByType, ParsersByType);
                 consoleProductStorageProcessor.PrintMenu();
-
 
             }
             catch (Exception ex)

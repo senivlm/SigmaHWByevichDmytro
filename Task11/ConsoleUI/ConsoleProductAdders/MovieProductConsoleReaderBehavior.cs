@@ -1,11 +1,12 @@
 ﻿using System;
+using Task11.Product.General;
 using Task11.Product.MovieProduct;
 
 namespace Task11.ConsoleUI.ConsoleProductAdders
 {
-    internal class MovieProductConsoleReaderBehavior : IConsoleProductReader
+    internal class MovieProductConsoleReaderBehavior : IConsoleProductReader<IMovieProduct>
     {
-        public IProduct ConsoleReadProduct()
+        public IMovieProduct ConsoleReadProduct()
         {
             Console.Write("Введіть назву: ");
             string name = Console.ReadLine();

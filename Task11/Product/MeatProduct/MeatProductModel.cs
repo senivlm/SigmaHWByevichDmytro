@@ -7,7 +7,7 @@ using Task11.Product.General;
 
 namespace Task11.Product
 {
-    internal class MeatProductModel : FoodProductBase, IMeatProduct, ITXTSerializer
+    internal class MeatProductModel : FoodProductBase, IMeatProduct
     {
 
         #region Props
@@ -37,17 +37,7 @@ namespace Task11.Product
         {
             return new MeatProductModel(this);
         }
-        public string SerializeTxt()
-        {
-            StringBuilder sb = new();
-            sb.Append('{');
-            foreach (KeyValuePair<int, int> item in _daysToExpirationAndPresentOfChange)
-            {
-                sb.Append($"({item.Key} {item.Value})");
-            }
-            sb.Append('}');
-            return $"<MeatProduct>;<Name: {Name}>;<Price: {_price}>;<Weight: {Weight}>;<ExpirationTime: {ExpirationTime:d}>;<MeatSpecies: {MeatSpeciesProp}>;<MeatCategory: {MeatCategoryProp}>;<DaysToExpirationAndPresentOfChange: {sb}>;";
-        }
+       
 
         #endregion
         #region ObjectOverrides

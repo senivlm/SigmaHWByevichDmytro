@@ -7,19 +7,19 @@ using Task11.FileHandler;
 
 namespace Task11
 {
-    internal class ProductStorage<T> : IList<T>, ITXTSerializer
-        where T : IProduct
+    internal class ProductStorage<T> : IList<T>
+        where T : class, IProduct
     {
         #region Props
         private List<T> _products;
         /// <summary>
         /// перевіряє чи підпадає під задані умови продукт перед його додаванням
         /// </summary>
-        public event Predicate<T> OnProductPreAddFaceControl;
+        public event Predicate<T>? OnProductPreAddFaceControl;
         /// <summary>
         /// у випадку, коли продукт не підпадає під умови додавання викликається ця подія, повинна записувати лог у файл
         /// </summary>
-        public event Action<string> OnBadProductLogger;
+        public event Action<string>? OnBadProductLogger;
         public double Pirice => _products.Select(product => product.Price).Sum();
         public double MaxPrice => _products.Select(product => product.Price).Max();
         #endregion
@@ -28,8 +28,10 @@ namespace Task11
         {
             _products = new List<T>();
         }
-        public ProductStorage(IEnumerable<T> products) : this()
+        public ProductStorage(IEnumerable<T> products, Predicate<T>? onProductPreAddFaceControl, Action<string>? onBadProductLogger) : this()
         {
+            OnProductPreAddFaceControl += onProductPreAddFaceControl;
+            OnBadProductLogger += onBadProductLogger;
             foreach (T product in products)
             {
                 if (OnProductPreAddFaceControl?.Invoke(product) ?? true)
@@ -38,14 +40,7 @@ namespace Task11
                 }
                 else
                 {
-                    if (product is ITXTSerializer serializerProduct)
-                    {
-                        OnBadProductLogger?.Invoke(serializerProduct.SerializeTxt() + "<Describe : Продукт не підпадає під умови додавання>;");
-                    }
-                    else
-                    {
-                        OnBadProductLogger?.Invoke("<NonTXTSerializableProduct>;" + product.ToString() + "<Describe : Продукт не підпадає під умови додавання>;");
-                    }
+                    OnBadProductLogger?.Invoke(new TxtSerializer().Serialize(product) + "<Describe : Продукт не підпадає під умови додавання>;");
                 }
             }
         }
@@ -69,14 +64,7 @@ namespace Task11
             }
             else
             {
-                if (item is ITXTSerializer serializerProduct)
-                {
-                    OnBadProductLogger?.Invoke(serializerProduct.SerializeTxt() + "<Describe : Продукт не підпадає під умови додавання>;");
-                }
-                else
-                {
-                    OnBadProductLogger?.Invoke("<NonTXTSerializableProduct>;" + item.ToString() + "<Describe : Продукт не підпадає під умови додавання>;");
-                }
+                OnBadProductLogger?.Invoke(new TxtSerializer().Serialize(item) + "<Describe : Продукт не підпадає під умови додавання>;");
             }
         }
 
@@ -116,14 +104,7 @@ namespace Task11
             }
             else
             {
-                if (item is ITXTSerializer serializerProduct)
-                {
-                    OnBadProductLogger?.Invoke(serializerProduct.SerializeTxt() + "<Describe : Продукт не підпадає під умови додавання>;");
-                }
-                else
-                {
-                    OnBadProductLogger?.Invoke("<NonTXTSerializableProduct>;" + item.ToString() + "<Describe : Продукт не підпадає під умови додавання>;");
-                }
+                OnBadProductLogger?.Invoke(new TxtSerializer().Serialize(item) + "<Describe : Продукт не підпадає під умови додавання>;");
             }
         }
 
@@ -166,23 +147,6 @@ namespace Task11
         public void Sort(IComparer<T> comparer)
         {
             _products.Sort(comparer);
-        }
-
-        public string SerializeTxt()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (T item in _products)
-            {
-                if (item is ITXTSerializer serializer)
-                {
-                    sb.AppendLine(serializer.SerializeTxt());
-                }
-                else
-                {
-                    sb.AppendLine(item.ToString());
-                }
-            }
-            return sb.ToString();
         }
 
         #endregion

@@ -5,7 +5,7 @@ using Task11.Product.General;
 
 namespace Task11.Product.MovieProduct
 {
-    internal class MovieProductModel : ProductBase, IMovieProduct, ITXTSerializer
+    internal class MovieProductModel : ProductBase, IMovieProduct
     {
         #region Props
         public string Genre { get; set; }
@@ -39,10 +39,7 @@ namespace Task11.Product.MovieProduct
         {
             return new MovieProductModel(this);
         }
-        public string SerializeTxt()
-        {
-            return $"<MovieProduct>;<Name: {Name}>;<Price: {Price}>;<Genre: {Genre}>;<Duration: {Duration}>;<Link: {Link}>;<AuthorName: {AuthorName}>;";
-        }
+
         #endregion
 
         #region ObjectOverrides

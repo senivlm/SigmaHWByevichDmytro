@@ -4,9 +4,9 @@ using Task11.Product;
 
 namespace Task11.ConsoleUI.ConsoleProductAdders
 {
-    internal class DairyProductConsoleReaderBehavior : IConsoleProductReader
+    internal class DairyProductConsoleReaderBehavior : IConsoleProductReader<IDairyProduct>
     {
-        public IProduct ConsoleReadProduct()
+        public IDairyProduct ConsoleReadProduct()
         {
             Console.Write("Введіть назву: ");
             string name = Console.ReadLine();
@@ -44,7 +44,7 @@ namespace Task11.ConsoleUI.ConsoleProductAdders
                 Console.WriteLine("0 -> так");
                 Console.WriteLine("1 -> ні");
                 Console.Write("Оберіть варіант > ");
-                if (bool.Parse(Console.ReadLine()))
+                if (Console.ReadLine() == "0")
                 {
                     Console.Write("Введіть кількість днів до терміну придатності: ");
                     string daysLine = Console.ReadLine();
@@ -62,8 +62,13 @@ namespace Task11.ConsoleUI.ConsoleProductAdders
                     {
                         Console.WriteLine("Вже існує зміна ціни для цієї кількості днів");
                     }
+                    Console.WriteLine("Додати ще один елемент ?");
                 }
-                Console.WriteLine("Додати ще один елемент ?");
+                else
+                {
+                    isAddNewPair = false;
+                }
+
             } while (isAddNewPair);
             return new DairyProductModel(name, priceResult, weighResult, expirationTimeResult, daysToExpirationAndPresentOfChange);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Task11.Readers;
@@ -49,7 +50,8 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void WriteToFile(ITXTSerializer obj, string path, bool append = false)
+        public static void WriteToFile<T>(T obj, string path, bool append = false)
+            where T : class
         {
             if (!File.Exists(path))
             {
@@ -57,13 +59,41 @@ namespace Task11.FileHandler
             }
             try
             {
+                TxtSerializer txtSerializer = new TxtSerializer();
                 using (StreamWriter writer = new StreamWriter(path, append))
                 {
                     if (append)
                     {
                         writer.WriteLine();
                     }
-                    writer.WriteLine(obj.SerializeTxt());
+                    writer.WriteLine(txtSerializer.Serialize(obj));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public static void WriteToFileCollection<T>(T obj, string path, bool append = false)
+            where T : IEnumerable   
+        {
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException();
+            }
+            try
+            {
+                TxtSerializer txtSerializer = new TxtSerializer();
+                using (StreamWriter writer = new StreamWriter(path, append))
+                {
+                    if (append)
+                    {
+                        writer.WriteLine();
+                    }
+                    foreach (var item in obj)
+                    {
+                        writer.WriteLine(txtSerializer.Serialize(item));
+                    }
                 }
             }
             catch (Exception)

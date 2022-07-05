@@ -1,9 +1,13 @@
-﻿namespace Task11.Validators
+﻿using Task11.FileHandler;
+using Task11.Parsers;
+
+namespace Task11.Validators
 {
     internal delegate void LoggerOnBadFormat(string message);
-    internal interface IStringParser<T>
+    internal interface IStringParser<out T>
     {
-        T Parse(string str);
+
+        T Parse(TXTSerializedParameters txtSerializedParams);
         event LoggerOnBadFormat OnBadFormatLogger;
     }
 }

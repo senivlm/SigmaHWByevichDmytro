@@ -1,3 +1,6 @@
-<MovieProduct>;<Name: 31 Styl>;<Price: 31,12>;<Genre: Horror>;<Duration: 03:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid>;
-<MovieProduct>;<Name: 12 Chairs>;<Price: 12,32>;<Genre: Comedy>;<Duration: 02:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid Gayday>;
-
+<Type: MovieProductModel>;<Genre: Horror>;<Duration: 03:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid>;<Price: 31,12>;<Name: 31 Styl>;
+<Type: MovieProductModel>;<Genre: Horror>;<Duration: 03:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid>;<Price: 31,12>;<Name: 31 Styl>;
+<Type: MovieProductModel>;<Genre: Comedy>;<Duration: 02:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid Gayday>;<Price: 12,32>;<Name: 12 Chairs>;
+<Type: MovieProductModel>;<Genre: Comedy>;<Duration: 02:30:00>;<Link: https://www.amazon.com/12-Chairs-Archil-Gomiashvili/dp/B071NXJXBV>;<AuthorName: Leonid Gayday>;<Price: 12,32>;<Name: 12 Chairs>;
+<Type: DairyProductModel>;<ExpirationTime: 30.08.2022 00:00:00>;<Weight: 2>;<Price: 7,259999999999999>;<DaysToExpirationAndPresentOfChange: {[1, 45][3, 40]}>;<Name: name>;
+<Type: DairyProductModel>;<ExpirationTime: 01.09.2022 00:00:00>;<Weight: 3>;<Price: 2,5775>;<DaysToExpirationAndPresentOfChange: {[3, 50][6, 20][8, 10]}>;<Name: Name>;

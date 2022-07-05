@@ -5,7 +5,6 @@ namespace Task11.Product._General
     internal abstract class ProductBase : IProduct
     {
         protected double _price;
-        public virtual string Name { get; set; }
         public virtual double Price
         {
             get => _price;
@@ -18,6 +17,7 @@ namespace Task11.Product._General
                 _price = value;
             }
         }
+        public virtual string Name { get; set; }
         #region Ctors
         protected ProductBase() : this(default, default) { }
         protected ProductBase(string name, double price)

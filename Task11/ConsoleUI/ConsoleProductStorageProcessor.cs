@@ -8,17 +8,18 @@ using Task11.Validators;
 
 namespace Task11.ConsoleUI
 {
-    internal class ConsoleProductStorageProcessor
+    internal class ConsoleProductStorageProcessor<T>
+        where T : class, IProduct
     {
-        private Dictionary<string, IConsoleProductReader> _consoleReaders;
-        private Dictionary<string, IStringParser<IProduct>> _parsersByType;
-        private ProductStorage<IProduct> _producStorage;
+        private Dictionary<string, IConsoleProductReader<T>> _consoleReaders;
+        private Dictionary<string, IStringParser<T>> _parsersByType;
+        private ProductStorage<T> _producStorage;
         private Menu _mainMenu;
         private Menu _addproductMenu;
         private List<Option> _mainMenuOptions;
         private List<Option> _productAddOptions;
 
-        public ConsoleProductStorageProcessor(ProductStorage<IProduct> producStorage, Dictionary<string, IConsoleProductReader> consoleReaders, Dictionary<string, IStringParser<IProduct>> parsersByType)
+        public ConsoleProductStorageProcessor(ProductStorage<T> producStorage, Dictionary<string, IConsoleProductReader<T>> consoleReaders, Dictionary<string, IStringParser<T>> parsersByType)
         {
             _consoleReaders = consoleReaders;
             _producStorage = producStorage;
@@ -37,7 +38,7 @@ namespace Task11.ConsoleUI
                 {new Option("Додати продукт", ()=>_addproductMenu.PrintMenu()) },
                 {new Option("Вивести склад на екран", ()=>PrintStorage() )},
                 {new Option("Зчитати склад з файлу", ()=>ReadProductStorageFormFile()) },
-                {new Option("Записати склад у файл", ()=>FileHandlerService.WriteToFile(_producStorage, "../../../Files/Result.txt")) },
+                {new Option("Записати склад у файл", ()=>FileHandlerService.WriteToFileCollection(_producStorage, "../../../Files/Result.txt")) },
                 {new Option("Відсортувати склад", ()=>_producStorage.Sort() )},
                 {new Option("Вивести сумарну ціну скалду", ()=>PrintStoragePrice() )},
                 {new Option("Найдорощий продукт", ()=>PrintStorageMaxPrice() )}
@@ -51,9 +52,9 @@ namespace Task11.ConsoleUI
         private void InitializeAddProductMenu()
         {
             _productAddOptions = new List<Option>();
-            foreach (KeyValuePair<string, IConsoleProductReader> item in _consoleReaders)
+            foreach (KeyValuePair<string, IConsoleProductReader<T>> item in _consoleReaders)
             {
-                _productAddOptions.Add(new Option(item.Key, () => _producStorage.Add(item.Value.ConsoleReadProduct())));
+                _productAddOptions.Add(new Option(item.Key, () => _producStorage.Add((T)item.Value.ConsoleReadProduct())));
             }
             _addproductMenu = new Menu(_productAddOptions)
             {
@@ -62,10 +63,10 @@ namespace Task11.ConsoleUI
         }
         private void ReadProductStorageFormFile()
         {
-            FileHandlerService.ReadToCollection
+            FileHandlerService.ReadToCollection<ProductStorage<T>,T>
                 (
                     obj: ref _producStorage,
-                    collectionReader: new TXTSerializedStorageReader<IProduct>(Logger.Instance.Log),
+                    collectionReader: new TXTSerializedStorageReader<T>(Logger.Instance.Log),
                     parser: _parsersByType,
                     path: "../../../Files/ProductsData.txt"
                 );
@@ -89,7 +90,7 @@ namespace Task11.ConsoleUI
         }
         private void PrintStorageMaxPrice()
         {
-            Console.WriteLine($"Максимальна ціна на складі: {_producStorage.GetAll<IProduct>(product => product.Price == _producStorage.MaxPrice).ToList()[0]}");
+            Console.WriteLine($"Максимальна ціна на складі: {_producStorage.GetAll<T>(product => product.Price == _producStorage.MaxPrice).ToList()[0]}");
         }
     }
 }

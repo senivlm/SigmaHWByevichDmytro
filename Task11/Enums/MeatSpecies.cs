@@ -6,6 +6,6 @@
         MUTTON,
         VEAL,
         PORK,
-        CHIKEN
+        CHIСKEN
     }
 }

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using Task11.FileHandler;
+using Task11.Parsers;
 using Task11.Validators;
 
 namespace Task11.Readers
 {
     internal class TXTSerializedStorageReader<T> : IStreamCollectionReader<ProductStorage<T>, T>
-        where T : IProduct
+        where T : class, IProduct
     {
         public event LoggerOnBadFormat OnBadFormatLogger;
         public TXTSerializedStorageReader()
-        {
-
-        }
+        { }
         public TXTSerializedStorageReader(LoggerOnBadFormat onBadFormatLogger)
         {
             OnBadFormatLogger += onBadFormatLogger;
@@ -27,19 +27,19 @@ namespace Task11.Readers
             }
             try
             {
+                TXTSerializedLineAnalyzer tXTSerializedLineAnalyzer = new();
                 while (stream.EndOfStream == false)
                 {
                     string line = stream.ReadLine();
                     if (string.IsNullOrEmpty(line) == false)
                     {
-                        Regex typePattern = new("^<([A-Za-z]+)>");
-                        Match typeMatch = typePattern.Match(line);
-                        if (typeMatch.Success)
+                        TXTSerializedParameters LineParams = tXTSerializedLineAnalyzer.GetTXTSerializedParameters(line);
+                        if (LineParams.ContainsKey("Type"))
                         {
-                            string type = typePattern.Match(line).Groups[1].Value;
+                            string type = LineParams["Type"];
                             if (validator.ContainsKey(type))
                             {
-                                T tmpRes = validator[type].Parse(line);
+                                T tmpRes = validator[type].Parse(LineParams);
                                 if (tmpRes is not null)
                                 {
                                     obj.Add(tmpRes);
