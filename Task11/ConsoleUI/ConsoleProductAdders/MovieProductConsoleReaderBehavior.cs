@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task11.Product.MovieProduct;
 
 namespace Task11.ConsoleUI.ConsoleProductAdders
@@ -51,7 +47,7 @@ namespace Task11.ConsoleUI.ConsoleProductAdders
                 throw new ArgumentException("Відсутніе ім'я автора");
             }
 
-            return new MovieProductModel(name,priceResult,genreLine,durationResut,linkLine,authorNameLine);
+            return new MovieProductModel(name, priceResult, genreLine, durationResut, linkLine, authorNameLine);
         }
     }
 }

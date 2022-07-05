@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task11.Enums;
 using Task11.Product;
 
@@ -82,7 +79,7 @@ namespace Task11.ConsoleUI.ConsoleProductAdders
                 }
                 Console.WriteLine("Додати ще один елемент ?");
             } while (isAddNewPair);
-            return new MeatProductModel(name, priceResult, weighResult, expirationTimeResult,meatSpeciesResult,meatCategoryResult, daysToExpirationAndPresentOfChange);
+            return new MeatProductModel(name, priceResult, weighResult, expirationTimeResult, meatSpeciesResult, meatCategoryResult, daysToExpirationAndPresentOfChange);
         }
     }
 }

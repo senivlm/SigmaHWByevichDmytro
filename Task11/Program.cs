@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using Task11.ConsoleUI;
 using Task11.ConsoleUI.ConsoleProductAdders;
-using Task11.FileHandler;
 using Task11.Parsers;
-using Task11.Product;
-using Task11.Readers;
 using Task11.Services;
 using Task11.Validators;
 
@@ -28,7 +25,7 @@ namespace Task11
                     { "DairyProduct", new DairyProductParser(Logger.Instance.Log) },
                     { "MovieProduct", new MovieProductParser(Logger.Instance.Log) },
                     { "MeatProduct", new MeatProductParser(Logger.Instance.Log) }
-                };           
+                };
 
                 Dictionary<string, IConsoleProductReader> ConsoleReaderByType = new()
                 {
@@ -42,7 +39,7 @@ namespace Task11
                 storage.OnBadProductLogger += Logger.Instance.Log;
 
                 ConsoleProductStorageProcessor consoleProductStorageProcessor = new(storage, ConsoleReaderByType, ParsersByType);
-                consoleProductStorageProcessor.PrintMenu();               
+                consoleProductStorageProcessor.PrintMenu();
 
 
             }

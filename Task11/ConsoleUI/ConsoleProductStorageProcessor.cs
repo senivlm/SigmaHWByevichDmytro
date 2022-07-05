@@ -11,7 +11,7 @@ namespace Task11.ConsoleUI
     internal class ConsoleProductStorageProcessor
     {
         private Dictionary<string, IConsoleProductReader> _consoleReaders;
-        Dictionary<string, IStringParser<IProduct>> _parsersByType;
+        private Dictionary<string, IStringParser<IProduct>> _parsersByType;
         private ProductStorage<IProduct> _producStorage;
         private Menu _mainMenu;
         private Menu _addproductMenu;
