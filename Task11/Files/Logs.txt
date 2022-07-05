@@ -3,4 +3,3 @@
 <MeatP�duct>;<Name: Steak>;<Price: 108>;<Weight: 3>;<ExpirationTime: 10.07.2022>;<MeatSpecies: MUTTON>;<MeatCategory: FIRST>;<DaysToExpirationAndPresentOfChange: {(2 40)(5 20)(7 10)}>;< Description: Хибний формат запису типу даних>;<LogTime: 05.07.2022 13:34:43>;
 <DairyProduct>;<Name: Name>;<Price: 10,31>;<Weight: 3>;<ExpirationTime: 01.01.2022>;<DaysToExpirationAndPresentOfChange: {(3 50)(6 20)(8 10)}>;<Describe : Продукт не підпадає під умови додавання>;<LogTime: 05.07.2022 13:36:26>;
 <DairyProduct>;<Name: name>;<Price: 24>;<Weight: 2>;<ExpirationTime: 30.06.2022>;<DaysToExpirationAndPresentOfChange: {(1 45)(3 40)}>;<Describe : Продукт не підпадає під умови додавання>;<LogTime: 05.07.2022 13:36:26>;
-<MeatP�duct>;<Name: Steak>;<Price: 108>;<Weight: 3>;<ExpirationTime: 10.07.2022>;<MeatSpecies: MUTTON>;<MeatCategory: FIRST>;<DaysToExpirationAndPresentOfChange: {(2 40)(5 20)(7 10)}>;< Description: Хибний формат запису типу даних>;<LogTime: 05.07.2022 13:36:26>;

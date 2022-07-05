@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Task11.ConsoleUI;
+using Task11.ConsoleUI.ConsoleProductAdders;
 using Task11.FileHandler;
 using Task11.Parsers;
 using Task11.Product;
@@ -26,28 +28,29 @@ namespace Task11
                     { "DairyProduct", new DairyProductParser(Logger.Instance.Log) },
                     { "MovieProduct", new MovieProductParser(Logger.Instance.Log) },
                     { "MeatProduct", new MeatProductParser(Logger.Instance.Log) }
+                };           
+
+                Dictionary<string, IConsoleProductReader> ConsoleReaderByType = new()
+                {
+                    { "Молочний продукт", new DairyProductConsoleReaderBehavior() },
+                    { "М'ясний продукт", new MeatProductConsoleReaderBehavior() },
+                    { "Фільм", new MovieProductConsoleReaderBehavior() }
                 };
 
                 ProductStorage<IProduct> storage = new ProductStorage<IProduct>();
                 storage.OnProductPreAddFaceControl += PreAddBehaviorService.IsProductNotExpired;
                 storage.OnBadProductLogger += Logger.Instance.Log;
 
-                FileHandlerService.ReadToCollection
-                (
-                    obj: ref storage,
-                    collectionReader: new TXTSerializedStorageReader<IProduct>(Logger.Instance.Log),
-                    parser: ParsersByType,
-                    path: "../../../Files/ProductsData.txt"
-                );
+                ConsoleProductStorageProcessor consoleProductStorageProcessor = new(storage, ConsoleReaderByType, ParsersByType);
+                consoleProductStorageProcessor.PrintMenu();
 
-                FileHandlerService.WriteToFile(storage, "../../../Files/ProductsData.txt");
-                storage.Sort();
+
+
                 foreach (var product in storage.GetAll<IDairyProduct>(product => product.Price > 10))
                 {
                     Console.WriteLine(product);
                 }
-                Console.WriteLine(storage);
-                Console.WriteLine($"Price: {storage.Pirice}");
+                
 
 
             }
