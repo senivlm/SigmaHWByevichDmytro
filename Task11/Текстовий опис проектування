@@ -224,8 +224,6 @@ MeatProductModel
 А також такий підхід відповідає принципу Барбари Лісков
 Діаграма:
 Нажаль через брак часу не зміг реалізувати UML діаграму руцями, тож використав вбудовану можливість VS2022
-![Image](https://drive.google.com/uc?export=view&id=160K5eBKstCipCaY2v3idA-NWUD_NFhHy)
-<a href="https://drive.google.com/uc?export=view&id=160K5eBKstCipCaY2v3idA-NWUD_NFhHy"><img src="https://drive.google.com/uc?export=view&id=160K5eBKstCipCaY2v3idA-NWUD_NFhHy" style="width: 650px; max-width: 100%; height: auto" title="Click to enlarge picture" />
    
 Склад продуктів+Task 12.1-2
 Завдяки створенню усіх продуктів на базі IProduct, ми можемо створити 
