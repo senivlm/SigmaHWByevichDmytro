@@ -26,13 +26,13 @@ namespace Task11.ConsoleUI
             _consoleReaders = new(consoleReaders);
             _producStorage = new(producStorage);
             _parsersByType = new(parsersByType);
-            InitializeMainMenu();
+            UpdateMainMenu();
         }
         public void PrintMenu()
         {
             _mainMenu.PrintMenu();
         }
-        private void InitializeMainMenu()
+        private void UpdateMainMenu()
         {
             UpdateAddProductMenu();
             _mainMenuOptions = new List<Option>()
@@ -45,6 +45,7 @@ namespace Task11.ConsoleUI
                 {new Option("Вивести сумарну ціну скалду", ()=>PrintStoragePrice() )},
                 {new Option("Найдорощий продукт", ()=>PrintStorageMaxPrice() )},
                 {new Option("Видалити продукт", ()=>DoActionOnProductMenu(DeleteProduct))},
+                {new Option("Змінити ціну продукту", ()=>DoActionOnProductMenu(ChangeProductPrice))},
             };
             if (_mainMenu is null)
             {
@@ -61,9 +62,9 @@ namespace Task11.ConsoleUI
         private void UpdateAddProductMenu()
         {
             _productAddOptions = new List<Option>();
-            foreach (KeyValuePair<string, IConsoleProductReader<T>> item in _consoleReaders)
+            foreach (KeyValuePair<string, IConsoleProductReader<T>> reader in _consoleReaders)
             {
-                _productAddOptions.Add(new Option(item.Key, () => ConsoleReadProduct(item.Value)));
+                _productAddOptions.Add(new Option(reader.Key, () => ConsoleReadProduct(reader.Value)));
             }
             if (_addproductMenu is null)
             {
@@ -78,30 +79,28 @@ namespace Task11.ConsoleUI
             }
             
         }
+        private void UpdateActionMenu()
+        {
+            _actionMenuOptions = new List<Option>();
+            foreach (var item in _producStorage)
+            {
+                _actionMenuOptions.Add(new(item.ToString(), () => DoActionOnProduct<int>(item)));
+            }
+            if (_actionMenu is null)
+            {
+                _actionMenu = new Menu(_actionMenuOptions, "Оберить продукт: ");
+            }
+            else
+            {
+                _actionMenu.ChangeOption(_actionMenuOptions);
+            }
+        }
         private void DoActionOnProductMenu(Action<T> action)
         {
             _currentActionForActionMenu = action;
             UpdateActionMenu();
             _actionMenu.PrintMenu();
-        }
-
-        private void UpdateActionMenu()
-        {
-            List<Option> _productAddOptions = new List<Option>();
-            foreach (var item in _producStorage)
-            {
-                _productAddOptions.Add(new(item.ToString(), () => DoActionOnProduct<int>(item)));
-            }
-            if (_actionMenu is null)
-            {
-                _actionMenu = new Menu(_productAddOptions, "Оберить продукт: ");
-            }
-            else
-            {
-                _actionMenu.ChangeOption(_productAddOptions);
-            }
-        }
-
+        }      
         private void DoActionOnProduct<G>(T product)
         {
             try
@@ -125,7 +124,20 @@ namespace Task11.ConsoleUI
             }
             UpdateActionMenu();
         }
-
+        private void ChangeProductPrice(T product)
+        {
+            Console.Write("Введіть процент на який змінити ціну: ");
+            try
+            {
+                product.ChangePrice(int.Parse(Console.ReadLine()));
+                Console.WriteLine("Ціна успішно змінена");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Не вдалося змінити ціну");
+            }
+            UpdateActionMenu();
+        }
         private void ConsoleReadProduct(IConsoleProductReader<T> consoleProductReader)
         {
             try

@@ -50,7 +50,7 @@ namespace Task11
         #region IList
         public T this[int index]
         {
-            get => (T)_products[index].Clone();
+            get => _products[index];
             set => _products[index] = (T)value.Clone();
         }
 
