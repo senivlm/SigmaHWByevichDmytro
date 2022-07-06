@@ -34,7 +34,7 @@ namespace Task11
                     { "Фільм", new MovieProductConsoleReaderBehavior() }
                 };
 
-                ProductStorage<IProduct> storage = new ProductStorage<IProduct>();
+                ProductStorage<IProduct> storage = new();
                 storage.OnProductPreAddFaceControl += PreAddBehaviorService.IsProductNotExpired;
                 storage.OnBadProductLogger += Logger.Instance.Log;
 

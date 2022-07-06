@@ -51,7 +51,7 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void WriteToFile<T,G>(T obj, ISerializer<G> serializer, string path, bool append = false)
+        public static void WriteToFile<T, G>(T obj, ISerializer<G> serializer, string path, bool append = false)
             where T : class
         {
             if (!File.Exists(path))

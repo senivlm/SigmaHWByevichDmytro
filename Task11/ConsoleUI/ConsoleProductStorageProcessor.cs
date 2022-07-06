@@ -28,24 +28,28 @@ namespace Task11.ConsoleUI
             _parsersByType = new(parsersByType);
             UpdateMainMenu();
         }
-        public void PrintMenu()
-        {
-            _mainMenu.PrintMenu();
-        }
         private void UpdateMainMenu()
         {
             UpdateAddProductMenu();
             _mainMenuOptions = new List<Option>()
             {
-                {new Option("Додати продукт", ()=>_addproductMenu.PrintMenu()) },
-                {new Option("Вивести склад на екран", ()=>PrintStorage() )},
-                {new Option("Зчитати склад з файлу", ()=>ReadProductStorageFormFile()) },
-                {new Option("Записати склад у файл", ()=>FileHandlerService.WriteToFileCollection(_producStorage,new TxtSerializer(), "../../../Files/Result.txt")) },
-                {new Option("Відсортувати склад", ()=>_producStorage.Sort() )},
-                {new Option("Вивести сумарну ціну скалду", ()=>PrintStoragePrice() )},
-                {new Option("Найдорощий продукт", ()=>PrintStorageMaxPrice() )},
-                {new Option("Видалити продукт", ()=>DoActionOnProductMenu(DeleteProduct))},
-                {new Option("Змінити ціну продукту", ()=>DoActionOnProductMenu(ChangeProductPrice))},
+                {new("Додати продукт",               () => _addproductMenu.PrintMenu() )},
+
+                {new("Вивести склад на екран",       () => PrintStorage() )},
+
+                {new("Зчитати склад з файлу",        () => ReadProductStorageFormFile() )},
+
+                {new("Записати склад у файл",        () => FileHandlerService.WriteToFileCollection(_producStorage,new TxtSerializer(), "../../../Files/Result.txt") )},
+
+                {new("Відсортувати склад",           () => _producStorage.Sort() )},
+
+                {new("Вивести сумарну ціну скалду",  () => PrintStoragePrice() )},
+
+                {new("Найдорощий продукт",           () => PrintStorageMaxPrice() )},
+
+                {new("Видалити продукт",             () => DoActionOnProductMenu(DeleteProduct) )},
+
+                {new("Змінити ціну продукту",        () => DoActionOnProductMenu(ChangeProductPrice) )},
             };
             if (_mainMenu is null)
             {
@@ -58,6 +62,10 @@ namespace Task11.ConsoleUI
             {
                 _mainMenu.ChangeOption(_mainMenuOptions);
             }
+        }
+        public void PrintMenu()
+        {
+            _mainMenu.PrintMenu();
         }
         private void UpdateAddProductMenu()
         {
@@ -77,12 +85,12 @@ namespace Task11.ConsoleUI
             {
                 _addproductMenu.ChangeOption(_productAddOptions);
             }
-            
+
         }
         private void UpdateActionMenu()
         {
             _actionMenuOptions = new List<Option>();
-            foreach (var item in _producStorage)
+            foreach (T item in _producStorage)
             {
                 _actionMenuOptions.Add(new(item.ToString(), () => DoActionOnProduct<int>(item)));
             }
@@ -100,7 +108,7 @@ namespace Task11.ConsoleUI
             _currentActionForActionMenu = action;
             UpdateActionMenu();
             _actionMenu.PrintMenu();
-        }      
+        }
         private void DoActionOnProduct<G>(T product)
         {
             try

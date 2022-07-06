@@ -1,6 +1,4 @@
-﻿using Task11.FileHandler;
-
-namespace Task11
+﻿namespace Task11
 {
     /// <summary>
     /// Серіалізує дані типу G у тип T

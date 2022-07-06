@@ -9,7 +9,7 @@ namespace Task11.FileHandler
     {
         #region Props
         public string PrimalLine { get; set; }
-        private Dictionary<string, string> _parameters; 
+        private Dictionary<string, string> _parameters;
         #endregion
         #region Ctors
         public TXTSerializedParameters()
@@ -25,7 +25,7 @@ namespace Task11.FileHandler
             PrimalLine = primalLine;
         }
         public TXTSerializedParameters(TXTSerializedParameters other) : this(other._parameters, other.PrimalLine)
-        { } 
+        { }
         #endregion
         #region IDictionary
 
@@ -106,7 +106,7 @@ namespace Task11.FileHandler
                 sb.Append($"<{item.Key}: {item.Value}>;");
             }
             return sb.ToString();
-        } 
+        }
         #endregion
 
     }
