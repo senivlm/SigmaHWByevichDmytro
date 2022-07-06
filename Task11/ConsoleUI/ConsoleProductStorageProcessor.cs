@@ -15,24 +15,26 @@ namespace Task11.ConsoleUI
         private Dictionary<string, ITXTSerializedParametersParser<T>> _parsersByType;
         private ProductStorage<T> _producStorage;
         private Menu _mainMenu;
+        private Menu _actionMenu;
         private Menu _addproductMenu;
         private List<Option> _mainMenuOptions;
+        private List<Option> _actionMenuOptions;
         private List<Option> _productAddOptions;
-
+        private Action<T> _currentActionForActionMenu;
         public ConsoleProductStorageProcessor(ProductStorage<T> producStorage, Dictionary<string, IConsoleProductReader<T>> consoleReaders, Dictionary<string, ITXTSerializedParametersParser<T>> parsersByType)
         {
             _consoleReaders = new(consoleReaders);
             _producStorage = new(producStorage);
             _parsersByType = new(parsersByType);
-            UpdateMainMenu();
+            InitializeMainMenu();
         }
         public void PrintMenu()
         {
             _mainMenu.PrintMenu();
         }
-        private void UpdateMainMenu()
+        private void InitializeMainMenu()
         {
-            InitializeAddProductMenu();
+            UpdateAddProductMenu();
             _mainMenuOptions = new List<Option>()
             {
                 {new Option("Додати продукт", ()=>_addproductMenu.PrintMenu()) },
@@ -41,28 +43,89 @@ namespace Task11.ConsoleUI
                 {new Option("Записати склад у файл", ()=>FileHandlerService.WriteToFileCollection(_producStorage,new TxtSerializer(), "../../../Files/Result.txt")) },
                 {new Option("Відсортувати склад", ()=>_producStorage.Sort() )},
                 {new Option("Вивести сумарну ціну скалду", ()=>PrintStoragePrice() )},
-                {new Option("Найдорощий продукт", ()=>PrintStorageMaxPrice() )}
+                {new Option("Найдорощий продукт", ()=>PrintStorageMaxPrice() )},
+                {new Option("Видалити продукт", ()=>DoActionOnProductMenu(DeleteProduct))},
             };
-
-            _mainMenu = new Menu(_mainMenuOptions)
+            if (_mainMenu is null)
             {
-                Title = "Головне меню"
-            };
+                _mainMenu = new Menu(_mainMenuOptions)
+                {
+                    Title = "Головне меню"
+                };
+            }
+            else
+            {
+                _mainMenu.ChangeOption(_mainMenuOptions);
+            }
         }
-        private void InitializeAddProductMenu()
+        private void UpdateAddProductMenu()
         {
             _productAddOptions = new List<Option>();
             foreach (KeyValuePair<string, IConsoleProductReader<T>> item in _consoleReaders)
             {
-
                 _productAddOptions.Add(new Option(item.Key, () => ConsoleReadProduct(item.Value)));
-
             }
-            _addproductMenu = new Menu(_productAddOptions)
+            if (_addproductMenu is null)
             {
-                Title = "Додавання нового продукту"
-            };
+                _addproductMenu = new Menu(_productAddOptions)
+                {
+                    Title = "Додавання нового продукту"
+                };
+            }
+            else
+            {
+                _addproductMenu.ChangeOption(_productAddOptions);
+            }
+            
         }
+        private void DoActionOnProductMenu(Action<T> action)
+        {
+            _currentActionForActionMenu = action;
+            UpdateActionMenu();
+            _actionMenu.PrintMenu();
+        }
+
+        private void UpdateActionMenu()
+        {
+            List<Option> _productAddOptions = new List<Option>();
+            foreach (var item in _producStorage)
+            {
+                _productAddOptions.Add(new(item.ToString(), () => DoActionOnProduct<int>(item)));
+            }
+            if (_actionMenu is null)
+            {
+                _actionMenu = new Menu(_productAddOptions, "Оберить продукт: ");
+            }
+            else
+            {
+                _actionMenu.ChangeOption(_productAddOptions);
+            }
+        }
+
+        private void DoActionOnProduct<G>(T product)
+        {
+            try
+            {
+                _currentActionForActionMenu?.Invoke(product);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Не вдалося виконати цю дію, непердбачена помилка");
+            }
+        }
+        private void DeleteProduct(T product)
+        {
+            if (_producStorage.Remove(product))
+            {
+                Console.WriteLine("Продукт успішно видалено");
+            }
+            else
+            {
+                Console.WriteLine("Продукт не вдалося видалити");
+            }
+            UpdateActionMenu();
+        }
+
         private void ConsoleReadProduct(IConsoleProductReader<T> consoleProductReader)
         {
             try

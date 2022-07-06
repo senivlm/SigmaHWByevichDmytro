@@ -5,7 +5,7 @@ namespace Task11
 {
     internal class Menu
     {
-        private List<Option> _options;
+        private List<Option> _options;        
         public string Title { get; set; }
         public Menu()
         {
@@ -31,6 +31,10 @@ namespace Task11
             {
                 PrintMenu();
             }
+        }
+        public void ChangeOption(List<Option> options)
+        {
+            _options = new(options);
         }
         private bool InvokeSelectedOption()
         {
