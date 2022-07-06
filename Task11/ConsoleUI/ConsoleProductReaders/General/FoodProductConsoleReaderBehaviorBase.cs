@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task11.ConsoleUI.ConsoleProductReaders
 {
     internal abstract class FoodProductConsoleReaderBehaviorBase : ProductConsoleReaderBehaviorBase, IConsoleProductReader<IFoodProduct>
     {
-        public override abstract IFoodProduct ConsoleReadProduct();
+        public abstract override IFoodProduct ConsoleReadProduct();
         protected virtual void ConsoleReadFoodProductBase<T>(ref T product)
            where T : class, IFoodProduct
         {

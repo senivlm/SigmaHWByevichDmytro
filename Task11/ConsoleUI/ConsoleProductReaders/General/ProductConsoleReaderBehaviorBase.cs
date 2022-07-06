@@ -32,7 +32,7 @@ namespace Task11.ConsoleUI.ConsoleProductReaders
             {
                 throw new ArgumentException("Хибний формат ціни");
             }
-            product.Price =  priceResult;
+            product.Price = priceResult;
         }
     }
 }

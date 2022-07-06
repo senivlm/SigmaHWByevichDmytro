@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Task11.Product;
 
 namespace Task11.ConsoleUI.ConsoleProductReaders

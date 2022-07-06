@@ -23,7 +23,7 @@ namespace Task11.ConsoleUI.ConsoleProductReaders
 
                 throw;
             }
-            
+
         }
         private void ConsoleReadGenre<T>(ref T product)
           where T : class, IMovieProduct

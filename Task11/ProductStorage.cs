@@ -9,7 +9,7 @@ namespace Task11
     internal class ProductStorage<T> : IList<T>
         where T : class, IProduct
     {
-        
+
         #region Props
         private List<T> _products;
         /// <summary>
