@@ -7,7 +7,7 @@ using Task11.Validators;
 
 namespace Task11.Parsers
 {
-    internal abstract class FoodProductParserBase : ProductParserBase, IStringParser<IFoodProduct>
+    internal abstract class FoodProductParserBase : ProductParserBase, ITXTSerializedParametersParser<IFoodProduct>
     {
         protected Regex _changePriceByDaysElementPattern = new(@"{(\[[\d]+[,][\s][\d]+\])*}");
 

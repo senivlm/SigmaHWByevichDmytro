@@ -20,7 +20,7 @@ namespace Task11
             {
                 Logger.Instance.Path = "../../../Files/Logs.txt";
 
-                Dictionary<string, IStringParser<IProduct>> ParsersByType = new()
+                Dictionary<string, ITXTSerializedParametersParser<IProduct>> ParsersByType = new()
                 {
                     { "DairyProductModel", new DairyProductParser(Logger.Instance.Log) },
                     { "MovieProductModel", new MovieProductParser(Logger.Instance.Log) },

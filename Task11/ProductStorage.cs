@@ -44,6 +44,8 @@ namespace Task11
                 }
             }
         }
+        public ProductStorage(ProductStorage<T> other) : this(other._products, other.OnProductPreAddFaceControl, other.OnBadProductLogger)
+        { }
         #endregion
         #region IList
         public T this[int index]

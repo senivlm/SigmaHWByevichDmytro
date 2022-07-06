@@ -7,15 +7,26 @@ namespace Task11.FileHandler
 {
     internal class TXTSerializedParameters : IDictionary<string, string>
     {
+        #region Props
         public string PrimalLine { get; set; }
-        private Dictionary<string, string> _parameters;
-
-
+        private Dictionary<string, string> _parameters; 
+        #endregion
+        #region Ctors
         public TXTSerializedParameters()
         {
             _parameters = new();
-
         }
+        public TXTSerializedParameters(Dictionary<string, string> parameters)
+        {
+            _parameters = new(parameters);
+        }
+        public TXTSerializedParameters(Dictionary<string, string> parameters, string primalLine) : this(parameters)
+        {
+            PrimalLine = primalLine;
+        }
+        public TXTSerializedParameters(TXTSerializedParameters other) : this(other._parameters, other.PrimalLine)
+        { } 
+        #endregion
         #region IDictionary
 
         public string this[string key]
@@ -86,7 +97,7 @@ namespace Task11.FileHandler
             return GetEnumerator();
         }
         #endregion
-
+        #region ObjectOverrides
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -95,8 +106,8 @@ namespace Task11.FileHandler
                 sb.Append($"<{item.Key}: {item.Value}>;");
             }
             return sb.ToString();
-        }
-
+        } 
+        #endregion
 
     }
 }

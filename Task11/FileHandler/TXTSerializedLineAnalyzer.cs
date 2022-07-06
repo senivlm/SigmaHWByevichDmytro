@@ -15,9 +15,6 @@ namespace Task11.FileHandler
             }
             return txtSerializedParameters;
 
-
-
-
         }
 
     }

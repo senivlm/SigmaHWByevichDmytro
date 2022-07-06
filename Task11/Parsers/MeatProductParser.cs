@@ -7,7 +7,7 @@ using Task11.Validators;
 
 namespace Task11.Parsers
 {
-    internal class MeatProductParser : FoodProductParserBase, IStringParser<IMeatProduct>
+    internal class MeatProductParser : FoodProductParserBase, ITXTSerializedParametersParser<IMeatProduct>
     {
         public MeatProductParser() : base()
         { }

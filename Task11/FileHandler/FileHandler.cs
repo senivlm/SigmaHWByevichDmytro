@@ -10,7 +10,7 @@ namespace Task11.FileHandler
     internal static class FileHandlerService
     {
 
-        public static bool TryReadToObject<G>(out G obj, IStreamLineReader<G> streamReader, IStringParser<G> validator, string path)
+        public static bool TryReadToObject<G>(out G obj, IObjectGetterFromSerializedLine<G> streamLineReader, ITXTSerializedParametersParser<G> validator, string path)
             where G : new()
         {
             if (!File.Exists(path))
@@ -21,7 +21,8 @@ namespace Task11.FileHandler
             {
                 using (StreamReader stream = new StreamReader(path))
                 {
-                    return streamReader.TryReadLine(out obj, stream, validator);
+                    string line = stream.ReadLine();
+                    return streamLineReader.TryGetObject(out obj, line, validator);
                 }
             }
             catch (Exception)
@@ -30,7 +31,7 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void ReadToCollection<T, G>(ref T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, IStringParser<G>> parser, string path)
+        public static void ReadToCollection<T, G>(ref T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, ITXTSerializedParametersParser<G>> parser, string path)
             where T : IEnumerable<G>
         {
             if (!File.Exists(path))
@@ -50,7 +51,7 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void WriteToFile<T>(T obj, string path, bool append = false)
+        public static void WriteToFile<T,G>(T obj, ISerializer<G> serializer, string path, bool append = false)
             where T : class
         {
             if (!File.Exists(path))
@@ -59,14 +60,13 @@ namespace Task11.FileHandler
             }
             try
             {
-                TxtSerializer txtSerializer = new TxtSerializer();
                 using (StreamWriter writer = new StreamWriter(path, append))
                 {
                     if (append)
                     {
                         writer.WriteLine();
                     }
-                    writer.WriteLine(txtSerializer.Serialize(obj));
+                    writer.WriteLine(serializer.Serialize(obj));
                 }
             }
             catch (Exception)
@@ -74,7 +74,7 @@ namespace Task11.FileHandler
                 throw;
             }
         }
-        public static void WriteToFileCollection<T>(T obj, string path, bool append = false)
+        public static void WriteToFileCollection<T, G>(T obj, ISerializer<G> serializer, string path, bool append = false)
             where T : IEnumerable
         {
             if (!File.Exists(path))
@@ -83,7 +83,6 @@ namespace Task11.FileHandler
             }
             try
             {
-                TxtSerializer txtSerializer = new TxtSerializer();
                 using (StreamWriter writer = new StreamWriter(path, append))
                 {
                     if (append)
@@ -92,7 +91,7 @@ namespace Task11.FileHandler
                     }
                     foreach (object item in obj)
                     {
-                        writer.WriteLine(txtSerializer.Serialize(item));
+                        writer.WriteLine(serializer.Serialize(item));
                     }
                 }
             }

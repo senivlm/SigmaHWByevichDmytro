@@ -5,19 +5,18 @@ using Task11.Validators;
 
 namespace Task11.Readers
 {
-    internal class TXTSerializedProductReader<T> : IStreamLineReader<T>
+    internal class TXTSerializedProductReader<T> : IObjectGetterFromSerializedLine<T>
         where T : IProduct
     {
-        bool IStreamLineReader<T>.TryReadLine<G>(out G obj, StreamReader stream, IStringParser<G> validator)
+        bool IObjectGetterFromSerializedLine<T>.TryGetObject<G>(out G obj, string line, ITXTSerializedParametersParser<G> validator)
         {
             obj = new();
             try
-            {
-                string line = stream.ReadLine();
+            {                
                 if (string.IsNullOrEmpty(line) == false)
                 {
                     TXTSerializedLineAnalyzer tXTSerializedLineAnalyzer = new();
-                    TXTSerializedParameters LineParams = tXTSerializedLineAnalyzer.GetTXTSerializedParameters(stream.ReadLine());
+                    TXTSerializedParameters LineParams = tXTSerializedLineAnalyzer.GetTXTSerializedParameters(line);
                     obj = validator.Parse(LineParams);
                     return obj is not null;
                 }

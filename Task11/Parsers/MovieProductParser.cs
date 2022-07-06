@@ -7,7 +7,7 @@ using Task11.Validators;
 
 namespace Task11.Parsers
 {
-    internal class MovieProductParser : ProductParserBase, IStringParser<IMovieProduct>
+    internal class MovieProductParser : ProductParserBase, ITXTSerializedParametersParser<IMovieProduct>
     {
 
         public MovieProductParser()

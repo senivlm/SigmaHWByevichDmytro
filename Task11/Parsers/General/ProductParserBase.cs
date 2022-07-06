@@ -4,7 +4,7 @@ using Task11.Validators;
 
 namespace Task11.Parsers
 {
-    internal abstract class ProductParserBase : IStringParser<IProduct>
+    internal abstract class ProductParserBase : ITXTSerializedParametersParser<IProduct>
     {
         public abstract event LoggerOnBadFormat OnBadFormatLogger;
         public abstract IProduct Parse(TXTSerializedParameters txtSerializedParams);

@@ -6,7 +6,7 @@ using Task11.FileHandler;
 
 namespace Task11
 {
-    internal class TxtSerializer
+    internal class TxtSerializer: ISerializer<TXTSerializedParameters>
     {
 
         #region Props

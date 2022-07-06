@@ -12,18 +12,18 @@ namespace Task11.ConsoleUI
         where T : class, IProduct
     {
         private Dictionary<string, IConsoleProductReader<T>> _consoleReaders;
-        private Dictionary<string, IStringParser<T>> _parsersByType;
+        private Dictionary<string, ITXTSerializedParametersParser<T>> _parsersByType;
         private ProductStorage<T> _producStorage;
         private Menu _mainMenu;
         private Menu _addproductMenu;
         private List<Option> _mainMenuOptions;
         private List<Option> _productAddOptions;
 
-        public ConsoleProductStorageProcessor(ProductStorage<T> producStorage, Dictionary<string, IConsoleProductReader<T>> consoleReaders, Dictionary<string, IStringParser<T>> parsersByType)
+        public ConsoleProductStorageProcessor(ProductStorage<T> producStorage, Dictionary<string, IConsoleProductReader<T>> consoleReaders, Dictionary<string, ITXTSerializedParametersParser<T>> parsersByType)
         {
-            _consoleReaders = consoleReaders;
-            _producStorage = producStorage;
-            _parsersByType = parsersByType;
+            _consoleReaders = new(consoleReaders);
+            _producStorage = new(producStorage);
+            _parsersByType = new(parsersByType);
             UpdateMainMenu();
         }
         public void PrintMenu()
@@ -38,7 +38,7 @@ namespace Task11.ConsoleUI
                 {new Option("Додати продукт", ()=>_addproductMenu.PrintMenu()) },
                 {new Option("Вивести склад на екран", ()=>PrintStorage() )},
                 {new Option("Зчитати склад з файлу", ()=>ReadProductStorageFormFile()) },
-                {new Option("Записати склад у файл", ()=>FileHandlerService.WriteToFileCollection(_producStorage, "../../../Files/Result.txt")) },
+                {new Option("Записати склад у файл", ()=>FileHandlerService.WriteToFileCollection(_producStorage,new TxtSerializer(), "../../../Files/Result.txt")) },
                 {new Option("Відсортувати склад", ()=>_producStorage.Sort() )},
                 {new Option("Вивести сумарну ціну скалду", ()=>PrintStoragePrice() )},
                 {new Option("Найдорощий продукт", ()=>PrintStorageMaxPrice() )}
