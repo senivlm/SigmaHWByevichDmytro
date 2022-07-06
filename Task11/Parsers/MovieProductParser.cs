@@ -26,76 +26,11 @@ namespace Task11.Parsers
                 string discriptionConst = "<Description: ";
                 StringBuilder logDescriptionLine = new(discriptionConst);
 
-
                 ProductValidate(ref _model, in txtSerializedParams, in logDescriptionLine);
-                #region GenreValidate
-                if (txtSerializedParams.ContainsKey("Genre") == false)
-                {
-                    logDescriptionLine.Append("Не знайдено жанр продукту; ");
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(txtSerializedParams["Genre"]))
-                    {
-                        logDescriptionLine.Append("Хибний формат жанру; ");
-                    }
-                    else
-                    {
-                        _model.Genre = txtSerializedParams["Genre"];
-                    }
-                }
-                #endregion
-                #region DurationValidate
-                if (txtSerializedParams.ContainsKey("Duration") == false)
-                {
-                    logDescriptionLine.Append("Не знайдено тривалість продукту; ");
-                }
-                else
-                {
-                    if (TimeSpan.TryParse(txtSerializedParams["Duration"], out TimeSpan resultDuration) == false)
-                    {
-                        logDescriptionLine.Append("Хибний формат тривалості; ");
-                    }
-                    else
-                    {
-                        _model.Duration = resultDuration;
-                    }
-                }
-                #endregion
-                #region LinkValidate
-                if (txtSerializedParams.ContainsKey("Link") == false)
-                {
-                    logDescriptionLine.Append("Не знайдено посилання продукту; ");
-                }
-                else
-                {
-                    if (Uri.IsWellFormedUriString(txtSerializedParams["Link"], UriKind.Absolute) == false)
-                    {
-                        logDescriptionLine.Append("Хибний формат посилання; ");
-                    }
-                    else
-                    {
-                        _model.Link = txtSerializedParams["Link"];
-                    }
-                }
-                #endregion
-                #region AuthorNameValidate
-                if (txtSerializedParams.ContainsKey("AuthorName") == false)
-                {
-                    logDescriptionLine.Append("Не знайдено ім'я автора продукту; ");
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(txtSerializedParams["AuthorName"]))
-                    {
-                        logDescriptionLine.Append("Хибний формат імені автора; ");
-                    }
-                    else
-                    {
-                        _model.AuthorName = txtSerializedParams["AuthorName"];
-                    }
-                }
-                #endregion
+                ValidateGenre(ref _model, in txtSerializedParams, in logDescriptionLine);
+                ValidateDuration(ref _model, in txtSerializedParams, in logDescriptionLine);
+                ValidateLink(ref _model, in txtSerializedParams, in logDescriptionLine);
+                ValidateAuthorName(ref _model, in txtSerializedParams, in logDescriptionLine);
 
                 if (logDescriptionLine.Length != discriptionConst.Length)
                 {
@@ -111,5 +46,83 @@ namespace Task11.Parsers
                 throw;
             }
         }
+        private void ValidateGenre<T>(ref T product, in TXTSerializedParameters txtSerializedParams, in StringBuilder logDescriptionLine)
+           where T : IMovieProduct
+        {
+            if (txtSerializedParams.ContainsKey("Genre") == false)
+            {
+                logDescriptionLine.Append("Не знайдено жанр продукту; ");
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(txtSerializedParams["Genre"]))
+                {
+                    logDescriptionLine.Append("Хибний формат жанру; ");
+                }
+                else
+                {
+                    product.Genre = txtSerializedParams["Genre"];
+                }
+            }
+        }
+        private void ValidateDuration<T>(ref T product, in TXTSerializedParameters txtSerializedParams, in StringBuilder logDescriptionLine)
+           where T : IMovieProduct
+        {
+            if (txtSerializedParams.ContainsKey("Duration") == false)
+            {
+                logDescriptionLine.Append("Не знайдено тривалість продукту; ");
+            }
+            else
+            {
+                if (TimeSpan.TryParse(txtSerializedParams["Duration"], out TimeSpan resultDuration) == false)
+                {
+                    logDescriptionLine.Append("Хибний формат тривалості; ");
+                }
+                else
+                {
+                    product.Duration = resultDuration;
+                }
+            }
+        }
+        private void ValidateLink<T>(ref T product, in TXTSerializedParameters txtSerializedParams, in StringBuilder logDescriptionLine)
+          where T : IMovieProduct
+        {
+            if (txtSerializedParams.ContainsKey("Link") == false)
+            {
+                logDescriptionLine.Append("Не знайдено посилання продукту; ");
+            }
+            else
+            {
+                if (Uri.IsWellFormedUriString(txtSerializedParams["Link"], UriKind.Absolute) == false)
+                {
+                    logDescriptionLine.Append("Хибний формат посилання; ");
+                }
+                else
+                {
+                    product.Link = txtSerializedParams["Link"];
+                }
+            }
+        }
+        private void ValidateAuthorName<T>(ref T product, in TXTSerializedParameters txtSerializedParams, in StringBuilder logDescriptionLine)
+          where T : IMovieProduct
+        {
+            if (txtSerializedParams.ContainsKey("AuthorName") == false)
+            {
+                logDescriptionLine.Append("Не знайдено ім'я автора продукту; ");
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(txtSerializedParams["AuthorName"]))
+                {
+                    logDescriptionLine.Append("Хибний формат імені автора; ");
+                }
+                else
+                {
+                    product.AuthorName = txtSerializedParams["AuthorName"];
+                }
+            }
+        }
+
+
     }
 }
