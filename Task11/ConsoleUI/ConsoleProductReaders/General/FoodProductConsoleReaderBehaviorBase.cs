@@ -1,41 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using Task11.Product;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Task11.ConsoleUI.ConsoleProductAdders
+namespace Task11.ConsoleUI.ConsoleProductReaders
 {
-    internal class DairyProductConsoleReaderBehavior : IConsoleProductReader<IDairyProduct>
+    internal abstract class FoodProductConsoleReaderBehaviorBase : ProductConsoleReaderBehaviorBase, IConsoleProductReader<IFoodProduct>
     {
-        public IDairyProduct ConsoleReadProduct()
+        public override abstract IFoodProduct ConsoleReadProduct();
+        protected virtual void ConsoleReadFoodProductBase<T>(ref T product)
+           where T : class, IFoodProduct
         {
-            Console.Write("Введіть назву: ");
-            string name = Console.ReadLine();
-            if (string.IsNullOrEmpty(name))
-            {
-                throw new ArgumentNullException("Відсутне ім'я");
-            }
-
-            Console.Write("Введіть ціну: ");
-            string priceLine = Console.ReadLine();
-            if (double.TryParse(priceLine, out double priceResult) == false)
-            {
-                throw new ArgumentException("Хибний формат ціни");
-            }
-
+            ConsoleReadProductBase(ref product);
+            ConsoleReadWeight(ref product);
+            ConsoleReadExpirationTime(ref product);
+            ConsoleReadDaysToExpirationAndPresentOfChange(ref product);
+        }
+        protected virtual void ConsoleReadWeight<T>(ref T product)
+           where T : class, IFoodProduct
+        {
             Console.Write("Введіть вагу: ");
             string weightLine = Console.ReadLine();
             if (double.TryParse(weightLine, out double weighResult) == false)
             {
                 throw new ArgumentException("Хибний формат ваги");
             }
-
+            product.Weight = weighResult;
+        }
+        protected virtual void ConsoleReadExpirationTime<T>(ref T product)
+           where T : class, IFoodProduct
+        {
             Console.Write("Введіть дату терміну придатності: ");
             string expirationTimeLine = Console.ReadLine();
             if (DateTime.TryParse(expirationTimeLine, out DateTime expirationTimeResult) == false)
             {
                 throw new ArgumentException("Хибний формат терміну придатності");
             }
-
+            product.ExpirationTime = expirationTimeResult;
+        }
+        protected virtual void ConsoleReadDaysToExpirationAndPresentOfChange<T>(ref T product)
+          where T : class, IFoodProduct
+        {
             SortedDictionary<int, int> daysToExpirationAndPresentOfChange = new();
             bool isAddNewPair = true;
             Console.WriteLine("Додати зміну ціни за кількістью днів до терміну придатності ?");
@@ -70,7 +76,7 @@ namespace Task11.ConsoleUI.ConsoleProductAdders
                 }
 
             } while (isAddNewPair);
-            return new DairyProductModel(name, priceResult, weighResult, expirationTimeResult, daysToExpirationAndPresentOfChange);
+            product.DaysToExpirationAndPresentOfChange = daysToExpirationAndPresentOfChange;
         }
     }
 }

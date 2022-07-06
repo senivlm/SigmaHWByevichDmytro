@@ -6,7 +6,7 @@ using Task11.Product;
 
 namespace Task11.Validators
 {
-    internal class DairyProductParser : FoodProductParserBase
+    internal class DairyProductParser : FoodProductParserBase, IStringParser<IDairyProduct>
     {
         public DairyProductParser() : base()
         { }

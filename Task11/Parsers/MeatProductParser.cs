@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Text;
+using Task11.Enums;
 using Task11.FileHandler;
 using Task11.Product;
 using Task11.Validators;
 
 namespace Task11.Parsers
 {
-    internal class MeatProductParser : FoodProductParserBase
+    internal class MeatProductParser : FoodProductParserBase, IStringParser<IMeatProduct>
     {
         public MeatProductParser() : base()
         { }
@@ -24,8 +25,8 @@ namespace Task11.Parsers
                 string discriptionConst = "<Description: ";
                 StringBuilder logDescriptionLine = new(discriptionConst);
                 FoodProductValidate(ref _model, in txtSerializedParams, in logDescriptionLine);
-
-
+                ValidatMeatSpecies(ref _model, in txtSerializedParams, in logDescriptionLine);
+                ValidatMeatCategory(ref _model, in txtSerializedParams, in logDescriptionLine);
                 if (logDescriptionLine.Length != discriptionConst.Length)
                 {
                     logDescriptionLine.Append(" >;");
@@ -38,6 +39,44 @@ namespace Task11.Parsers
             catch (Exception)
             {
                 throw;
+            }
+        }
+        private void ValidatMeatSpecies<T>(ref T product, in TXTSerializedParameters txtSerializedParams, in StringBuilder logDescriptionLine)
+           where T : IMeatProduct
+        {
+            if (txtSerializedParams.ContainsKey("MeatSpeciesProp") == false)
+            {
+                logDescriptionLine.Append("Не знайдено тип м'яса; ");
+            }
+            else
+            {
+                if (Enum.TryParse(txtSerializedParams["MeatSpeciesProp"], out MeatSpecies resultMeatSpecies) == false)
+                {
+                    logDescriptionLine.Append("Хибний формат типу м'яса; ");
+                }
+                else
+                {
+                    product.MeatSpeciesProp = resultMeatSpecies;
+                }
+            }
+        }
+        private void ValidatMeatCategory<T>(ref T product, in TXTSerializedParameters txtSerializedParams, in StringBuilder logDescriptionLine)
+           where T : IMeatProduct
+        {
+            if (txtSerializedParams.ContainsKey("MeatCategoryProp") == false)
+            {
+                logDescriptionLine.Append("Не знайдено категорію м'яса; ");
+            }
+            else
+            {
+                if (Enum.TryParse(txtSerializedParams["MeatCategoryProp"], out MeatCategory resultMeatCategory) == false)
+                {
+                    logDescriptionLine.Append("Хибний формат категорії м'яса; ");
+                }
+                else
+                {
+                    product.MeatCategoryProp = resultMeatCategory;
+                }
             }
         }
     }

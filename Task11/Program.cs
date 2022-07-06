@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Task11.ConsoleUI;
-using Task11.ConsoleUI.ConsoleProductAdders;
+using Task11.ConsoleUI.ConsoleProductReaders;
 using Task11.Parsers;
 using Task11.Services;
 using Task11.Validators;

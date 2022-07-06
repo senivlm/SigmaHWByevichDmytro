@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Task11.ConsoleUI.ConsoleProductAdders;
+using Task11.ConsoleUI.ConsoleProductReaders;
 using Task11.FileHandler;
 using Task11.Readers;
 using Task11.Validators;
@@ -54,12 +54,25 @@ namespace Task11.ConsoleUI
             _productAddOptions = new List<Option>();
             foreach (KeyValuePair<string, IConsoleProductReader<T>> item in _consoleReaders)
             {
-                _productAddOptions.Add(new Option(item.Key, () => _producStorage.Add((T)item.Value.ConsoleReadProduct())));
+
+                _productAddOptions.Add(new Option(item.Key, () => ConsoleReadProduct(item.Value)));
+
             }
             _addproductMenu = new Menu(_productAddOptions)
             {
                 Title = "Додавання нового продукту"
             };
+        }
+        private void ConsoleReadProduct(IConsoleProductReader<T> consoleProductReader)
+        {
+            try
+            {
+                _producStorage.Add(consoleProductReader.ConsoleReadProduct());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         private void ReadProductStorageFormFile()
         {

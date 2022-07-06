@@ -30,7 +30,7 @@ namespace Task11
                 if (property.PropertyType.GetInterfaces().Contains(typeof(ICollection)))
                 {
                     StringBuilder value = new();
-                    foreach (object item in (IEnumerable)property.GetValue(obj, null))
+                    foreach (object item in (IEnumerable)property.GetValue(obj))
                     {
                         value.Append(item);
                     }

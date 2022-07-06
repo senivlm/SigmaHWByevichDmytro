@@ -2,53 +2,72 @@
 using Task11.Product.General;
 using Task11.Product.MovieProduct;
 
-namespace Task11.ConsoleUI.ConsoleProductAdders
+namespace Task11.ConsoleUI.ConsoleProductReaders
 {
-    internal class MovieProductConsoleReaderBehavior : IConsoleProductReader<IMovieProduct>
+    internal class MovieProductConsoleReaderBehavior : ProductConsoleReaderBehaviorBase, IConsoleProductReader<IMovieProduct>
     {
-        public IMovieProduct ConsoleReadProduct()
+        public override IMovieProduct ConsoleReadProduct()
         {
-            Console.Write("Введіть назву: ");
-            string name = Console.ReadLine();
-            if (string.IsNullOrEmpty(name.Trim()))
+            try
             {
-                throw new ArgumentNullException("Відсутне ім'я");
+                IMovieProduct product = new MovieProductModel();
+                ConsoleReadProductBase(ref product);
+                ConsoleReadGenre(ref product);
+                ConsoleReadDuration(ref product);
+                ConsoleReadLink(ref product);
+                ConsoleReadAuthorName(ref product);
+                return product;
             }
-
-            Console.Write("Введіть ціну: ");
-            string priceLine = Console.ReadLine();
-            if (double.TryParse(priceLine, out double priceResult) == false)
+            catch (Exception)
             {
-                throw new ArgumentException("Хибний формат ціни");
-            }
 
+                throw;
+            }
+            
+        }
+        private void ConsoleReadGenre<T>(ref T product)
+          where T : class, IMovieProduct
+        {
             Console.Write("Введіть жанр: ");
             string genreLine = Console.ReadLine();
             if (string.IsNullOrEmpty(genreLine.Trim()))
             {
                 throw new ArgumentException("Відсутній жанр");
             }
-
+            product.Genre = genreLine;
+        }
+        private void ConsoleReadDuration<T>(ref T product)
+          where T : class, IMovieProduct
+        {
             Console.Write("Введіть тривалість фільму: ");
             string durationLine = Console.ReadLine();
             if (TimeSpan.TryParse(durationLine, out TimeSpan durationResut) == false)
             {
                 throw new ArgumentException("Хибний формат тривалості");
             }
+            product.Duration = durationResut;
+        }
+        private void ConsoleReadLink<T>(ref T product)
+          where T : class, IMovieProduct
+        {
             Console.Write("Введіть посилання: ");
             string linkLine = Console.ReadLine();
             if (Uri.IsWellFormedUriString(linkLine, UriKind.Absolute) == false)
             {
                 throw new ArgumentException("Хибний формат посилання; ");
             }
+            product.Link = linkLine;
+        }
+        private void ConsoleReadAuthorName<T>(ref T product)
+         where T : class, IMovieProduct
+        {
             Console.Write("Введіть ім'я автора: ");
             string authorNameLine = Console.ReadLine();
             if (string.IsNullOrEmpty(authorNameLine.Trim()))
             {
                 throw new ArgumentException("Відсутніе ім'я автора");
             }
-
-            return new MovieProductModel(name, priceResult, genreLine, durationResut, linkLine, authorNameLine);
+            product.Link = authorNameLine.Trim();
         }
     }
 }
