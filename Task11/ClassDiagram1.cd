@@ -87,7 +87,7 @@
   <Class Name="Task11.ConsoleUI.ConsoleProductStorageProcessor&lt;T&gt;" Collapsed="true">
     <Position X="44.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAChEQgAAAAAAAAgGAAAgSAICAAICAAACAgAGAQAI=</HashCode>
+      <HashCode>BAAAChEQgAAAAAAAAgGAAAgSAICAQIiAAACAgAGAQAI=</HashCode>
       <FileName>ConsoleUI\ConsoleProductStorageProcessor.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Task11.ConsoleUI.ConsoleProductReaders;
@@ -186,7 +187,7 @@ namespace Task11.ConsoleUI
         }
         private void PrintStorageMaxPrice()
         {
-            Console.WriteLine($"Максимальна ціна на складі: {_producStorage.GetAll<T>(product => product.Price == _producStorage.MaxPrice).ToList()[0]}");
+            Console.WriteLine($"Максимальна ціна на складі: {_producStorage.GetAll<T>(product => product.Price == _producStorage.MaxPrice).ElementAt(0)}");
         }
     }
 }
