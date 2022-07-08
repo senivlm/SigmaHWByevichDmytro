@@ -9,6 +9,14 @@ namespace Task12_3
     {
         private Stack<string> _stack;
         private Operations _operations;
+        private string _primalExpressionLine;
+
+        public string PrimalExpressionLine
+        {
+            get => _primalExpressionLine;
+            set => _primalExpressionLine = value;
+        }
+
         public PolishNotation()
         {
             _stack = new Stack<string>();
@@ -18,6 +26,7 @@ namespace Task12_3
         {
             _stack = Parse(expression, operationsList)._stack;
             _operations = operationsList;
+            _primalExpressionLine = expression;
         }
         public PolishNotation(Stack<string> stack, Operations operations)
         {
@@ -27,7 +36,7 @@ namespace Task12_3
         public double Solve()
         {
             Stack<double> numbers = new();
-            foreach(string item in _stack)
+            foreach (string item in _stack)
             {
                 if (double.TryParse(item, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
                 {
