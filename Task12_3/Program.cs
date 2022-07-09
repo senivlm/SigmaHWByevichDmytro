@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Task12_3.Operation;
 
 namespace Task12_3
 {
@@ -8,20 +9,21 @@ namespace Task12_3
     {
         private static void Main(string[] args)
         {
-            try
-            {
+            //try
+            //{
                 Operations operationsList = new()
                 {
                     new BinaryOperation("+", 1, (a, b) => (a + b)),
                     new BinaryOperation("-", 1, (a, b) => (a - b)),
                     new BinaryOperation("*", 2, (a, b) => (a * b)),
                     new BinaryOperation("/", 2, (a, b) => (a / b)),
-                    new BinaryOperation("^", 3, (a, b) => (Math.Pow(a, b))),
-                    //унарний мінус
-                    new UnaryOperation("=-", 4, a => -a),
+                    new BinaryOperation("^", 3, (a, b) => (Math.Pow(a, b))),                    
+                    new UnaryOperation("=-", 4, a => -a),//унарний мінус
                     new UnaryOperation("sin", 4, a => Math.Sin(a)),
                     new UnaryOperation("cos", 4, a => Math.Cos(a)),
                     new UnaryOperation("sqrt", 4, a => Math.Sqrt(a)),
+                    new ConstantOperation("PI", 5, ()=> Math.PI),
+                    new ConstantOperation("e", 5, ()=>Math.E)
                 };
 
                 List<PolishNotation> polishNotationList = new();
@@ -41,12 +43,12 @@ namespace Task12_3
                         sw.WriteLine(PolishNotationReportFormatterService.CreateReport(polishNotation));
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    Console.WriteLine(ex.StackTrace);
+            //}
            
 
         }
