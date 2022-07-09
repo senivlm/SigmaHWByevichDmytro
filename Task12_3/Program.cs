@@ -27,7 +27,16 @@ namespace Task12_3
                 };
 
                 List<PolishNotation> polishNotationList = new();
-
+                if (ConsolePolishNotaionReaderService.TryRead(out PolishNotation polishNotationConsole, in operationsList))
+                {
+                    Console.WriteLine("Польский запис успішно прочитан");
+                    Console.WriteLine(PolishNotationReportFormatterService.CreateReport(polishNotationConsole));
+                }
+                else
+                {
+                    Console.WriteLine("Польский запис має хибний формат, не вдалося зчитати");
+                }
+                
                 using (StreamReader sr = new("../../../Files/Task.txt"))
                 {
                     while (sr.EndOfStream == false)
