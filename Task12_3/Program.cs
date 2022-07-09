@@ -9,8 +9,8 @@ namespace Task12_3
     {
         private static void Main(string[] args)
         {
-            //try
-            //{
+            try
+            {
                 Operations operationsList = new()
                 {
                     new BinaryOperation("+", 1, (a, b) => (a + b)),
@@ -43,12 +43,12 @@ namespace Task12_3
                         sw.WriteLine(PolishNotationReportFormatterService.CreateReport(polishNotation));
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    Console.WriteLine(ex.StackTrace);
-            //}
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
            
 
         }
