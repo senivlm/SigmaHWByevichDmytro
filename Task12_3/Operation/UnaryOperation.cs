@@ -21,7 +21,7 @@ namespace Task12_3
 
         public OperationHandler Behavior { get; }
 
-        public IEnumerable<double> GetParamsFromStack(Stack<double> stack)
+        public IEnumerable<double> GetParamsFromStack(ref Stack<double> stack)
         {
             return new List<double>()
             {

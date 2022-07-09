@@ -9,6 +9,6 @@ namespace Task12_3
         int Priority { get; }
         string Name { get; set; }
         OperationHandler Behavior { get; }
-        IEnumerable<double> GetParamsFromStack(Stack<double> stack);
+        IEnumerable<double> GetParamsFromStack(ref Stack<double> stack);
     }
 }

@@ -21,7 +21,7 @@ namespace Task12_3
 
         public int Priority { get; private set; }
 
-        public IEnumerable<double> GetParamsFromStack(Stack<double> stack)
+        public IEnumerable<double> GetParamsFromStack(ref Stack<double> stack)
         {
             List<double> result = new List<double>()
             {

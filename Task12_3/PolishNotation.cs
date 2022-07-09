@@ -44,7 +44,7 @@ namespace Task12_3
                 }
                 else
                 {
-                    numbers.Push(_operations[item].Behavior(_operations[item].GetParamsFromStack(numbers).ToArray()));
+                    numbers.Push(_operations[item].Behavior(_operations[item].GetParamsFromStack(ref numbers).ToArray()));
                 }
             }
             return numbers.Pop();
