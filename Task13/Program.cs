@@ -109,7 +109,7 @@ namespace Task13
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Cassa on coord: {cassa.XCoord} closed");
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
         private static void OnPersonBackToQueueActionLog(IPerson person)
         {
