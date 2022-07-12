@@ -14,6 +14,11 @@ namespace Task13
     internal class TimeCordinator
     {
         public event Action<IPerson, Cassa, int> OnArrivedToCassa;
+        public event Action<Cassa> OnCassaClosed;
+        public event Action<Cassa, IPerson> OnPersonServiced;
+        public event Action<IPerson> OnPersonBackToQueue;
+        public event Action<IPerson> OnPersonArrived;
+        public event Action<int> OnProcessEnd;
 
         private Random random = new();
         private int timeCounter = 1000;
@@ -23,11 +28,11 @@ namespace Task13
         private List<Cassa> casses;
         public TimeCordinator(List<Cassa> casses, string path)
         {
-            this.casses = casses;
+            this.casses = new(casses);
             this.path = path;
         }
 
-        public IEnumerable<string> Process()
+        public void Process()
         {
             localTime = 1;
             bool isProcess = true;
@@ -44,10 +49,7 @@ namespace Task13
                     localTime++;
                     if (casses.Count > 1 && localTime % 150 == 0 && random.Next(0, 2) == 1)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"Cassa on coord: {casses[1].XCoord} closed");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        casses[0].Close();
+                        casses[random.Next(0, casses.Count)].Close();
                     }
 
                     if (localTime % 10 == 0)
@@ -60,22 +62,26 @@ namespace Task13
                                 new PersonParser<Person>(),
                                 sr
                             );
+                            OnPersonArrived?.Invoke(person);
                             Cassa tmpCassa = ChooseCassa(person);
                             tmpCassa.Add(person);
                             OnArrivedToCassa?.Invoke(person, tmpCassa, localTime);
                             counter++;
                         }
                     }
-
-                    int number = 1;
-
-                    foreach (Cassa item in casses)
+                    foreach (Cassa person in casses)
                     {
-                        if (item.Count > 0 && --item.Peek().TimeService <= 0)
+                        if (person.Count > 0 && --person.Peek().TimeService <= 0)
                         {
-                            yield return $"{item.Dequeue()} has been served at cassa: {number}";
+                            if (OnPersonServiced is not null)
+                            {
+                                OnPersonServiced.Invoke(person, person.Dequeue());
+                            }
+                            else
+                            {
+                                person.Dequeue();
+                            }
                         }
-                        number++;
                     }
 
                     Thread.Sleep(10);
@@ -83,7 +89,7 @@ namespace Task13
                     if (localTime == timeCounter)
                     {
                         isProcess = false;
-                        Console.WriteLine(counter);
+                        OnProcessEnd?.Invoke(counter);
                     }
 
                 }
@@ -91,16 +97,13 @@ namespace Task13
         }
         private void OnCassaClosedAction(Cassa cassa)
         {
+            OnCassaClosed?.Invoke(cassa);
             casses.Remove(cassa);
             foreach (IPerson item in cassa)
-            {
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine($": {item} back to queue");
-                Console.ForegroundColor = ConsoleColor.Magenta;
-
+            {                
+                OnPersonBackToQueue.Invoke(item);
                 Cassa tmpCassa = ChooseCassa(item);
                 tmpCassa.Add(item);
-
                 OnArrivedToCassa?.Invoke(item, tmpCassa, localTime);
             }
         }

@@ -19,18 +19,18 @@ namespace Task13.Persons
             person.Status = $"Status{person.Id.ToString()[..3]}";
             return person;
         }
-        public IEnumerable<Person> GeneratePersonsCollection(int amount, int ageMinBound = 0, int ageMaxBound = 100, int coordinateMinBound = 0, int coordinateMaxBound = 10)
+        public IEnumerable<Person> GeneratePersonsCollection(int amount, int ageMinBound = 0, int ageMaxBound = 100, int coordinateMinBound = 0, int coordinateMaxBound = 10, int minTimeServiceBound = 0, int maxTimeServiceBound = 100)
         {
             for (int i = 0; i < amount; i++)
             {
-                yield return GeneratePerson(ageMinBound, ageMaxBound, coordinateMinBound, coordinateMaxBound);
+                yield return GeneratePerson(ageMinBound, ageMaxBound, coordinateMinBound, coordinateMaxBound, minTimeServiceBound, maxTimeServiceBound);
             }
         }
-        public void RandomPersonsIntoFIleGenerate(string filePath, int amount, bool append = false, int ageMinBound = 0, int ageMaxBound = 100, int coordinateMinBound = 0, int coordinateMaxBound = 10)
+        public void RandomPersonsIntoFIleGenerate(string filePath, int amount, bool append = false, int ageMinBound = 0, int ageMaxBound = 100, int coordinateMinBound = 0, int coordinateMaxBound = 10, int minTimeServiceBound = 0, int maxTimeServiceBound = 100)
         {
             FileHandlerService.WriteToFileCollection
             (
-                obj: GeneratePersonsCollection(amount, ageMinBound, ageMaxBound, coordinateMinBound, coordinateMaxBound),
+                obj: GeneratePersonsCollection(amount, ageMinBound, ageMaxBound, coordinateMinBound, coordinateMaxBound, minTimeServiceBound, maxTimeServiceBound),
                 serializer: new TxtSerializer(),
                 path: filePath,
                 append: append

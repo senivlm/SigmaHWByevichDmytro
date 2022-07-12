@@ -14,5 +14,6 @@ namespace Task13.Persons
         string Name { get; set; }
         string Status { get; set; }
         double Coordinate { get; set; }
+        int Priority { get; }
     }
 }

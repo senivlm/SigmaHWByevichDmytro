@@ -7,24 +7,24 @@ namespace Task13.CassaFolder
     internal class Cassa : IEnumerable<IPerson>
     {
         private double _xCoord;
-        private PriorityQueue<IPerson, string> _queue;
+        private PriorityQueue<IPerson, int> _queue;
         public int Count => _queue.Count;
         public event Action<Cassa> OnCassaClosed;
         public double XCoord { get => _xCoord; set => _xCoord = value; }
 
         public Cassa(double xCoord):this()
-        {
+        {            
             _xCoord = xCoord;
         }
 
         public Cassa()
         {
-            _queue = new();
+            _queue = new(Comparer<int>.Create((x, y) => x - y));
         }
         public void Add(IPerson person)
         {
             person.Coordinate = _xCoord;
-            _queue.Enqueue(person, person.Status);
+            _queue.Enqueue(person, person.Priority);
         }
         public IPerson Dequeue()
         {

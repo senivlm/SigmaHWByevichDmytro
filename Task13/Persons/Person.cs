@@ -28,6 +28,25 @@ namespace Task13.Persons
         public Guid Id { get; }
         public int TimeService { get; set; }
 
+        public int Priority
+        {
+            get
+            {
+                int result = 3;
+                if (_age <= 6)
+                {
+                    result = 2;
+                }
+                if (_age >= 65)
+                {
+                    result = 1;
+                }
+                return result;
+            }
+        }
+
+
+
         public override string ToString()
         {
             return $"[{_status}] - {_name}: Age: {_age} at coord {_coordinate}";
