@@ -22,15 +22,16 @@ namespace Task13
         public event Action<PriorityQueue<IPerson, int>, Cassa> OnCassaMaxAmount;
 
         private Random random = new();
-        private int timeCounter = 1000;
+        private int _timeCounter;
         private int localTime;
         private string path;
         private PriorityQueue<IPerson, int> _mainQueue = new(Comparer<int>.Create((x, y) => y - x));
         private List<Cassa> casses;
-        public TimeCordinator(List<Cassa> casses, string path)
+        public TimeCordinator(List<Cassa> casses, string path, int timeCounter)
         {
             this.casses = new(casses);
             this.path = path;
+            _timeCounter = timeCounter;
         }
 
         public void Process()
@@ -98,7 +99,7 @@ namespace Task13
 
                     Thread.Sleep(10);
 
-                    if (localTime == timeCounter)
+                    if (localTime == _timeCounter)
                     {
                         isProcess = false;
                         OnProcessEnd?.Invoke(counter, _mainQueue);

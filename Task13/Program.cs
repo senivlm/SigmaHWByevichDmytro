@@ -31,7 +31,9 @@ namespace Task13
                         new Cassa(9, (x) => true, 5),
 
                     },
-                    path: "../../../Files/Data.txt");
+                    path: "../../../Files/Data.txt",
+                    timeCounter: 1000
+                    );
                 Logger.Instance.Path = "../../../Files/Result.txt";
                 timeCoordinator.OnArrivedToCassa += OnArrivedToCassaAction;
                 timeCoordinator.OnArrivedToCassa += OnArrivedToCassaActionLog;
