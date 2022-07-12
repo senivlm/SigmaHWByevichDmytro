@@ -24,7 +24,7 @@ namespace Task13
         private int timeCounter = 1000;
         private int localTime;
         private string path;
-
+        private PriorityQueue<IPerson, int> _mainQueue = new(Comparer<int>.Create((x, y) => y - x));
         private List<Cassa> casses;
         public TimeCordinator(List<Cassa> casses, string path)
         {
@@ -62,11 +62,21 @@ namespace Task13
                                 new PersonParser<Person>(),
                                 sr
                             );
+                            _mainQueue.Enqueue(person,person.Priority);
                             OnPersonArrived?.Invoke(person);
-                            Cassa tmpCassa = ChooseCassa(person);
-                            tmpCassa.Add(person);
-                            OnArrivedToCassa?.Invoke(person, tmpCassa, localTime);
-                            counter++;
+                        }
+                        if (_mainQueue.Count>0)
+                        {                        
+                            if (TryChooseCassa(_mainQueue.Peek()))
+                            {
+                                counter++;
+                                _mainQueue.Dequeue();
+                            }
+                            else
+                            {
+                                OnPersonBackToQueue?.Invoke(_mainQueue.Peek());
+                            }
+
                         }
                     }
                     foreach (Cassa person in casses)
@@ -100,26 +110,44 @@ namespace Task13
             OnCassaClosed?.Invoke(cassa);
             casses.Remove(cassa);
             foreach (IPerson item in cassa)
-            {                
+            {
+                _mainQueue.Enqueue(item,item.Priority);
                 OnPersonBackToQueue.Invoke(item);
-                Cassa tmpCassa = ChooseCassa(item);
-                tmpCassa.Add(item);
-                OnArrivedToCassa?.Invoke(item, tmpCassa, localTime);
+                if (TryChooseCassa(_mainQueue.Peek()))
+                {
+                    _mainQueue.Dequeue();
+                }
+                else
+                {
+                    OnPersonBackToQueue?.Invoke(_mainQueue.Peek());
+                }
             }
         }
-        private Cassa ChooseCassa(IPerson person)
+        private bool TryChooseCassa(IPerson person)
         {
-            List<Cassa> minPersonsCassa = casses.Where(c => c.Count == casses.Select(x => x.Count).Min()).ToList();
+
+            List<Cassa> availableCasses = casses.Where(x => x.Count < x.MaxSize).ToList();
+            List<Cassa> filtered = availableCasses.Where(x => x.Filter(person)).ToList();
+            List<Cassa> minPersonsCassa = filtered.Where(c => c.Count == filtered.Select(x => x.Count).Min()).ToList();
             if (minPersonsCassa.Count == 1)
             {
-                return minPersonsCassa[0];
+                minPersonsCassa[0].Add(person);
+                OnArrivedToCassa?.Invoke(person, minPersonsCassa[0], localTime);
+                return true;
             }
-            else
+            else if (minPersonsCassa.Count > 0)
             {
                 var tmp = minPersonsCassa.Select(x => Math.Abs(x.XCoord - person.Coordinate)).Min();
                 List<Cassa> nearCassa = minPersonsCassa.Where(x => Math.Abs(x.XCoord - person.Coordinate) == minPersonsCassa.Select(x => Math.Abs(x.XCoord - person.Coordinate)).Min()).ToList();
-                return nearCassa[0];
+                nearCassa[0].Add(person);
+                OnArrivedToCassa?.Invoke(person, nearCassa[0], localTime);
+                return true;
+
             }
+            else return false;
+
+
+
 
         }
     }

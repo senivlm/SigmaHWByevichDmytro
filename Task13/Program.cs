@@ -14,19 +14,21 @@ namespace Task13
 
             try
             {
-                
+
                 Logger.Instance.Path = "../../../Files/Logs.txt";
 
-                //PersonGenerator personGenerator = new PersonGenerator();
-                //personGenerator.RandomPersonsIntoFIleGenerate("../../../Files/Data.txt", 10, minTimeServiceBound: 10,maxTimeServiceBound:200);
+                PersonGenerator personGenerator = new PersonGenerator();
+                personGenerator.RandomPersonsIntoFIleGenerate("../../../Files/Data.txt", 50, minTimeServiceBound: 10,maxTimeServiceBound:50);
 
                 TimeCordinator timeCoordinator = new(
                     casses: new()
                     {
-                        new Cassa(1),
-                        new Cassa(2),
-                        new Cassa(9),
-                        new Cassa(5)
+                        new Cassa(1, (x) => x.Status == Status.MILITARY,5),
+                        new Cassa(3, (x) => x.Status == Status.GP_1_DISABILITY,5),
+                        new Cassa(5, (x) => x.Status == Status.GP_2_DISABILITY,5),
+                        new Cassa(7, (x) => x.Status == Status.GP_3_DISABILITY,5),
+                        new Cassa(9, (x) => true,5),
+                        
                     },
                     path: "../../../Files/Data.txt");
                 Logger.Instance.Path = "../../../Files/Result.txt";
@@ -67,7 +69,7 @@ namespace Task13
         private static void OnPersonArrived(IPerson person)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(person+" arrived");
+            Console.WriteLine(person + " arrived");
             Console.ForegroundColor = ConsoleColor.Gray;
         }
         private static void OnProcessEndLog(int count)

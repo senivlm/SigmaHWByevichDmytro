@@ -49,26 +49,7 @@ namespace Task13.FileHandler
                 throw;
             }
         }
-        //public static void ReadToCollection<T, G>(ref T obj, IStreamCollectionReader<T, G> collectionReader, Dictionary<string, ITXTSerializedParametersParser<G>> parser, string path)
-        //    where T : IEnumerable<G>
-        //{
-        //    if (!File.Exists(path))
-        //    {
-        //        throw new FileNotFoundException();
-        //    }
-        //    try
-        //    {
-        //        using (StreamReader stream = new StreamReader(path))
-        //        {
-        //            collectionReader.ReadCollection(ref obj, stream, parser);
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
 
-        //        throw;
-        //    }
-        //}
         public static void WriteToFile<T, G>(T obj, ISerializer<G> serializer, string path, bool append = false)
             where T : class
         {

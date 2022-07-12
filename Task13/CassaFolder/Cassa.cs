@@ -9,20 +9,27 @@ namespace Task13.CassaFolder
         private double _xCoord;
         public int MaxSize { get; set; }
         public bool IsAvailable { get; private set; }
-        public Predicate<Enum> Filter { get; set; }
+        public Predicate<IPerson> Filter { get; set; }
         private PriorityQueue<IPerson, int> _queue;
         public int Count => _queue.Count;
         public event Action<Cassa> OnCassaClosed;
         public double XCoord { get => _xCoord; set => _xCoord = value; }
 
+        
+
+        public Cassa()
+        {
+            Filter = (x) => true;
+            _queue = new(Comparer<int>.Create((x, y) => y - x));
+        }
         public Cassa(double xCoord) : this()
         {
             _xCoord = xCoord;
         }
-
-        public Cassa()
+        public Cassa(double xCoord, Predicate<IPerson> filter, int maxSize = 50) : this(xCoord)
         {
-            _queue = new(Comparer<int>.Create((x, y) => y - x));
+            MaxSize = maxSize;
+            Filter = filter;    
         }
         public void Add(IPerson person)
         {
