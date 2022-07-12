@@ -18,7 +18,8 @@ namespace Task13
         public event Action<Cassa, IPerson> OnPersonServiced;
         public event Action<IPerson> OnPersonBackToQueue;
         public event Action<IPerson> OnPersonArrived;
-        public event Action<int> OnProcessEnd;
+        public event Action<int, PriorityQueue<IPerson, int>> OnProcessEnd;
+        public event Action<PriorityQueue<IPerson, int>, Cassa> OnCassaMaxAmount;
 
         private Random random = new();
         private int timeCounter = 1000;
@@ -40,6 +41,7 @@ namespace Task13
             foreach (Cassa item in casses)
             {
                 item.OnCassaClosed += OnCassaClosedAction;
+                item.OnCassaMaxAmount += OnCassaMaxAmountAction;
             }
 
             using (StreamReader sr = new(path))
@@ -62,11 +64,11 @@ namespace Task13
                                 new PersonParser<Person>(),
                                 sr
                             );
-                            _mainQueue.Enqueue(person,person.Priority);
+                            _mainQueue.Enqueue(person, person.Priority);
                             OnPersonArrived?.Invoke(person);
                         }
-                        if (_mainQueue.Count>0)
-                        {                        
+                        if (_mainQueue.Count > 0)
+                        {
                             if (TryChooseCassa(_mainQueue.Peek()))
                             {
                                 counter++;
@@ -99,7 +101,7 @@ namespace Task13
                     if (localTime == timeCounter)
                     {
                         isProcess = false;
-                        OnProcessEnd?.Invoke(counter);
+                        OnProcessEnd?.Invoke(counter, _mainQueue);
                     }
 
                 }
@@ -111,7 +113,7 @@ namespace Task13
             casses.Remove(cassa);
             foreach (IPerson item in cassa)
             {
-                _mainQueue.Enqueue(item,item.Priority);
+                _mainQueue.Enqueue(item, item.Priority);
                 OnPersonBackToQueue.Invoke(item);
                 if (TryChooseCassa(_mainQueue.Peek()))
                 {
@@ -126,7 +128,7 @@ namespace Task13
         private bool TryChooseCassa(IPerson person)
         {
 
-            List<Cassa> availableCasses = casses.Where(x => x.Count < x.MaxSize).ToList();
+            List<Cassa> availableCasses = casses.Where(x => x.IsAvailable).ToList();
             List<Cassa> filtered = availableCasses.Where(x => x.Filter(person)).ToList();
             List<Cassa> minPersonsCassa = filtered.Where(c => c.Count == filtered.Select(x => x.Count).Min()).ToList();
             if (minPersonsCassa.Count == 1)
@@ -145,10 +147,18 @@ namespace Task13
 
             }
             else return false;
-
-
-
-
+        }
+        private void OnCassaMaxAmountAction(Cassa cassa)
+        {
+            if (cassa.IsWasMax == false)
+            {
+                OnCassaMaxAmount?.Invoke(_mainQueue, cassa);
+                cassa.IsWasMax = true;
+            }
+            else
+            {
+                cassa.IsAvailable = false;
+            }
         }
     }
 }

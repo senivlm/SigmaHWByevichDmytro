@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Task13.CassaFolder;
 using Task13.Enums;
 using Task13.Persons;
@@ -17,18 +18,18 @@ namespace Task13
 
                 Logger.Instance.Path = "../../../Files/Logs.txt";
 
-                PersonGenerator personGenerator = new PersonGenerator();
-                personGenerator.RandomPersonsIntoFIleGenerate("../../../Files/Data.txt", 50, minTimeServiceBound: 10,maxTimeServiceBound:50);
+                //PersonGenerator personGenerator = new PersonGenerator();
+                //personGenerator.RandomPersonsIntoFIleGenerate("../../../Files/Data.txt", 50, minTimeServiceBound: 10, maxTimeServiceBound: 50);
 
                 TimeCordinator timeCoordinator = new(
                     casses: new()
                     {
-                        new Cassa(1, (x) => x.Status == Status.MILITARY,5),
-                        new Cassa(3, (x) => x.Status == Status.GP_1_DISABILITY,5),
-                        new Cassa(5, (x) => x.Status == Status.GP_2_DISABILITY,5),
-                        new Cassa(7, (x) => x.Status == Status.GP_3_DISABILITY,5),
-                        new Cassa(9, (x) => true,5),
-                        
+                        new Cassa(1, (x) => x.Status == Status.MILITARY, 5),
+                        new Cassa(3, (x) => x.Status == Status.GP_1_DISABILITY, 5),
+                        new Cassa(5, (x) => x.Status == Status.GP_2_DISABILITY, 5),
+                        new Cassa(7, (x) => true, 5),
+                        new Cassa(9, (x) => true, 5),
+
                     },
                     path: "../../../Files/Data.txt");
                 Logger.Instance.Path = "../../../Files/Result.txt";
@@ -44,6 +45,7 @@ namespace Task13
                 timeCoordinator.OnProcessEnd += OnProcessEndLog;
                 timeCoordinator.OnPersonArrived += OnPersonArrived;
                 timeCoordinator.OnPersonArrived += OnPersonArrivedLog;
+                timeCoordinator.OnCassaMaxAmount += OnCassaMaxAmountAction;
 
 
                 timeCoordinator.Process();
@@ -72,14 +74,15 @@ namespace Task13
             Console.WriteLine(person + " arrived");
             Console.ForegroundColor = ConsoleColor.Gray;
         }
-        private static void OnProcessEndLog(int count)
+        private static void OnProcessEndLog(int count, PriorityQueue<IPerson, int> mainQueue)
         {
             Logger.Instance.Log($"the persons amount passed through casses: {count}");
-
+            Logger.Instance.Log($"In queue last {mainQueue.Count} persons");
         }
-        private static void OnProcessEnd(int count)
+        private static void OnProcessEnd(int count, PriorityQueue<IPerson, int> mainQueue)
         {
             Console.WriteLine($"the persons amount passed through casses: {count}");
+            Console.WriteLine($"In queue last {mainQueue.Count} persons");            
         }
         private static void OnPersonServicedAtionLog(Cassa cassa, IPerson person)
         {
@@ -122,6 +125,29 @@ namespace Task13
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine($": {person} back to queue");
             Console.ForegroundColor = ConsoleColor.Magenta;
+        }
+        private static void OnCassaMaxAmountAction(PriorityQueue<IPerson, int> mainQueue, Cassa cassa)
+        {
+            var status = (Status)new Random().Next(0, 5);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"cassa on coord {cassa.XCoord} reprofiled to {status}");
+            Logger.Instance.Log($"cassa on coord {cassa.XCoord} reprofiled to {status}");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            cassa.Filter = x => x.Status == status;            
+            List<IPerson> filteredPersons = new List<IPerson>();
+            if (cassa.Filter(cassa.Peek()))
+            {
+                filteredPersons.Add(cassa.Dequeue());
+            }
+            else
+            {
+                var tmpPerson = cassa.Dequeue();
+                mainQueue.Enqueue(tmpPerson, tmpPerson.Priority);
+            }
+            foreach (var person in filteredPersons)
+            {
+                cassa.Add(person);
+            }            
         }
     }
 }
