@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task13.Enums;
 using Task13.FileHandler;
 using Task13.Persons;
 
@@ -71,13 +72,13 @@ namespace Task13.Parsers
             }
             else
             {
-                if (string.IsNullOrEmpty(txtSerializedParams["Status"]))
+                if (Enum.TryParse(txtSerializedParams["Status"],out Status statusResult) == false)
                 {
                     logDescriptionLine.Append("Хибний формат статусу; ");
                 }
                 else
                 {
-                    person.Status = txtSerializedParams["Status"];
+                    person.Status = statusResult;
                 }
             }
         }

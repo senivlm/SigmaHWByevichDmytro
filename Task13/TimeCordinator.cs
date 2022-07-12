@@ -116,6 +116,7 @@ namespace Task13
             }
             else
             {
+                var tmp = minPersonsCassa.Select(x => Math.Abs(x.XCoord - person.Coordinate)).Min();
                 List<Cassa> nearCassa = minPersonsCassa.Where(x => Math.Abs(x.XCoord - person.Coordinate) == minPersonsCassa.Select(x => Math.Abs(x.XCoord - person.Coordinate)).Min()).ToList();
                 return nearCassa[0];
             }

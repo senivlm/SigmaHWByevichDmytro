@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Task13.Enums;
 using Task13.FileHandler;
 
 namespace Task13.Persons
@@ -16,7 +17,7 @@ namespace Task13.Persons
                 TimeService = random.Next(minTimeServiceBound, maxTimeServiceBound)
             };
             person.Name = $"Random{person.Id.ToString()[..3]}";
-            person.Status = $"Status{person.Id.ToString()[..3]}";
+            person.Status = (Status)random.Next(0,5);
             return person;
         }
         public IEnumerable<Person> GeneratePersonsCollection(int amount, int ageMinBound = 0, int ageMaxBound = 100, int coordinateMinBound = 0, int coordinateMaxBound = 10, int minTimeServiceBound = 0, int maxTimeServiceBound = 100)

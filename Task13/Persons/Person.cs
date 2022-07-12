@@ -1,4 +1,5 @@
 ﻿using System;
+using Task13.Enums;
 
 namespace Task13.Persons
 {
@@ -6,12 +7,12 @@ namespace Task13.Persons
     {
         private int _age;
         private string _name;
-        private string _status;
+        private Status _status;
         private double _coordinate;
 
-        public Person() : this(default, string.Empty, string.Empty, default, default) { }
+        public Person() : this(default, string.Empty, default, default, default) { }
 
-        public Person(int age, string name, string status, double coordinate, int timeService)
+        public Person(int age, string name, Status status, double coordinate, int timeService)
         {
             Id = Guid.NewGuid();
             _age = age;
@@ -23,7 +24,7 @@ namespace Task13.Persons
 
         public int Age { get => _age; set => _age = value; }
         public string Name { get => _name; set => _name = value; }
-        public string Status { get => _status; set => _status = value; }
+        public Status Status { get => _status; set => _status = value; }
         public double Coordinate { get => _coordinate; set => _coordinate = value; }
         public Guid Id { get; }
         public int TimeService { get; set; }
@@ -32,14 +33,33 @@ namespace Task13.Persons
         {
             get
             {
-                int result = 3;
+                int result = 1;
                 if (_age <= 6)
                 {
-                    result = 2;
+                    result+=2;
                 }
                 if (_age >= 65)
                 {
-                    result = 1;
+                    result+= 1;
+                }
+                switch (_status)
+                {
+                    case Status.NONE:
+                        break;
+                    case Status.GP_1_DISABILITY:
+                        result += 1;
+                        break;
+                    case Status.GP_2_DISABILITY:
+                        result += 2;
+                        break;
+                    case Status.GP_3_DISABILITY:
+                        result += 3;
+                        break;
+                    case Status.MILITARY:
+                        result += 2;
+                        break;
+                    default:
+                        break;
                 }
                 return result;
             }

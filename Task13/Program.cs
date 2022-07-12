@@ -1,5 +1,6 @@
 ﻿using System;
 using Task13.CassaFolder;
+using Task13.Enums;
 using Task13.Persons;
 
 namespace Task13
@@ -13,10 +14,11 @@ namespace Task13
 
             try
             {
+                
                 Logger.Instance.Path = "../../../Files/Logs.txt";
 
                 //PersonGenerator personGenerator = new PersonGenerator();
-                //personGenerator.RandomPersonsIntoFIleGenerate("../../../Files/Data.txt", 100, minTimeServiceBound: 10,maxTimeServiceBound:200);
+                //personGenerator.RandomPersonsIntoFIleGenerate("../../../Files/Data.txt", 10, minTimeServiceBound: 10,maxTimeServiceBound:200);
 
                 TimeCordinator timeCoordinator = new(
                     casses: new()
