@@ -23,7 +23,7 @@ namespace Task12_3
 
         public IEnumerable<double> GetParamsFromStack(ref Stack<double> stack)
         {
-            List<double> result = new List<double>()
+            List<double> result = new()
             {
                 stack.Pop(),
                 stack.Pop()

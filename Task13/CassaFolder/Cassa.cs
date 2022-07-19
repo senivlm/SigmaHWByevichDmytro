@@ -17,8 +17,6 @@ namespace Task13.CassaFolder
         public event Action<Cassa> OnCassaMaxAmount;
         public double XCoord { get => _xCoord; set => _xCoord = value; }
 
-
-
         public Cassa()
         {
             Filter = (x) => true;

@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Task11.ConsoleUI.ConsoleProductReaders;
 using Task11.FileHandler;
 using Task11.Readers;
 using Task11.Validators;
+using Task14.Serialize;
 
 namespace Task11.ConsoleUI
 {
     internal class ConsoleProductStorageProcessor<T>
-        where T : class, IProduct
+         where T : class, IProduct
     {
         private Dictionary<string, IConsoleProductReader<T>> _consoleReaders;
         private Dictionary<string, ITXTSerializedParametersParser<T>> _parsersByType;
+        public IStreamSerializer<ProductStorage<T>> StreamStorageSerializer { get; set; }
         private ProductStorage<T> _producStorage;
         private Menu _mainMenu;
         private Menu _actionMenu;
@@ -56,6 +54,8 @@ namespace Task11.ConsoleUI
                 {new("Змінити ціну продукту",        () => DoActionOnProductMenu(ChangeProductPrice) )},
 
                 {new("Серіалізувати ",               () => SerializeStorage() )},
+
+                {new("Десеріалізувати ",               () => DeSerializeStorage() )},
             };
             if (_mainMenu is null)
             {
@@ -197,13 +197,17 @@ namespace Task11.ConsoleUI
 
         private void SerializeStorage()
         {
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(T));
-            using (var sww = new StreamWriter("../../../Files/SerializedStorage.txt"))
+            using (Stream stream = File.OpenWrite("../../../Files/Serialize.xml"))
             {
-                using (XmlTextWriter writer = new XmlTextWriter(sww) { Formatting = Formatting.Indented })
-                {
-                    xsSubmit.Serialize(writer, _producStorage);
-                }
+                StreamStorageSerializer.Serialize(_producStorage, stream);
+            }
+
+        }
+        private void DeSerializeStorage()
+        {
+            using (Stream stream = File.OpenRead("../../../Files/Serialize.xml"))
+            {
+                _producStorage = StreamStorageSerializer.Deserialize(stream);
             }
 
         }

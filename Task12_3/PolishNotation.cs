@@ -58,12 +58,12 @@ namespace Task12_3
             StringBuilder digit = new();
             for (int i = 0; i < expression.Length;)
             {
-                if (char.IsDigit(expression[i]) || expression[i] == '.')
+                if (char.IsDigit(expression[i]) || expression[i] == '.' || expression[i] == ',')
                 {
                     do
                     {
                         digit.Append(expression[i++]);
-                    } while (i < expression.Length && (char.IsDigit(expression[i]) || expression[i] == '.'));
+                    } while (i < expression.Length && (char.IsDigit(expression[i]) || expression[i] == '.' || expression[i] == ','));
                     result.Push(digit.ToString());
                     digit.Clear();
                 }
