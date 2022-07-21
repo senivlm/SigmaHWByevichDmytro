@@ -10,7 +10,7 @@ using Task14.Serialize;
 
 Console.OutputEncoding = System.Text.Encoding.Unicode;
 Console.InputEncoding = System.Text.Encoding.Unicode;
-
+// З одинаком все добре, а абстрактну фабрику по-своєму протрактував. Логічно, але малоуніверсально.
 try
 {
     Logger.Instance.Path = "../../../Files/Logs.txt";
