@@ -1,6 +1,6 @@
-﻿using Task11.Product.General;
+﻿using Task14.Product.General;
 
-namespace Task11.Product
+namespace Task14.Product
 {
     [Serializable]
     public class DairyProductModel : FoodProductBase, IDairyProduct

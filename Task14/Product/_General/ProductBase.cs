@@ -1,4 +1,4 @@
-﻿namespace Task11.Product._General
+﻿namespace Task14.Product._General
 {
     [Serializable]
     public abstract class ProductBase : IProduct

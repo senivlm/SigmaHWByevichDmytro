@@ -1,6 +1,6 @@
-﻿using Task11.Validators;
+﻿using Task14.Validators;
 
-namespace Task11.Readers
+namespace Task14.Readers
 {
     internal interface IStreamCollectionReader<T, G>
         where T : IEnumerable<G>

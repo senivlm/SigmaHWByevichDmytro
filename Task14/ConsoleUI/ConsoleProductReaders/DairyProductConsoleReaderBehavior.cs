@@ -1,6 +1,6 @@
-﻿using Task11.Product;
+﻿using Task14.Product;
 
-namespace Task11.ConsoleUI.ConsoleProductReaders
+namespace Task14.ConsoleUI.ConsoleProductReaders
 {
     internal class DairyProductConsoleReaderBehavior : FoodProductConsoleReaderBehaviorBase, IConsoleProductReader<IDairyProduct>
     {

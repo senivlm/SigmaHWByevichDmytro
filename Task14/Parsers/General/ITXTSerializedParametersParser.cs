@@ -1,6 +1,6 @@
-﻿using Task11.FileHandler;
+﻿using Task14.FileHandler;
 
-namespace Task11.Validators
+namespace Task14.Validators
 {
     internal delegate void LoggerOnBadFormat(string message);
     internal interface ITXTSerializedParametersParser<out T>

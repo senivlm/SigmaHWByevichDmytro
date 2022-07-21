@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using Task11.FileHandler;
-using Task11.Parsers;
-using Task11.Product;
+using Task14.FileHandler;
+using Task14.Parsers;
+using Task14.Product;
 
-namespace Task11.Validators
+namespace Task14.Validators
 {
     internal class DairyProductParser : FoodProductParserBase, ITXTSerializedParametersParser<IDairyProduct>
     {

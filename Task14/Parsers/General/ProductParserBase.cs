@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using Task11.FileHandler;
-using Task11.Validators;
+using Task14.FileHandler;
+using Task14.Validators;
 
-namespace Task11.Parsers
+namespace Task14.Parsers
 {
     internal abstract class ProductParserBase : ITXTSerializedParametersParser<IProduct>
     {

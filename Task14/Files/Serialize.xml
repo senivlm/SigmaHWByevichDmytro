@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ProductStorageOfIProduct>
-	<IProduct AssemblyQualifiedName="Task11.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<IProduct AssemblyQualifiedName="Task14.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 		<MovieProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<Price>12.32</Price>
 			<Name>12 Chairs</Name>
@@ -10,7 +10,7 @@
 			<AuthorName>Leonid Gayday</AuthorName>
 		</MovieProductModel>
 	</IProduct>
-	<IProduct AssemblyQualifiedName="Task11.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<IProduct AssemblyQualifiedName="Task14.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 		<MovieProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<Price>31.12</Price>
 			<Name>31 Styl</Name>
@@ -20,7 +20,7 @@
 			<AuthorName>Leonid</AuthorName>
 		</MovieProductModel>
 	</IProduct>
-	<IProduct AssemblyQualifiedName="Task11.Product.DairyProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<IProduct AssemblyQualifiedName="Task14.Product.DairyProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 		<DairyProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<Price>7.259999999999999</Price>
 			<Name>name</Name>
@@ -28,7 +28,7 @@
 			<Weight>2</Weight>
 		</DairyProductModel>
 	</IProduct>
-	<IProduct AssemblyQualifiedName="Task11.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<IProduct AssemblyQualifiedName="Task14.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 		<MovieProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<Price>12.32</Price>
 			<Name>12 Chairs</Name>
@@ -38,7 +38,7 @@
 			<AuthorName>Leonid Gayday</AuthorName>
 		</MovieProductModel>
 	</IProduct>
-	<IProduct AssemblyQualifiedName="Task11.Product.DairyProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<IProduct AssemblyQualifiedName="Task14.Product.DairyProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 		<DairyProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<Price>2.5775</Price>
 			<Name>Молоко без лактози</Name>
@@ -46,7 +46,7 @@
 			<Weight>3</Weight>
 		</DairyProductModel>
 	</IProduct>
-	<IProduct AssemblyQualifiedName="Task11.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+	<IProduct AssemblyQualifiedName="Task14.Product.MovieProduct.MovieProductModel, Task14, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 		<MovieProductModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<Price>31.12</Price>
 			<Name>31 Styl</Name>

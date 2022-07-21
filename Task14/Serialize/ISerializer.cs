@@ -1,4 +1,4 @@
-﻿namespace Task11
+﻿namespace Task14
 {
     /// <summary>
     /// Серіалізує дані типу G у тип T

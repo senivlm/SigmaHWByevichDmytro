@@ -1,10 +1,10 @@
 ﻿using System.Text;
-using Task11.FileHandler;
-using Task11.Product.General;
-using Task11.Product.MovieProduct;
-using Task11.Validators;
+using Task14.FileHandler;
+using Task14.Product.General;
+using Task14.Product.MovieProduct;
+using Task14.Validators;
 
-namespace Task11.Parsers
+namespace Task14.Parsers
 {
     internal class MovieProductParser : ProductParserBase, ITXTSerializedParametersParser<IMovieProduct>
     {

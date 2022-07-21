@@ -1,6 +1,6 @@
-﻿using Task11.Enums;
+﻿using Task14.Enums;
 
-namespace Task11
+namespace Task14
 {
     public interface IMeatProduct : IFoodProduct
     {

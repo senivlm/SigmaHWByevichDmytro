@@ -1,13 +1,13 @@
 ﻿using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using Task11.ConsoleUI.ConsoleProductReaders;
-using Task11.FileHandler;
-using Task11.Readers;
-using Task11.Validators;
+using Task14.ConsoleUI.ConsoleProductReaders;
+using Task14.FileHandler;
+using Task14.Readers;
+using Task14.Validators;
 using Task14.Serialize;
 
-namespace Task11.ConsoleUI
+namespace Task14.ConsoleUI
 {
     internal class ConsoleProductStorageProcessor<T>
          where T : class, IProduct
@@ -26,7 +26,7 @@ namespace Task11.ConsoleUI
         public ConsoleProductStorageProcessor(ProductStorage<T> producStorage, Dictionary<string, IConsoleProductReader<T>> consoleReaders, Dictionary<string, ITXTSerializedParametersParser<T>> parsersByType)
         {
             _consoleReaders = new(consoleReaders);
-            _producStorage = new(producStorage);
+            _producStorage = producStorage;
             _parsersByType = new(parsersByType);
             UpdateMainMenu();
         }

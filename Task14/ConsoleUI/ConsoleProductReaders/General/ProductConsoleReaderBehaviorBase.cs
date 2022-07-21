@@ -1,4 +1,4 @@
-﻿namespace Task11.ConsoleUI.ConsoleProductReaders
+﻿namespace Task14.ConsoleUI.ConsoleProductReaders
 {
     internal abstract class ProductConsoleReaderBehaviorBase : IConsoleProductReader<IProduct>
     {

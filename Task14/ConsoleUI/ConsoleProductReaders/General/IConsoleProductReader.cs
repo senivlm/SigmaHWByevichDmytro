@@ -1,4 +1,4 @@
-﻿namespace Task11.ConsoleUI.ConsoleProductReaders
+﻿namespace Task14.ConsoleUI.ConsoleProductReaders
 {
     internal interface IConsoleProductReader<out T>
         where T : IProduct

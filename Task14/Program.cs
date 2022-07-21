@@ -1,11 +1,11 @@
-﻿using Task11;
-using Task11.ConsoleUI;
-using Task11.ConsoleUI.ConsoleProductReaders;
-using Task11.Parsers;
-using Task11.Product;
-using Task11.Product.MovieProduct;
-using Task11.Services;
-using Task11.Validators;
+﻿using Task14;
+using Task14.ConsoleUI;
+using Task14.ConsoleUI.ConsoleProductReaders;
+using Task14.Parsers;
+using Task14.Product;
+using Task14.Product.MovieProduct;
+using Task14.Services;
+using Task14.Validators;
 using Task14.Serialize;
 
 Console.OutputEncoding = System.Text.Encoding.Unicode;
@@ -14,7 +14,7 @@ Console.InputEncoding = System.Text.Encoding.Unicode;
 try
 {
     Logger.Instance.Path = "../../../Files/Logs.txt";
-
+    
     Dictionary<string, ITXTSerializedParametersParser<IProduct>> ParsersByType = new()
     {
         { new DairyProductModel().GetType().Name, new DairyProductParser(Logger.Instance.Log) },
@@ -28,12 +28,10 @@ try
         { "М'ясний продукт", new MeatProductConsoleReaderBehavior() },
         { "Фільм", new MovieProductConsoleReaderBehavior() }
     };
+    ProductStorage<IProduct>.Instance.OnProductPreAddFaceControl += PreAddBehaviorService.IsProductNotExpired;
+    ProductStorage<IProduct>.Instance.OnBadProductLogger += Logger.Instance.Log;
 
-    ProductStorage<IProduct> storage = new();
-    storage.OnProductPreAddFaceControl += PreAddBehaviorService.IsProductNotExpired;
-    storage.OnBadProductLogger += Logger.Instance.Log;
-
-    ConsoleProductStorageProcessor<IProduct> consoleProductStorageProcessor = new(storage, ConsoleReaderByType, ParsersByType);
+    ConsoleProductStorageProcessor<IProduct> consoleProductStorageProcessor = new(ProductStorage<IProduct>.Instance, ConsoleReaderByType, ParsersByType);
     consoleProductStorageProcessor.StreamStorageSerializer = new XmlStreamSerializer<ProductStorage<IProduct>>();
     consoleProductStorageProcessor.PrintMenu();
 

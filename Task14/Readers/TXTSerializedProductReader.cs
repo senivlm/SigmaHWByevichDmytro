@@ -1,7 +1,7 @@
-﻿using Task11.FileHandler;
-using Task11.Validators;
+﻿using Task14.FileHandler;
+using Task14.Validators;
 
-namespace Task11.Readers
+namespace Task14.Readers
 {
     internal class TXTSerializedProductReader<T> : IObjectGetterFromSerializedLine<T>
         where T : IProduct

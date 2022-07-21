@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using Task11.Product._General;
+using Task14.Product._General;
 
-namespace Task11.Product.General
+namespace Task14.Product.General
 {
     [Serializable]
     public abstract class FoodProductBase : ProductBase, IFoodProduct

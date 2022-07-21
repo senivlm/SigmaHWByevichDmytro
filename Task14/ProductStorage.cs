@@ -1,16 +1,20 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace Task11
+namespace Task14
 {
     [Serializable]
-    public class ProductStorage<T> : List<T>, IXmlSerializable
+    public class ProductStorage<T> : IList<T>, IXmlSerializable
         where T : class, IProduct
     {
 
         #region Props
+        private static ProductStorage<T> _instance;
+        [XmlIgnore]
+        public static ProductStorage<T> Instance => _instance is null ? _instance = new() : _instance;
         private List<T> _products;
         /// <summary>
         /// перевіряє чи підпадає під задані умови продукт перед його додаванням
@@ -24,28 +28,11 @@ namespace Task11
         public double MaxPrice => _products.Select(product => product.Price).Max();
         #endregion
         #region Ctors
-        public ProductStorage()
+        private ProductStorage()
         {
-            _products = new List<T>();
+            _products = new();
         }
-        public ProductStorage(IEnumerable<T> products, Predicate<T>? onProductPreAddFaceControl, Action<string>? onBadProductLogger) : this()
-        {
-            OnProductPreAddFaceControl += onProductPreAddFaceControl;
-            OnBadProductLogger += onBadProductLogger;
-            foreach (T product in products)
-            {
-                if (OnProductPreAddFaceControl?.Invoke(product) ?? true)
-                {
-                    _products.Add((T)product.Clone());
-                }
-                else
-                {
-                    OnBadProductLogger?.Invoke(new TxtSerializer().Serialize(product) + "<Describe : Продукт не підпадає під умови додавання>;");
-                }
-            }
-        }
-        public ProductStorage(ProductStorage<T> other) : this(other._products, other.OnProductPreAddFaceControl, other.OnBadProductLogger)
-        { }
+
         #endregion
         #region IList
         public T this[int index]
@@ -58,7 +45,7 @@ namespace Task11
 
         public bool IsReadOnly => false;
 
-        public new void Add(T item)
+        public void Add(T item)
         {
             if (OnProductPreAddFaceControl?.Invoke(item) ?? true)
             {
@@ -119,6 +106,7 @@ namespace Task11
 
         #endregion
         #region Methods
+       
         public IEnumerable<G> GetAll<G>() where G : T
         {
             foreach (T item in _products)
@@ -188,6 +176,11 @@ namespace Task11
                 xmlSerializer.Serialize(writer, product);
                 writer.WriteEndElement();
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
 

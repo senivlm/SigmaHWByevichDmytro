@@ -1,4 +1,4 @@
-﻿namespace Task11
+﻿namespace Task14
 {
     internal class Logger
     {
@@ -6,13 +6,13 @@
         private int _exCount = 0;
         private string _path;
 
-        private static readonly Logger _instance;
-        public static Logger Instance => _instance ?? new Logger();
+        private static Logger _instance;
+        public static Logger Instance => _instance is null ? _instance = new() : _instance;
         public int ExCount => _exCount;
         public string Path { get => _path; set => _path = value; }
         #endregion
         #region Ctors
-        static Logger()
+        private Logger()
         {
             _instance = new Logger();
         }

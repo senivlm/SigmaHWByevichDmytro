@@ -1,4 +1,4 @@
-﻿namespace Task11.Product.General
+﻿namespace Task14.Product.General
 {
     public interface IAuthorProduct : IProduct
     {

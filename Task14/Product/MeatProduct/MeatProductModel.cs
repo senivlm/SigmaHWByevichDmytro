@@ -1,7 +1,7 @@
-﻿using Task11.Enums;
-using Task11.Product.General;
+﻿using Task14.Enums;
+using Task14.Product.General;
 
-namespace Task11.Product
+namespace Task14.Product
 {
     [Serializable]
     public class MeatProductModel : FoodProductBase, IMeatProduct

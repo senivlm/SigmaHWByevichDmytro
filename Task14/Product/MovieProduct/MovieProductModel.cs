@@ -1,7 +1,7 @@
-﻿using Task11.Product._General;
-using Task11.Product.General;
+﻿using Task14.Product._General;
+using Task14.Product.General;
 
-namespace Task11.Product.MovieProduct
+namespace Task14.Product.MovieProduct
 {
     [Serializable]
     public class MovieProductModel : ProductBase, IMovieProduct
